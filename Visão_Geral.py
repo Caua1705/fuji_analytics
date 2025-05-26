@@ -57,7 +57,7 @@ tipo_visualizacao = st.radio(
     label_visibility="collapsed")
 
 match(filial):
-    
+
     case "Aldeota":
         df_receitas_por_categoria_aldeota=receitas_por_categoria(df_receitas_aldeota_filtrado)
         df_despesas_por_categoria_aldeota=despesas_por_categoria(df_despesas_aldeota_filtrado)
@@ -77,10 +77,10 @@ match(filial):
         col1,col2=st.columns(2)
         with col1:
             st.subheader("Receitas por Categoria")
-            criar_graficos_principais_receitas(df_receitas_cambeba_filtrado,tipo_visualizacao)
+            criar_graficos_principais_receitas(df_receitas_por_categoria_cambeba,tipo_visualizacao)
         with col2:
             st.subheader("Despesas por Categoria")
-            criar_graficos_principais_despesas(df_despesas_cambeba_filtrado,tipo_visualizacao)
+            criar_graficos_principais_despesas(df_despesas_por_categoria_cambeba,tipo_visualizacao)
 
     case "Todas":
         df_receitas_por_categoria_todos=receitas_por_categoria(df_receitas_todos_filtrado)
@@ -89,10 +89,10 @@ match(filial):
         col1,col2=st.columns(2)
         with col1:
             st.subheader("Receitas por Categoria")
-            criar_graficos_principais_receitas(df_receitas_todos_filtrado,tipo_visualizacao)
+            criar_graficos_principais_receitas(df_receitas_por_categoria_todos,tipo_visualizacao)
         with col2:
             st.subheader("Despesas por Categoria")
-            criar_graficos_principais_despesas(df_despesas_todos_filtrado,tipo_visualizacao)
+            criar_graficos_principais_despesas(df_despesas_por_categoria_todos,tipo_visualizacao)
 
         
        

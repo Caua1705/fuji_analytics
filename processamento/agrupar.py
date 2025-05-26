@@ -1,4 +1,3 @@
-import streamlit as st
 
 def agrupar_por_filial(df):
     df_aldeota=df.loc[df["Filial"]=="Aldeota"]
