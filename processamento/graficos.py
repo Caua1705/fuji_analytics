@@ -14,7 +14,7 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         xaxis_title="Grupo",
         yaxis_title="Valor",
         showlegend=False,
-        xaxis_tickangle=-45  )
+        xaxis_tickangle=-90  )
     fig2 = px.pie(
         receitas_por_categoria,
         names="Grupo",
