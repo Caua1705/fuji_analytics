@@ -3,6 +3,7 @@ import plotly.express as px
 
 def criar_graficos_principais_receitas(receitas_por_categoria,tipo_visualizacao):
     fig1=px.bar(receitas_por_categoria,x="Grupo",y="Valor",title="Receitas por Categoria")
+    fig1.update_layout(xaxis_title="Grupo",yaxis_title="Valor",showlegend=True)
     fig2=px.pie(receitas_por_categoria,names="Grupo",values="Valor",title="Receitas por Categoria")
     if tipo_visualizacao=="📊 Valores absolutos":
         st.plotly_chart(fig1)
