@@ -62,6 +62,7 @@ match(filial):
     case "Aldeota":
         df_receitas_por_categoria_aldeota=receitas_por_categoria(df_receitas_aldeota_filtrado)
         df_despesas_por_categoria_aldeota=despesas_por_categoria(df_despesas_aldeota_filtrado)
+        st.write(df_receitas_por_categoria_aldeota)
 
         col1,col2=st.columns(2)
         with col1:
