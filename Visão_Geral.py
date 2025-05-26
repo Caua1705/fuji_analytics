@@ -12,6 +12,7 @@ st.title("Visão Geral de Receitas e Despesas")
 df_receitas,df_despesas=carregar_dataframes()
 
 #Formatar dados
+# df_receitas=df_receitas.rename(columns={""})
 df_receitas=formatar_valores_nulos(df_receitas,["Produto","Grupo","Quantidade","Valor","Filial"])
 df_despesas=formatar_valores_nulos(df_despesas,["Filial","Tipo_Lancamento","Sintetica","Analitica","Detalhada",
                                                 "Observacao","Fornecedor/Cliente",

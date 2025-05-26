@@ -15,3 +15,4 @@ def formatar_valores_nulos(df,colunas):
 def formatar_coluna_valor(df, coluna_valor):
     df[coluna_valor] = pd.to_numeric(df[coluna_valor], errors="coerce").abs().fillna(0)
     return df
+
