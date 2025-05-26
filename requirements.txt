@@ -1,3 +1,4 @@
-import openpyxl
-import pandas
-import plotly.express
+streamlit
+pandas
+plotly
+openpyxl
