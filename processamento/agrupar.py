@@ -1,0 +1,27 @@
+import streamlit as st
+
+def agrupar_por_filial(df):
+    df_aldeota=df.loc[df["Filial"]=="Aldeota"]
+    df_cambeba=df.loc[df["Filial"]=="Cambeba"]
+    return {"Aldeota":df_aldeota,
+            "Cambeba":df_cambeba}
+
+def receitas_por_categoria(df_receitas):
+    df_receitas_por_categoria=df_receitas.groupby("Grupo")["Valor"].sum().sort_values(ascending=False).reset_index()
+    if len(df_receitas_por_categoria)>5:
+        top5=df_receitas_por_categoria.iloc[:5]
+        outros=df_receitas_por_categoria.iloc[5:].sum()
+        top5.loc["Outros"]=outros
+        return top5
+    return df_receitas_por_categoria
+
+def despesas_por_categoria(df_despesas):
+    df_despesas_por_categoria=df_despesas.groupby("Centro_Custo")["Valor_Pago/Recebido"].sum().sort_values(ascending=False).reset_index()
+    if len(df_despesas_por_categoria)>5:
+        top5=df_despesas_por_categoria.iloc[:5]
+        outros=df_despesas_por_categoria.iloc[5:].sum()
+        top5.loc["Outros"]=outros
+        return top5
+    return df_despesas_por_categoria
+
+    
