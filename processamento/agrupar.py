@@ -1,4 +1,4 @@
-
+import streamlit as st
 def agrupar_por_filial(df):
     df_aldeota=df.loc[df["Filial"]=="Aldeota"]
     df_cambeba=df.loc[df["Filial"]=="Cambeba"]
@@ -10,6 +10,7 @@ def receitas_por_categoria(df_receitas):
     if len(df_receitas_por_categoria)>5:
         top5=df_receitas_por_categoria.iloc[:5]
         outros=df_receitas_por_categoria.iloc[5:].sum()
+        st.write(outros)
         top5.loc["Outros"]=outros
         return top5
     return df_receitas_por_categoria
