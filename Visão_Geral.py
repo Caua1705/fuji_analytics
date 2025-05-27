@@ -64,7 +64,7 @@ exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
 
 # Abas
-tipo_visualizacao, agrupar_outros = exibir_abas()
+tipo_visualizacao, agrupar_outros = exibir_abas(filial)
 
 # Agrupar por Categoria
 df_receitas_por_categoria = agrupar_por_categoria(

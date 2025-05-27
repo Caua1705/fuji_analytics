@@ -1,7 +1,7 @@
 import streamlit as st
 
-def exibir_abas():
-    st.subheader("Distribuição de Receita e Despesas")
+def exibir_abas(filial):
+    st.subheader(f" Distribuição de Receita e Despesas | {filial}")
     modo_percentual = st.toggle("📊 Mostrar proporção percentual", value=False)
     if modo_percentual:
         tipo_visualizacao = "Proporção percentual"
