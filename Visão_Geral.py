@@ -4,6 +4,7 @@ from carregamento.carregar_dados import carregar_dataframes
 # Formatar Dados
 from utils.formatar import formatar_dataframe
 from utils.config_formatacao import config_receitas, config_despesas
+from utils.estilo import aplicar_estilo,inserir_logo,linha_divisoria
 # Filtrar Dados
 from processamento.filtrar import filtrar_por_filial, processar_filial
 # Exibir Métricas
@@ -17,141 +18,15 @@ from view.graficos import exibir_graficos
 
 # Configuração da Página
 st.set_page_config(layout="wide")
-
+aplicar_estilo()
 # Logo Fixa
-st.markdown(
-    """
-    <style>
-        /* 🔥 Logo fixa no topo direito */
-        .logo-fixed {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-        }
-
-        /* 🔸 Divisor fino, discreto e elegante */
-        hr {
-            margin-top: 5px;
-            margin-bottom: 5px;
-            border: none;
-            border-top: 1px solid #DADADA;
-        }
-
-        /* 🔹 Reduzir espaço interno da página (opcional) */
-        .block-container {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-
-        /* 🔸 Títulos mais próximos, sem espaço extra */
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        /* 🔹 Bordas e caixas mais suaves */
-        .stMetric {
-            background-color: #F9F9F9;
-            border-radius: 8px;
-            padding: 10px;
-            border: 1px solid #E0E0E0;
-        }
-
-    </style>
-
-    <div class="logo-fixed">
-        <img 
-            src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" 
-            width="100">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-st.markdown(
-    """
-    <style>
-    /* 🔧 Reduz o padding geral da página */
-    .block-container {
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-
-    /* 🎯 Reduz espaço da sidebar */
-    [data-testid="stSidebar"] > div:first-child {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
-
-    /* 🧽 Remove espaçamentos desnecessários entre os elementos */
-    .stMarkdown {
-        margin-bottom: 0.5rem;
-    }
-
-    /* 🎨 Ajusta títulos */
-    h1 {
-        font-size: 2.2rem;
-        margin-bottom: 0.2rem;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-        margin-bottom: 0.2rem;
-    }
-
-    h3 {
-        font-size: 1.4rem;
-        margin-bottom: 0.2rem;
-    }
-
-    h4, h5, h6 {
-        margin-bottom: 0.1rem;
-    }
-
-    /* 🔸 Estilo dos divisores */
-    hr {
-        border: none;
-        border-top: 1px solid rgba(0,0,0,0.15);
-        margin-top: 6px;
-        margin-bottom: 6px;
-    }
-
-    /* 🌈 Fonte geral mais clean */
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.95rem;
-    }
-
-    /* 🔳 Bordas dos containers */
-    .stContainer {
-        border-radius: 8px;
-    }
-
-    /* 🔗 Remove underline dos links */
-    a {
-        text-decoration: none;
-    }
-
-    /* 💠 Caixa das métricas */
-    .stMetric {
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        padding: 10px;
-        box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    }
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+inserir_logo()
 
 # Título
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
 
 # Linha depois do título
-
+linha_divisoria()
 
 # Sidebar – Filtros
 with st.sidebar:
@@ -187,18 +62,6 @@ df_receitas_filtrado, df_despesas_filtrado = processar_filial(
 # 🔥 Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 
-# Linha depois das métricas
-st.markdown(
-    """
-    <hr style="
-        margin-top: 5px;
-        margin-bottom: 5px;
-        border: none;
-        border-top: 1px solid rgba(0,0,0,0.15);
-    ">
-    """,
-    unsafe_allow_html=True
-)
 
 # 🔍 Título dos Gráficos
 st.markdown("#### 🔍 Distribuição de Receita e Despesas")
