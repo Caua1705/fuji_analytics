@@ -78,7 +78,7 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
         values="Valor_Pago/Recebido",
         title="Despesas por Categoria",
         hole=0.4,
-        width=700, height=700)    
+        width=500, height=500)    
     fig2.update_traces(textinfo="percent+label")
 
     if tipo_visualizacao=="📊 Valores absolutos":
