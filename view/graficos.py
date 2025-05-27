@@ -50,7 +50,7 @@ def criar_graficos_pizza(df_agrupado,tipo_df,x,y):
 def exibir_graficos(tipo_visualizacao, df_receitas, df_despesas):
     col1, col2 = st.columns(2)
 
-    if tipo_visualizacao == "📊 Valores absolutos":
+    if tipo_visualizacao == "Valores absolutos":
         with col1:
             st.markdown("##### 📊 **Análise por Categoria**")
             criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor")
