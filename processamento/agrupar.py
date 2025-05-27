@@ -17,9 +17,9 @@ def receitas_por_categoria(df_receitas):
 
 def despesas_por_categoria(df_despesas):
     df_despesas_por_categoria=df_despesas.groupby("Centro_Custo")["Valor_Pago/Recebido"].sum().sort_values(ascending=False).reset_index()
-    if len(df_despesas_por_categoria)>5:
-        top5=df_despesas_por_categoria.iloc[:5]
-        outros=df_despesas_por_categoria.iloc[5:].sum()
+    if len(df_despesas_por_categoria)>8:
+        top5=df_despesas_por_categoria.iloc[:8]
+        outros=df_despesas_por_categoria.iloc[8:].sum()
         top5.loc["Outros"]=outros
         return top5
     return df_despesas_por_categoria

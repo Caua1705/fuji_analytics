@@ -11,7 +11,6 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
     "TEMAKI": "#ffbb78",      
     "PASTE": "#2ca02c",       
     "Outros": "#d3d3d3"} 
- 
     fig1 = px.bar(
         receitas_por_categoria,
         x="Grupo",
@@ -19,8 +18,7 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         title="Receitas por Categoria",
         text_auto=".2s",
         color="Grupo",
-        color_discrete_map=cores_receitas
-    )
+        color_discrete_map=cores_receitas)
     fig1.update_layout(
         xaxis_title="Grupo",
         yaxis_title="Valor",
@@ -30,9 +28,9 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         'text': "Receitas por Categoria",
         'x': 0.5,
         'xanchor': 'center'
-    }
-        )
+        })
     fig1.update_traces(texttemplate='%{y:.2s}', textposition='outside')
+
     fig2 = px.pie(
         receitas_por_categoria,
         names="Grupo",
@@ -53,8 +51,7 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
     "FUNCIONÁRIOS": "#9467bd",  
     "FORNECEDORES": "#8c564b", 
     "INSUMOS": "#e377c2",       
-    "Outros": "#d3d3d3"         
-}
+    "Outros": "#d3d3d3"}
     fig1=px.bar(despesas_por_categoria,
                 x="Centro_Custo",
                 y="Valor_Pago/Recebido",
@@ -69,8 +66,7 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
                        title={
         'text': "Receitas por Categoria",
         'x': 0.5,
-        'xanchor': 'center'
-    })
+        'xanchor': 'center'})
     fig1.update_traces(texttemplate='%{y:.2s}', textposition='outside')
 
     fig2=px.pie(despesas_por_categoria,names="Centro_Custo",values="Valor_Pago/Recebido",title="Despesas por Categoria")
