@@ -23,7 +23,7 @@ st.markdown(
         .logo-fixed {
             position: fixed;
             top: 40px; /* 🔸 Distância do topo */
-            right: -25px; /* 🔸 Distância da direita */
+            right: -10px; /* 🔸 Distância da direita */
             z-index: 100;
         }
     </style>
