@@ -11,8 +11,9 @@ def receitas_por_categoria(df_receitas,agrupar_outros):
     df_receitas["Grupo"]=df_receitas["Grupo"].replace({"COUVERT ARTISTICO":"COUVERT"})
 
     df_receitas_por_categoria=df_receitas.groupby("Grupo")["Valor"].sum().sort_values(ascending=False).reset_index()
+    df_receitas_por_categoria=df_receitas_por_categoria.iloc[:7]
 
-    if agrupar_outros and len(df_receitas_por_categoria) > 7:
+    if agrupar_outros and len(df_receitas_por_categoria)>7:
         top7 = df_receitas_por_categoria.iloc[:7]
         outros_valor = df_receitas_por_categoria.iloc[7:]["Valor"].sum()
         outros = pd.DataFrame([{"Grupo": "Outros", "Valor": outros_valor}])
@@ -27,8 +28,9 @@ def despesas_por_categoria(df_despesas,agrupar_outros):
         "LVP SERVIÇOS  ADMINISTRATIVOS LTDA":"LVP",
         "PUBLICIDADE E PROPAGANDA":"PUBLICIDADE"})
     
-    df_despesas_por_categoria = (df_despesas.groupby("Centro_Custo")["Valor_Pago/Recebido"].sum().sort_values(ascending=False).reset_index())
-    
+    df_despesas_por_categoria=df_despesas.groupby("Centro_Custo")["Valor_Pago/Recebido"].sum().sort_values(ascending=False).reset_index()
+    df_despesas_por_categoria=df_despesas_por_categoria.iloc[:7]
+
     if agrupar_outros and len(df_despesas_por_categoria) > 7:
         top7 = df_despesas_por_categoria.iloc[:7]
         outros_valor = df_despesas_por_categoria.iloc[7:]["Valor_Pago/Recebido"].sum()
