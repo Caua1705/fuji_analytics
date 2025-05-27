@@ -20,10 +20,10 @@ logo_path = "assets/logo_fuji.png"
 
 # Título + logo juntos
 st.markdown(
-    f"""
+    """
     <div style='display: flex; align-items: center; gap: 10px;'>
         <h1 style='margin: 0;'>🍣 Dashboard</h1>
-        <img src='{logo_path}' width='60'>
+        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' width='60'>
     </div>
     <hr style="margin-top: 10px; margin-bottom: 20px;">
     """,
