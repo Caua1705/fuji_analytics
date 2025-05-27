@@ -97,12 +97,11 @@ def inserir_logo(url_logo: str, tamanho: int = 100):
     )
 
 def linha_divisoria():
-    """Adiciona uma linha divisória discreta."""
     st.markdown(
         """
         <hr style="
-            margin-top: 5px;
-            margin-bottom: 5px;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
             border: none;
             border-top: 1px solid rgba(0,0,0,0.15);
         ">
