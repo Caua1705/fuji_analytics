@@ -16,7 +16,6 @@ from view.abas import exibir_abas
 from view.graficos import exibir_graficos
 
 # Configuração da Página
-st.set_page_config(layout="wide")
 
 # Logo Fixa
 st.markdown(
