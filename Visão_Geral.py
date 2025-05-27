@@ -62,10 +62,10 @@ with aba1:
         criar_graficos_barra(df_receitas_por_categoria,"Receitas","Grupo","Valor")
         criar_graficos_pizza(df_receitas_por_categoria,"Receitas","Grupo","Valor")
     with col2:
-        criar_graficos_barra(df_despesas_por_categoria,"Despesas","Grupo","Valor")
-        criar_graficos_pizza(df_despesas_por_categoria,"Despesas","Grupo","Valor")
-
+        criar_graficos_barra(df_despesas_por_categoria,"Despesas","Centro_Custo","Valor_Pago/Recebido")
+        criar_graficos_pizza(df_despesas_por_categoria,"Despesas","Centro_Custo","Valor_Pago/Recebido")
         
+
 
 
 
