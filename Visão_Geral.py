@@ -16,33 +16,33 @@ from view.abas import exibir_abas
 from view.graficos import exibir_graficos
 
 st.set_page_config(layout="wide")
+st.markdown("## 🍣 Painel Financeiro Fuji")
 logo_path = "assets/logo_fuji.png"
-st.markdown(
-    """
-    <div style='
-        display: flex; 
-        align-items: center; 
-        gap: 8px; 
-        margin-top: -30px;
-        margin-left: -30px;
-        margin-bottom: -45px;
-    '>
-        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' 
-             width='150' 
-             style='margin: 0;'>
-        <h1 style='
-            margin: 0; 
-            font-size: 36px; 
-            margin-left: -10px;
-            color: #A67C52;
-            font-weight: 600;
-        '>
-            Painel Financeiro
-        </h1>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# st.markdown(
+#     """
+#     <div style='
+#         display: flex; 
+#         align-items: center; 
+#         gap: 8px; 
+#         margin-top: -30px;
+#         margin-left: -30px;
+#         margin-bottom: -45px;
+#     '>
+#         <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' 
+#              width='150' 
+#              style='margin: 0;'>
+#         <h1 style='
+#             margin: 0; 
+#             font-size: 36px; 
+#             margin-left: -10px;
+#             color: #A67C52;
+#             font-weight: 600;
+#         '>
+#         </h1>
+# #     </div>
+# #     """,
+#     unsafe_allow_html=True
+# )
 
 #Filtros Sidebar
 with st.sidebar:
