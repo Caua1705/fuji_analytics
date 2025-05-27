@@ -30,7 +30,7 @@ st.markdown(
 
     <div class="logo-fixed">
         <img 
-            src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_2.png" 
+            src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/melhor_logo.png" 
             width="120">
     </div>
     """,
