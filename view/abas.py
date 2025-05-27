@@ -1,14 +1,14 @@
 import streamlit as st
 
 def exibir_abas():
-    tipo_visualizacao = st.radio(
-        "Qual forma de visualização?",
-        ["📊 Valores absolutos", "📉 Proporção percentual"],
-        horizontal=True,
-        label_visibility="collapsed")
+    col1, col2 = st.columns([3, 2])  # Ajusta a proporção de espaço
 
-    if tipo_visualizacao == "📉 Proporção percentual":
-        agrupar_outros = True
-    else:
-        agrupar_outros = False
-    return tipo_visualizacao,agrupar_outros
+    with col1:
+        st.markdown("### 🔍 Distribuição de Receita e Despesas")
+
+    with col2:
+        tipo_visualizacao = st.radio(
+            "", 
+            ["Valores absolutos", "Proporção percentual"], 
+            horizontal=True
+        )
