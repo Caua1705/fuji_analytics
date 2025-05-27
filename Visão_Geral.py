@@ -72,7 +72,7 @@ st.subheader("💰 Resumo Financeiro")
 exibir_metricas_financeiras(df_receitas_filtrado,df_despesas_filtrado)
 st.divider()
 
-st.subheader("📊 Análise de Receita e Despesas por Categoria")
+st.markdown("##### 🔍 Distribuição de Receita e Despesas")
 
 #Abas
 tipo_visualizacao,agrupar_outros=exibir_abas()
