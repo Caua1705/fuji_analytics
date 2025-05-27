@@ -16,7 +16,6 @@ from view.abas import exibir_abas
 from view.graficos import exibir_graficos
 st.set_page_config(layout="wide")
 
-st.markdown("## Visão Estratégica")
 st.markdown(
     """
     <style>
@@ -36,6 +35,9 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
+st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
