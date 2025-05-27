@@ -16,11 +16,26 @@ from view.abas import exibir_abas
 from view.graficos import exibir_graficos
 st.set_page_config(layout="wide")
 
-# 🔥 Remove espaço superior da página
 st.markdown("## Visão Estratégica")
-with st.sidebar: 
-    st.image("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_novo.png", width=150)
-    st.markdown("---")
+st.markdown(
+    """
+    <style>
+        .logo-fixed {
+            position: fixed;
+            top: 20px; /* 🔸 Distância do topo */
+            right: 20px; /* 🔸 Distância da direita */
+            z-index: 100;
+        }
+    </style>
+
+    <div class="logo-fixed">
+        <img 
+            src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_2.png" 
+            width="120">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
@@ -28,7 +43,6 @@ with st.sidebar:
     st.subheader("📅 Filtros de Período")
     data_inicio = st.date_input("Data de início")
     data_fim = st.date_input("Data de fim")
-
 #Carregar Dados
 df_receitas,df_despesas=carregar_dataframes()
 
