@@ -55,9 +55,9 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
                 y="Valor_Pago/Recebido",
                 title="Despesas por Categoria",
                 text_auto=".2s",
-                color="Centro de Custo",
+                color="Centro_Custo",
                 color_discrete_map=cores_despesas)
-    fig1.update_layout(xaxis_title="Centro_Custo",
+    fig1.update_layout(xaxis_title="Centro de Custo",
                        yaxis_title="Valor",
                        showlegend=False,
                        xaxis_tickangle=0,
