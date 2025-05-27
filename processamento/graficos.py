@@ -14,7 +14,7 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         xaxis_title="Grupo",
         yaxis_title="Valor",
         showlegend=False,
-        xaxis_tickangle=0  )
+        xaxis_tickangle=0)
     fig2 = px.pie(
         receitas_por_categoria,
         names="Grupo",
@@ -35,6 +35,10 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
                 title="Despesas por Categoria",
                 text_auto=".2s",
                 color="Centro_Custo")
+    fig1.update_layout(xaxis="Centro_Custo",
+                       yaxis="Valor_Pago/Recebido",
+                       showlegend=False,
+                       xaxis_tickangle=0)
     fig2=px.pie(despesas_por_categoria,names="Centro_Custo",values="Valor_Pago/Recebido",title="Despesas por Categoria")
     if tipo_visualizacao=="📊 Valores absolutos":
         st.plotly_chart(fig1)
