@@ -33,18 +33,28 @@ st.markdown(
 
 st.markdown(
     """
-    <div style='
-        display: flex; 
-        align-items: center; 
-        gap: 20px; 
-        margin-bottom: -30px;  /* <<< AQUI você controla a aproximação */
-    '>
-        <img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novo_logo.png" width="180">
-        <h1 style="font-weight: 600; margin: 0;">Visão Estratégica</h1>
+    <div style="
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: -20px;
+    ">
+        <img 
+            src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novo_logo.png" 
+            width="180"
+            style="transform: translateY(30px);">
+        <h1 style="
+            font-weight: 600;
+            margin: 0;
+            transform: translateY(95px);
+        ">
+            Visão Estratégica
+        </h1>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
