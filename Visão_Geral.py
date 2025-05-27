@@ -36,7 +36,7 @@ st.markdown(
     <div style="
         display: flex;
         align-items: flex-start;
-        gap: 20px;
+        gap: 16px;
         margin-bottom: -20px;
     ">
         <img 
