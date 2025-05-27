@@ -79,7 +79,7 @@ with aba1:
         with col1:
             criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor")
         with col2:
-            criar_graficos_pizza(df_despesas_por_categoria, "
+            criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor_Pago/Recebido")
     
        
 
