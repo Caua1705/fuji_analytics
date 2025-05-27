@@ -17,36 +17,20 @@ from view.graficos import exibir_graficos
 st.set_page_config(layout="wide")
 st.markdown(
     """
-    <style>
-    .block-container {
-        padding-top: 0.5rem;
-        padding-bottom: 10rem;
-    }
-    h1 {
-        margin: 0;
-        padding: 0;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
     <div style="
         display: flex;
         align-items: flex-start;
         gap: 16px;
-        margin-bottom: -20px;
+        margin-bottom: -50px;
     ">
         <img 
             src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novo_logo.png" 
             width="180"
-            style="transform: translateY(30px);">
+            style="padding-top: 60px;">
         <h1 style="
             font-weight: 600;
             margin: 0;
-            transform: translateY(95px);
+            padding-top: 125px;
         ">
             Visão Estratégica
         </h1>
@@ -54,7 +38,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
