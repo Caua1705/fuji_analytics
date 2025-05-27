@@ -15,4 +15,4 @@ def exibir_abas():
             agrupar_outros = False
     with aba2:
         st.write("Nada Ainda")
-    return agrupar_outros
+    return tipo_visualizacao,agrupar_outros
