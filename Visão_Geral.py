@@ -70,6 +70,9 @@ df_receitas_filtrado,df_despesas_filtrado=processar_filial(dict_receitas,
 #Métricas
 st.subheader("🔢 Visão Financeira Resumida")
 exibir_metricas_financeiras(df_receitas_filtrado,df_despesas_filtrado)
+st.divider()
+
+st.subheader("📊 Análise de Receita e Despesas por Categoria")
 
 #Abas
 tipo_visualizacao,agrupar_outros=exibir_abas()
