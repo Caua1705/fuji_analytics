@@ -16,6 +16,11 @@ from view.abas import exibir_abas
 from view.graficos import exibir_graficos
 
 # Configuração da Página
+st.set_page_config(
+    page_title="Fuji Analytics",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # Logo Fixa
 st.markdown(
@@ -36,11 +41,6 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-)
-st.set_page_config(
-    page_title="Fuji Analytics",
-    layout="wide",
-    initial_sidebar_state="expanded"
 )
 
 st.markdown(
