@@ -16,12 +16,12 @@ def receitas_por_categoria(df_receitas):
     return df_receitas_por_categoria
 
 def despesas_por_categoria(df_despesas):
+    df_despesas["Centro_Custo"] = df_despesas["Centro_Custo"].str.strip().str.upper()
     df_despesas["Centro_Custo"] = df_despesas["Centro_Custo"].replace({
         "DESPESAS FIXAS": "FIXAS",
         "DESPESAS VARIÁVEIS": "VARIÁVEIS",
         "DESPESA COM PESSOAL": "PESSOAL",
-        "LVP SERVIÇOS ADMINISTRATIVOS LTDA": "LVP"
-    })
+        "LVP SERVIÇOS ADMINISTRATIVOS LTDA":"LVP"})
     df_despesas_por_categoria=df_despesas.groupby("Centro_Custo")["Valor_Pago/Recebido"].sum().sort_values(ascending=False).reset_index()
     if len(df_despesas_por_categoria)>7:
         top5=df_despesas_por_categoria.iloc[:7]
