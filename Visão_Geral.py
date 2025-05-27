@@ -6,6 +6,7 @@ from processamento.metricas import exibir_metricas_financeiras
 from processamento.graficos import criar_graficos_principais_receitas,criar_graficos_principais_despesas
 from utils.filtrar import filtrar_por_data
 
+st.set_page_config(layout="wide")
 st.title("Visão Geral de Receitas e Despesas")
 
 #Carregar Dados
