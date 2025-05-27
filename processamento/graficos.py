@@ -60,7 +60,7 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
     fig1.update_layout(xaxis_title="Centro_Custo",
                        yaxis_title="Valor",
                        showlegend=False,
-                       xaxis_tickangle=30,
+                       xaxis_tickangle=0,
                        title={
         'text': "Receitas por Categoria",
         'x': 0.5,
