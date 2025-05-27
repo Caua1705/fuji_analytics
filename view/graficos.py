@@ -25,6 +25,8 @@ def criar_graficos_barra(df_agrupado,tipo_df,x,y):
         xaxis_tickangle=0,
         title={'text': titulo,'x': 0.5,'xanchor': 'center'})
     
+    fig_bar.update_traces(textposition='outside')  
+    
     st.plotly_chart(fig_bar,use_container_width=True)
 
 def criar_graficos_pizza(df_agrupado,tipo_df,x,y):
