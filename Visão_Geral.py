@@ -64,7 +64,7 @@ exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 
 
 # 🔍 Título dos Gráficos
-st.markdown("#### 🔍 Distribuição de Receita e Despesas")
+st.subheader("🔍 Distribuição de Receita e Despesas")
 
 # Abas
 tipo_visualizacao, agrupar_outros = exibir_abas()
