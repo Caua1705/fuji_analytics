@@ -37,7 +37,12 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         values="Valor",
         title="Despesas por Categoria",
         hole=0.4,
+        color_discrete_sequence=qualitative.Set3
         )
+    fig2.update_layout(
+    showlegend=True,
+    legend=dict(orientation="v", x=1, y=0.5)
+)
     fig2.update_traces(textinfo="percent+label")
 
     if tipo_visualizacao == "📊 Valores absolutos":
