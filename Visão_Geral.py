@@ -17,28 +17,33 @@ from view.graficos import exibir_graficos
 from PIL import Image
 
 logo_path = "assets/logo_fuji.png"
-
 st.markdown(
     """
-    <style>
-    .block-container {
-        padding-top: 0rem;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Logo maior + título alinhado
-st.markdown(
-    """
-    <div style='display: flex; flex-direction: column; align-items: flex-start; margin-top: 0px;'>
-        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' width='150' style='margin-bottom: -20px;'>
-        <h1 style='margin: 0; font-size: 36px;'>🍣 Dashboard Fuji</h1>
+    <div style='
+        display: flex; 
+        align-items: center; 
+        gap: 8px; 
+        margin-top: -30px;
+        margin-left: -30px;
+        margin-bottom: -45px;
+    '>
+        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' 
+             width='150' 
+             style='margin: 0;'>
+        <h1 style='
+            margin: 0; 
+            font-size: 36px; 
+            margin-left: -10px;
+            color: #A67C52;
+            font-weight: 600;
+        '>
+            Painel Financeiro
+        </h1>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
