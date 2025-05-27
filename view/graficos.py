@@ -52,8 +52,10 @@ def exibir_graficos(tipo_visualizacao, df_receitas, df_despesas):
 
     if tipo_visualizacao == "📊 Valores absolutos":
         with col1:
+            st.markdown("##### 📊 **Análise por Categoria**")
             criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor")
         with col2:
+            st.markdown("##### 📊 **Análise por Categoria**")
             criar_graficos_barra(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido")
     else:
         with col1:
