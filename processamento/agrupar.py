@@ -25,9 +25,9 @@ def despesas_por_categoria(df_despesas):
     df_despesas_por_categoria=df_despesas.groupby("Centro_Custo")["Valor_Pago/Recebido"].sum().sort_values(ascending=False).reset_index()
     if len(df_despesas_por_categoria)>6:
         top5=df_despesas_por_categoria.iloc[:6]
-        outros_valor = df_receitas_por_categoria.iloc[6:]["Valor_Pago/Recebido"].sum()
+        outros_valor = df_despesas_por_categoria.iloc[6:]["Valor_Pago/Recebido"].sum()
         outros = pd.DataFrame([{"Grupo": "Outros", "Valor": outros_valor}])
-        df_receitas_por_categoria = pd.concat([top5, outros], ignore_index=True)
+        df_despesas_por_categoria = pd.concat([top5, outros], ignore_index=True)
     return df_despesas_por_categoria
 
     
