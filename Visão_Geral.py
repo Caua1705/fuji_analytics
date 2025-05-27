@@ -14,8 +14,8 @@ from processamento.agrupar import agrupar_por_categoria
 from view.abas import exibir_abas
 #Exibir Gráficos
 from view.graficos import exibir_graficos
-from PIL import Image
 
+st.set_page_config(layout="wide")
 logo_path = "assets/logo_fuji.png"
 st.markdown(
     """
