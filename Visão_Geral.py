@@ -18,18 +18,27 @@ from PIL import Image
 
 logo_path = "assets/logo_fuji.png"
 
-# Título + logo juntos
 st.markdown(
     """
-    <div style='display: flex; align-items: center; gap: 10px;'>
-        <h1 style='margin: 0;'>🍣 Dashboard</h1>
-        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' width='60'>
-    </div>
-    <hr style="margin-top: 10px; margin-bottom: 20px;">
+    <style>
+    .block-container {
+        padding-top: 0rem;
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
 
+# Logo maior + título alinhado
+st.markdown(
+    """
+    <div style='display: flex; flex-direction: column; align-items: flex-start; margin-top: 0px;'>
+        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' width='150' style='margin-bottom: -20px;'>
+        <h1 style='margin: 0; font-size: 36px;'>🍣 Dashboard Fuji</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
