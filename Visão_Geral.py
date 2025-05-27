@@ -55,12 +55,16 @@ tipo_visualizacao = st.radio(
     ["📊 Valores absolutos", "📉 Proporção percentual"],
     horizontal=True,
     label_visibility="collapsed")
+if tipo_visualizacao == "📉 Proporção percentual":
+    agrupar_outros = True
+else:
+    agrupar_outros = False
 
 match(filial):
 
     case "Aldeota":
-        df_receitas_por_categoria_aldeota=receitas_por_categoria(df_receitas_aldeota_filtrado)
-        df_despesas_por_categoria_aldeota=despesas_por_categoria(df_despesas_aldeota_filtrado)
+        df_receitas_por_categoria_aldeota=receitas_por_categoria(df_receitas_aldeota_filtrado,agrupar_outros)
+        df_despesas_por_categoria_aldeota=despesas_por_categoria(df_despesas_aldeota_filtrado,agrupar_outros)
 
         col1,col2=st.columns(2)
         with col1:
@@ -69,8 +73,8 @@ match(filial):
             criar_graficos_principais_despesas(df_despesas_por_categoria_aldeota,tipo_visualizacao)
 
     case "Cambeba":
-        df_receitas_por_categoria_cambeba=receitas_por_categoria(df_receitas_cambeba_filtrado)
-        df_despesas_por_categoria_cambeba=despesas_por_categoria(df_despesas_cambeba_filtrado)
+        df_receitas_por_categoria_cambeba=receitas_por_categoria(df_receitas_cambeba_filtrado,agrupar_outros)
+        df_despesas_por_categoria_cambeba=despesas_por_categoria(df_despesas_cambeba_filtrado,agrupar_outros)
 
         col1,col2=st.columns(2)
         with col1:
@@ -79,8 +83,8 @@ match(filial):
             criar_graficos_principais_despesas(df_despesas_por_categoria_cambeba,tipo_visualizacao)
 
     case "Todas":
-        df_receitas_por_categoria_todos=receitas_por_categoria(df_receitas_todos_filtrado)
-        df_despesas_por_categoria_todos=despesas_por_categoria(df_despesas_todos_filtrado)
+        df_receitas_por_categoria_todos=receitas_por_categoria(df_receitas_todos_filtrado,agrupar_outros)
+        df_despesas_por_categoria_todos=despesas_por_categoria(df_despesas_todos_filtrado,agrupar_outros)
 
         col1,col2=st.columns(2)
         with col1:

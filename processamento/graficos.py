@@ -2,7 +2,7 @@ import plotly.express as px
 from plotly.colors import qualitative
 import streamlit as st
 
-def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao):
+def criar_graficos_principais_receitas(receitas_por_categoria,tipo_visualizacao):
     cores_receitas = [
     "#1f77b4",  # azul escuro
     "#ff7f0e",  # laranja vibrante
