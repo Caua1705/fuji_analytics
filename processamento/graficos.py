@@ -18,7 +18,7 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         y="Valor",
         title="Receitas por Categoria",
         text_auto=".2s",
-        color=cores_receitas,
+        color="Grupo",
         color_discrete_map=cores_receitas
     )
     fig1.update_layout(
@@ -60,7 +60,7 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
                 y="Valor_Pago/Recebido",
                 title="Despesas por Categoria",
                 text_auto=".2s",
-                color=cores_despesas,
+                color="Centro_Custo"",
                 color_discrete_map=cores_despesas)
     fig1.update_layout(xaxis_title="Centro_Custo",
                        yaxis_title="Valor",
