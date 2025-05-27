@@ -50,7 +50,6 @@ elif filial=="Todas":
 
 aba1, aba2 = st.tabs(["Visão Financeira", "Evolução Mensal"])
 
-st.subheader("Análise Comparativa de Receitas e Despesas por Categoria")
 tipo_visualizacao = st.radio(
     "",
     ["📊 Valores absolutos", "📉 Proporção percentual"],
