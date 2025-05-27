@@ -18,8 +18,8 @@ st.set_page_config(layout="wide")
 
 # 🔥 Remove espaço superior da página
 st.markdown("## Visão Estratégica")
-with st.sidebar:
-    st.image("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji_horizontal.png", width=150)
+with st.sidebar: 
+    st.image("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_novo.png", width=150)
     st.markdown("---")
 #Filtros Sidebar
 with st.sidebar:
