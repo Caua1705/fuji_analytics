@@ -32,7 +32,7 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         'xanchor': 'center'
     }
         )
-    fig1.update_traces(texttemplate='%{y:.2s}', textposition='outside')
+    # fig1.update_traces(texttemplate='%{y:.2s}', textposition='outside')
     fig2 = px.pie(
         receitas_por_categoria,
         names="Grupo",
