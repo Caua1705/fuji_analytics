@@ -16,7 +16,7 @@ from view.abas import exibir_abas
 from view.graficos import exibir_graficos
 
 st.set_page_config(layout="wide")
-st.title("Visão Geral de Receitas e Despesas")
+st.markdown("## 📊 Visão Geral do Negócio")
 
 #Filtros Sidebar
 with st.sidebar:
@@ -47,8 +47,6 @@ df_receitas_filtrado,df_despesas_filtrado=processar_filial(dict_receitas,
                                                            data_fim)
 #Métricas
 exibir_metricas_financeiras(df_receitas_filtrado,df_despesas_filtrado)
-st.divider()
-st.subheader("Graficos Receitas e Despesas")
 
 #Abas
 tipo_visualizacao,agrupar_outros=exibir_abas()
