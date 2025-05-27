@@ -8,9 +8,9 @@ def agrupar_por_filial(df):
 
 def receitas_por_categoria(df_receitas):
     df_receitas_por_categoria=df_receitas.groupby("Grupo")["Valor"].sum().sort_values(ascending=False).reset_index()
-    if len(df_receitas_por_categoria) > 5:
-        top5 = df_receitas_por_categoria.iloc[:5]
-        outros_valor = df_receitas_por_categoria.iloc[5:]["Valor"].sum()
+    if len(df_receitas_por_categoria) > 8:
+        top5 = df_receitas_por_categoria.iloc[:8]
+        outros_valor = df_receitas_por_categoria.iloc[8:]["Valor"].sum()
         outros = pd.DataFrame([{"Grupo": "Outros", "Valor": outros_valor}])
         df_receitas_por_categoria = pd.concat([top5, outros], ignore_index=True)
     return df_receitas_por_categoria
