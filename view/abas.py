@@ -1,17 +1,12 @@
 import streamlit as st
 
 def exibir_abas():
-    col1, col2 = st.columns([4, 1.8])
+    modo_percentual = st.toggle('📊 Mostrar proporção percentual')
 
-    with col1:
-        st.markdown("### 🔍 Distribuição de Receita e Despesas")
-
-    with col2:
-        tipo_visualizacao = st.radio(
-            label="",
-            options=["Valores absolutos", "Proporção percentual"],
-            horizontal=True
-        )
+    if modo_percentual:
+        tipo_visualizacao = "Proporção percentual"
+    else:
+        tipo_visualizacao = "Valores absolutos"
 
     if tipo_visualizacao == "Proporção percentual":
         agrupar_outros = True
