@@ -21,7 +21,7 @@ st.markdown(
     <style>
         .logo-fixed {
             position: fixed;
-            top: 20px; /* 🔸 Distância do topo */
+            top: 25px; /* 🔸 Distância do topo */
             right: 20px; /* 🔸 Distância da direita */
             z-index: 100;
         }
@@ -47,7 +47,7 @@ with st.sidebar:
     data_inicio = st.date_input("Data de início")
     data_fim = st.date_input("Data de fim")
 
-#Carregar Dados
+#Carregar Dado
 df_receitas,df_despesas=carregar_dataframes()
 
 #Formatar dados
