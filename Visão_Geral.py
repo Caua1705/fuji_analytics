@@ -64,8 +64,7 @@ with aba1:
     with col2:
         criar_graficos_barra(df_despesas_por_categoria,"Despesas","Grupo","Valor")
         criar_graficos_pizza(df_despesas_por_categoria,"Despesas","Grupo","Valor")
-with aba2:
-    pass
+
         
 
 
