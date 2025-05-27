@@ -47,12 +47,21 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         st.plotly_chart(fig2, use_container_width=True)
 
 def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao):
+    cores_despesas = {
+        "ALUGUEL": "#d62728",
+        "MARKETING": "#ff9896",
+        "FUNCIONÁRIOS": "#9467bd",
+        "FORNECEDORES": "#8c564b",
+        "INSUMOS": "#e377c2",
+        "Outros": "#d3d3d3"
+    }
     fig1=px.bar(despesas_por_categoria,
                 x="Centro_Custo",
                 y="Valor_Pago/Recebido",
                 title="Despesas por Categoria",
                 text_auto=".2s",
-                color="Centro_Custo")
+                color=cores_despesas,
+                color_discrete_map=cores_despesas)
     fig1.update_layout(xaxis_title="Centro_Custo",
                        yaxis_title="Valor",
                        showlegend=False,
