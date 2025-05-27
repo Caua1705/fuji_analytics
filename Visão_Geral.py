@@ -22,7 +22,7 @@ st.markdown(
     <style>
         .logo-fixed {
             position: fixed;
-            top: 40px; /* 🔸 Distância do topo */
+            top: 20px; /* 🔸 Distância do topo */
             right: 20px; /* 🔸 Distância da direita */
             z-index: 100;
         }
@@ -31,7 +31,7 @@ st.markdown(
     <div class="logo-fixed">
         <img 
             src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" 
-            width="120">
+            width="110">
     </div>
     """,
     unsafe_allow_html=True
