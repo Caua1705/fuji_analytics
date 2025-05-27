@@ -7,6 +7,7 @@ def agrupar_por_filial(df):
             "Cambeba":df_cambeba}
 
 def receitas_por_categoria(df_receitas):
+    df_receitas["Grupo"]=df_receitas["Grupo"].replace({"COUVERT ARTISTICO":"COUVERT"})
     df_receitas_por_categoria=df_receitas.groupby("Grupo")["Valor"].sum().sort_values(ascending=False).reset_index()
     if len(df_receitas_por_categoria) > 6:
         top5 = df_receitas_por_categoria.iloc[:6]
