@@ -8,8 +8,6 @@ from utils.config_formatacao import config_receitas,config_despesas
 from processamento.filtrar import filtrar_por_filial,processar_filial
 #Agrupar Dados
 from processamento.agrupar import agrupar_por_categoria
-#Exibir Abas
-from view.abas import exibir_abas
 #Exibir Métricas
 from view.metricas import exibir_metricas_financeiras
 #Exibir Gráficos
@@ -49,22 +47,34 @@ df_receitas_filtrado,df_despesas_filtrado=processar_filial(dict_receitas,
 exibir_metricas_financeiras(df_receitas_filtrado,df_despesas_filtrado)
 
 #Abas
-aba1,aba2,agrupar_outros=exibir_abas()
+aba1, aba2 = st.tabs(["Visão Financeira", "Evolução Mensal"])
 
+with aba1:
+    tipo_visualizacao = st.radio(
+        "Qual forma de visualização?",
+        ["📊 Valores absolutos", "📉 Proporção percentual"],
+        horizontal=True,
+        label_visibility="collapsed")
+        
+    if tipo_visualizacao == "📉 Proporção percentual":
+        agrupar_outros = True
+    else:
+        agrupar_outros = False
 #Agrupar
 df_receitas_por_categoria=agrupar_por_categoria(df_receitas_filtrado,"Grupo","Valor",agrupar_outros)
 df_despesas_por_categoria=agrupar_por_categoria(df_despesas_filtrado,"Centro_Custo","Valor_Pago/Recebido",agrupar_outros)
 
 #Gráficos
-col1,col2=st.columns(2)
-with col1:
-    criar_graficos_barra(df_receitas_por_categoria,"Receitas","Grupo","Valor")
-    criar_graficos_pizza(df_receitas_por_categoria,"Receitas","Grupo","Valor")
-with col2:
-    criar_graficos_barra(df_despesas_por_categoria,"Despesas","Centro_Custo","Valor_Pago/Recebido")
-    criar_graficos_pizza(df_despesas_por_categoria,"Despesas","Centro_Custo","Valor_Pago/Recebido")
+with aba1:
+    col1,col2=st.columns(2)
+    with col1:
+        criar_graficos_barra(df_receitas_por_categoria,"Receitas","Grupo","Valor")
+        criar_graficos_pizza(df_receitas_por_categoria,"Receitas","Grupo","Valor")
+    with col2:
+        criar_graficos_barra(df_despesas_por_categoria,"Despesas","Centro_Custo","Valor_Pago/Recebido")
+        criar_graficos_pizza(df_despesas_por_categoria,"Despesas","Centro_Custo","Valor_Pago/Recebido")
 
 
-        
+    
        
 
