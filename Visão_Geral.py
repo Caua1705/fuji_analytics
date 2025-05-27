@@ -31,7 +31,7 @@ st.markdown(
     <div class="logo-fixed">
         <img 
             src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/loguinha.png" 
-            width="120">
+            width="150">
     </div>
     """,
     unsafe_allow_html=True
