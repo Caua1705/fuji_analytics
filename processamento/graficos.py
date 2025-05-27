@@ -57,7 +57,13 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
                        yaxis_title="Valor",
                        showlegend=False,
                        xaxis_tickangle=30,
-                       )
+                       title={
+        'text': "Receitas por Categoria",
+        'x': 0.5,
+        'xanchor': 'center'
+    })
+    fig1.update_traces(texttemplate='%{y:.2s}', textposition='outside')
+
     fig2=px.pie(despesas_por_categoria,names="Centro_Custo",values="Valor_Pago/Recebido",title="Despesas por Categoria")
     if tipo_visualizacao=="📊 Valores absolutos":
         st.plotly_chart(fig1)
