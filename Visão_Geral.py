@@ -151,17 +151,7 @@ st.markdown(
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
 
 # Linha depois do título
-st.markdown(
-    """
-    <hr style="
-        margin-top: 5px;
-        margin-bottom: 5px;
-        border: none;
-        border-top: 1px solid rgba(0,0,0,0.15);
-    ">
-    """,
-    unsafe_allow_html=True
-)
+
 
 # Sidebar – Filtros
 with st.sidebar:
@@ -198,17 +188,7 @@ df_receitas_filtrado, df_despesas_filtrado = processar_filial(
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 
 # Linha depois das métricas
-st.markdown(
-    """
-    <hr style="
-        margin-top: 5px;
-        margin-bottom: 5px;
-        border: none;
-        border-top: 1px solid rgba(0,0,0,0.15);
-    ">
-    """,
-    unsafe_allow_html=True
-)
+
 
 # 🔍 Título dos Gráficos
 st.markdown("#### 🔍 Distribuição de Receita e Despesas")
