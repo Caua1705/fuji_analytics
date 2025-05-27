@@ -20,11 +20,12 @@ def despesas_por_categoria(df_despesas):
         "DESPESAS FIXAS": "FIXAS",
         "DESPESAS VARIÁVEIS": "VARIÁVEIS",
         "DESPESA COM PESSOAL": "PESSOAL",
-        "LVP SERVIÇOS  ADMINISTRATIVOS LTDA":"LVP"})
+        "LVP SERVIÇOS  ADMINISTRATIVOS LTDA":"LVP",
+        "PUBLICIDADE E PROPAGANDA":"PUBLICIDADE"})
     df_despesas_por_categoria=df_despesas.groupby("Centro_Custo")["Valor_Pago/Recebido"].sum().sort_values(ascending=False).reset_index()
-    if len(df_despesas_por_categoria)>7:
-        top5=df_despesas_por_categoria.iloc[:7]
-        outros=df_despesas_por_categoria.iloc[7:].sum()
+    if len(df_despesas_por_categoria)>6:
+        top5=df_despesas_por_categoria.iloc[:6]
+        outros=df_despesas_por_categoria.iloc[6:].sum()
         top5.loc["Outros"]=outros
         return top5
     return df_despesas_por_categoria

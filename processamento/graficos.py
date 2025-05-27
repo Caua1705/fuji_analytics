@@ -1,8 +1,6 @@
 import plotly.express as px
 import streamlit as st
 
-
-
 def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao):
     cores_receitas = {
     "COMBINADOS": "#1f77b4", 
