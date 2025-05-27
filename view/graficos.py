@@ -47,3 +47,16 @@ def criar_graficos_pizza(df_agrupado,tipo_df,x,y):
 
     st.plotly_chart(fig_pie,use_container_width=True)
 
+def exibir_graficos(tipo_visualizacao, df_receitas, df_despesas):
+    col1, col2 = st.columns(2)
+
+    if tipo_visualizacao == "📊 Valores absolutos":
+        with col1:
+            criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor")
+        with col2:
+            criar_graficos_barra(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido")
+    else:
+        with col1:
+            criar_graficos_pizza(df_receitas, "Receitas", "Grupo", "Valor")
+        with col2:
+            criar_graficos_pizza(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido")
