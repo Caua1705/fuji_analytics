@@ -27,7 +27,7 @@ st.markdown(
         margin-left: -30px;
         margin-bottom: -45px;
     '>
-        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' 
+        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novo_logo.png' 
              width='150' 
              style='margin: 0;'>
         <h1 style='
