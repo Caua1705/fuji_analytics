@@ -45,6 +45,20 @@ logo_path = "assets/logo_fuji.png"
 # )
 
 #Filtros Sidebar
+st.markdown(
+    """
+    <div style='
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        opacity: 0.30;
+        z-index: -1;
+    '>
+        <img src='https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png' width='200'>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 with st.sidebar:
     st.subheader("Filial")
     filial=st.sidebar.selectbox("Selecione a filial",["Todas","Aldeota","Cambeba"])
@@ -82,6 +96,7 @@ df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo",
 df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido", agrupar_outros)
 
 #Exibir Gráficos:
+st.image("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji.png", width=60)
 exibir_graficos(tipo_visualizacao,df_receitas_por_categoria,df_despesas_por_categoria)
 
     
