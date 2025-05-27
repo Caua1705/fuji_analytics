@@ -26,7 +26,7 @@ inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/ass
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
 
 # Linha depois do título
-linha_divisoria()
+st.divider()
 
 # Sidebar – Filtros
 with st.sidebar:
