@@ -16,130 +16,55 @@ from view.abas import exibir_abas
 from view.graficos import exibir_graficos
 
 # Configuração da Página
-st.set_page_config(
-    page_title="Fuji Analytics",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+st.set_page_config(layout="wide")
 
 # Logo Fixa
 st.markdown(
     """
     <style>
+        /* 🔥 Logo fixa no topo direito */
         .logo-fixed {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 100;
         }
+
+        /* 🔸 Divisor fino, discreto e elegante */
+        hr {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: none;
+            border-top: 1px solid #DADADA;
+        }
+
+        /* 🔹 Reduzir espaço interno da página (opcional) */
+        .block-container {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* 🔸 Títulos mais próximos, sem espaço extra */
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 🔹 Bordas e caixas mais suaves */
+        .stMetric {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid #E0E0E0;
+        }
+
     </style>
 
     <div class="logo-fixed">
         <img 
             src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" 
-            width="110">
+            width="100">
     </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
-    <style>
-
-    /* 🌑 Background geral (Dark elegante) */
-    .stApp {
-        background-color: #0f1117;
-        color: #f5f5f5;
-    }
-
-    /* 🎨 Sidebar */
-    [data-testid="stSidebar"] {
-        background-color: #1a1d23;
-    }
-    [data-testid="stSidebar"] > div:first-child {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
-
-    /* 🎯 Títulos */
-    h1, h2, h3, h4, h5, h6 {
-        color: #f5f5f5;
-        margin-bottom: 0.3rem;
-    }
-
-    /* 🔗 Links */
-    a {
-        color: #6ab7ff;
-        text-decoration: none;
-    }
-
-    /* ✨ Texto */
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-        color: #f5f5f5;
-        font-size: 0.95rem;
-    }
-
-    /* 🔳 Caixa dos componentes (como metrics) */
-    .stMetric {
-        background-color: #161921;
-        border-radius: 10px;
-        padding: 10px;
-        box-shadow: 0 0 6px rgba(0,0,0,0.6);
-    }
-
-    /* 📊 Dataframes */
-    .stDataFrame {
-        background-color: #161921;
-        border-radius: 10px;
-    }
-
-    /* 🔥 Divisor */
-    hr {
-        border: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        margin-top: 6px;
-        margin-bottom: 6px;
-    }
-
-    /* 🚫 Remove padding exagerado da página */
-    .block-container {
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-
-    /* 🔳 Bordas de containers e widgets */
-    .stContainer {
-        border-radius: 8px;
-    }
-
-    /* 🎯 Selectbox, buttons e inputs */
-    button, .stButton>button {
-        background-color: #21252b;
-        color: #f5f5f5;
-        border: 1px solid #2c2f36;
-        border-radius: 8px;
-    }
-    button:hover {
-        background-color: #2a2e36;
-        color: #fff;
-    }
-
-    .stSelectbox, .stTextInput, .stDateInput, .stMultiSelect {
-        background-color: #161921;
-        color: #f5f5f5;
-        border-radius: 8px;
-    }
-
-    /* ✅ Checkbox e radio */
-    .stCheckbox > label, .stRadio > label {
-        color: #f5f5f5;
-    }
-
-    </style>
     """,
     unsafe_allow_html=True
 )
