@@ -15,8 +15,13 @@ from view.abas import exibir_abas
 #Exibir Gráficos
 from view.graficos import exibir_graficos
 
-st.set_page_config(layout="wide")
-st.markdown("## 📊 Visão Geral do Negócio")
+col1, col2 = st.columns([5, 1])
+
+with col1:
+    st.markdown("## 🍣 Dashboard Fuji")
+
+with col2:
+    st.image("assets/logo_fuji.png", width=100)
 
 #Filtros Sidebar
 with st.sidebar:
