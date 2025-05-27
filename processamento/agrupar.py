@@ -16,8 +16,9 @@ def receitas_por_categoria(df_receitas, agrupar_outros):
         outros_valor = df_receitas_por_categoria.iloc[7:]["Valor"].sum()
         outros = pd.DataFrame([{"Grupo": "Outros", "Valor": outros_valor}])
         df_receitas_por_categoria = pd.concat([top7, outros], ignore_index=True)
+    else:
+       df_receitas_por_categoria=df_receitas_por_categoria.iloc[:7]
     
-    # Não precisa limitar aqui, já está limitado pelo if acima
     return df_receitas_por_categoria
 
 def despesas_por_categoria(df_despesas, agrupar_outros):
@@ -36,6 +37,8 @@ def despesas_por_categoria(df_despesas, agrupar_outros):
         outros_valor = df_despesas_por_categoria.iloc[7:]["Valor_Pago/Recebido"].sum()
         outros = pd.DataFrame([{"Centro_Custo": "Outros", "Valor_Pago/Recebido": outros_valor}])
         df_despesas_por_categoria = pd.concat([top7, outros], ignore_index=True)
+    else:
+        df_despesas_por_categoria=df_despesas_por_categoria.iloc[:7]
 
     return df_despesas_por_categoria
 
