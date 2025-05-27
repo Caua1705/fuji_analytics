@@ -38,7 +38,6 @@ st.markdown(
 
 
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
-st.divider()
 #Filtros Sidebar
 with st.sidebar:
     st.markdown("### 🏢 **Filial**")
@@ -68,7 +67,6 @@ df_receitas_filtrado,df_despesas_filtrado=processar_filial(dict_receitas,
                                                            data_inicio,
                                                            data_fim)
 #Métricas
-st.subheader("🔢 Visão Financeira Resumida")
 exibir_metricas_financeiras(df_receitas_filtrado,df_despesas_filtrado)
 st.divider()
 
