@@ -40,11 +40,16 @@ st.markdown(
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
 #Filtros Sidebar
 with st.sidebar:
-    st.subheader("Filial")
-    filial=st.sidebar.selectbox("Selecione a filial",["Todas","Aldeota","Cambeba"])
-    st.subheader("📅 Filtros de Período")
+    st.markdown("### 🏢 **Filial**")
+    filial = st.selectbox("Selecione a filial", ["Todas", "Aldeota", "Cambeba"])
+
+    st.markdown("---")  # Linha separadora
+
+    st.markdown("### 📅 **Período**")
     data_inicio = st.date_input("Data de início")
     data_fim = st.date_input("Data de fim")
+
+    st.markdown("---")  # Outra separadora, se quiser adicionar mais filtros
 #Carregar Dados
 df_receitas,df_despesas=carregar_dataframes()
 
