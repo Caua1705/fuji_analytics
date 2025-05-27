@@ -27,7 +27,7 @@ def despesas_por_categoria(df_despesas):
     if len(df_despesas_por_categoria)>6:
         top5=df_despesas_por_categoria.iloc[:6]
         outros_valor = df_despesas_por_categoria.iloc[6:]["Valor_Pago/Recebido"].sum()
-        outros = pd.DataFrame([{"Grupo": "Outros", "Valor": outros_valor}])
+        outros = pd.DataFrame([{"Grupo": "Outros", "Valor_Pago/Recebido": outros_valor}])
         df_despesas_por_categoria = pd.concat([top5, outros], ignore_index=True)
     return df_despesas_por_categoria
 
