@@ -1,14 +1,9 @@
 import plotly.express as px
+from plotly.colors import qualitative
 import streamlit as st
 
 def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao):
-    cores_receitas = {
-    "COMBINADOS": "#1f77b4", 
-    "DRINKS": "#aec7e8",     
-    "FRUTAS": "#ff7f0e",     
-    "TEMAKI": "#ffbb78",      
-    "PASTE": "#2ca02c",       
-    "Outros": "#d3d3d3"} 
+    cores_maior = qualitative.Dark24
     fig1 = px.bar(
         receitas_por_categoria,
         x="Grupo",
@@ -16,7 +11,7 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         title="Receitas por Categoria",
         text_auto=".2s",
         color="Grupo",
-        color_discrete_map=cores_receitas)
+        color_discrete_sequence=cores_maior)
     fig1.update_layout(
         xaxis_title="Grupo",
         yaxis_title="Valor",
@@ -43,20 +38,14 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         st.plotly_chart(fig2, use_container_width=True)
 
 def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao):
-    cores_despesas = {
-    "ALUGUEL": "#d62728",       
-    "MARKETING": "#ff9896",     
-    "FUNCIONÁRIOS": "#9467bd",  
-    "FORNECEDORES": "#8c564b", 
-    "INSUMOS": "#e377c2",       
-    "Outros": "#d3d3d3"}
+    cores_maior = qualitative.Dark24
     fig1=px.bar(despesas_por_categoria,
                 x="Centro_Custo",
                 y="Valor_Pago/Recebido",
                 title="Despesas por Categoria",
                 text_auto=".2s",
                 color="Centro_Custo",
-                color_discrete_map=cores_despesas)
+                color_discrete_sequence=cores_maior)
     fig1.update_layout(xaxis_title="Centro de Custo",
                        yaxis_title="Valor",
                        showlegend=False,
