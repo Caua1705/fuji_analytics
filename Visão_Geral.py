@@ -6,12 +6,14 @@ from utils.formatar import formatar_dataframe
 from utils.config_formatacao import config_receitas,config_despesas
 #Filtrar Dados
 from processamento.filtrar import filtrar_por_filial,processar_filial
-#Agrupar Dados
-from processamento.agrupar import agrupar_por_categoria
 #Exibir Métricas
 from view.metricas import exibir_metricas_financeiras
+#Agrupar Dados
+from processamento.agrupar import agrupar_por_categoria
+#Exibir abas:
+from view.abas import exibir_abas
 #Exibir Gráficos
-from view.graficos import criar_graficos_barra,criar_graficos_pizza,exibir_graficos
+from view.graficos import exibir_graficos
 
 st.set_page_config(layout="wide")
 st.title("Visão Geral de Receitas e Despesas")
@@ -47,25 +49,14 @@ df_receitas_filtrado,df_despesas_filtrado=processar_filial(dict_receitas,
 exibir_metricas_financeiras(df_receitas_filtrado,df_despesas_filtrado)
 
 #Abas
-aba1, aba2 = st.tabs(["Visão Financeira", "Evolução Mensal"])
+tipo_visualizacao,agrupar_outros=exibir_abas()
 
-with aba1:
-    tipo_visualizacao = st.radio(
-        "Qual forma de visualização?",
-        ["📊 Valores absolutos", "📉 Proporção percentual"],
-        horizontal=True,
-        label_visibility="collapsed")
+#Agrupar por Categoria
+df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Valor", agrupar_outros)
+df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido", agrupar_outros)
 
-    if tipo_visualizacao == "📉 Proporção percentual":
-        agrupar_outros = True
-    else:
-        agrupar_outros = False
+#Exibir Gráficos:
+exibir_graficos(tipo_visualizacao,df_receitas_por_categoria,df_despesas_por_categoria)
 
-    df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Valor", agrupar_outros)
-    df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido", agrupar_outros)
-
-    #Exibir Gráficos:
-    exibir_graficos(tipo_visualizacao,df_receitas_por_categoria,df_despesas_por_categoria)
     
-       
 
