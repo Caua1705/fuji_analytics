@@ -53,7 +53,7 @@ aba1,aba2,agrupar_outros=exibir_abas()
 
 #Agrupar
 df_receitas_por_categoria=agrupar_por_categoria(df_receitas_filtrado,"Grupo","Valor",agrupar_outros)
-df_despesas_por_categoria=agrupar_por_categoria(df_despesas_filtrado,"Centro_Custo","Valor_Pago/Recebido",agrupar_outros)
+df_despesas_por_categoria=agrupar_por_categoria(df_receitas_filtrado,"Centro_Custo","Valor_Pago/Recebido",agrupar_outros)
 
 #Gráficos
 col1,col2=st.columns(2)
@@ -61,11 +61,8 @@ with col1:
     criar_graficos_barra(df_receitas_por_categoria,"Receitas","Grupo","Valor")
     criar_graficos_pizza(df_receitas_por_categoria,"Receitas","Grupo","Valor")
 with col2:
-    criar_graficos_barra(df_despesas_por_categoria,"Despesas","Centro_Custo","Valor_Pago/Recebido")
-    criar_graficos_pizza(df_despesas_por_categoria,"Despesas","Centro_Custo","Valor_Pago/Recebido")
-    
-
-
+    criar_graficos_barra(df_despesas_por_categoria,"Despesas","Grupo","Valor")
+    criar_graficos_pizza(df_despesas_por_categoria,"Despesas","Grupo","Valor")
 
 
         
