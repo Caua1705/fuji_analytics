@@ -12,7 +12,6 @@ def calcular_resultado(receitas,despesas):
 def calcular_margem_lucro(resultado,receitas):
     return (resultado/receitas) * 100
 
-
 def exibir_metricas_financeiras(df_receitas,df_despesas):
     receita_total=calcular_receita_total(df_receitas)
     despesa_total=calcular_despesa_total(df_despesas)
