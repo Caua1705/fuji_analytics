@@ -57,6 +57,7 @@ tipo_visualizacao = st.radio(
     horizontal=True,
     label_visibility="collapsed")
 
+st.subheader("Análise Comparativa de Receitas e Despesas por Categoria")
 match(filial):
 
     case "Aldeota":
@@ -66,10 +67,8 @@ match(filial):
 
         col1,col2=st.columns(2)
         with col1:
-            st.subheader("Receitas por Categoria")
             criar_graficos_principais_receitas(df_receitas_por_categoria_aldeota,tipo_visualizacao)
         with col2:
-            st.subheader("Despesas por Categoria")
             criar_graficos_principais_despesas(df_despesas_por_categoria_aldeota,tipo_visualizacao)
 
     case "Cambeba":
@@ -78,10 +77,8 @@ match(filial):
 
         col1,col2=st.columns(2)
         with col1:
-            st.subheader("Receitas por Categoria")
             criar_graficos_principais_receitas(df_receitas_por_categoria_cambeba,tipo_visualizacao)
         with col2:
-            st.subheader("Despesas por Categoria")
             criar_graficos_principais_despesas(df_despesas_por_categoria_cambeba,tipo_visualizacao)
 
     case "Todas":
@@ -90,10 +87,8 @@ match(filial):
 
         col1,col2=st.columns(2)
         with col1:
-            st.subheader("Receitas por Categoria")
             criar_graficos_principais_receitas(df_receitas_por_categoria_todos,tipo_visualizacao)
         with col2:
-            st.subheader("Despesas por Categoria")
             criar_graficos_principais_despesas(df_despesas_por_categoria_todos,tipo_visualizacao)
 
         
