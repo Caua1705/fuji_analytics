@@ -14,14 +14,21 @@ from processamento.agrupar import agrupar_por_categoria
 from view.abas import exibir_abas
 #Exibir Gráficos
 from view.graficos import exibir_graficos
+from PIL import Image
 
-col1, col2 = st.columns([5, 1])
+logo_path = "assets/logo_fuji.png"
 
-with col1:
-    st.markdown("## 🍣 Dashboard Fuji")
-
-with col2:
-    st.image("assets/logo_fuji.png", width=100)
+# Título + logo juntos
+st.markdown(
+    f"""
+    <div style='display: flex; align-items: center; gap: 10px;'>
+        <h1 style='margin: 0;'>🍣 Dashboard</h1>
+        <img src='{logo_path}' width='60'>
+    </div>
+    <hr style="margin-top: 10px; margin-bottom: 20px;">
+    """,
+    unsafe_allow_html=True
+)
 
 #Filtros Sidebar
 with st.sidebar:
