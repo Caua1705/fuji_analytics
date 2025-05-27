@@ -1,16 +1,17 @@
 import plotly.express as px
 import streamlit as st
 
-cores_receitas = {
+
+
+def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao):
+    cores_receitas = {
     "COMBINADOS": "#1f77b4",
     "DRINKS": "#aec7e8",
     "FRUTAS": "#ff7f0e",
     "TEMAKI": "#ffbb78",
     "PASTE": "#2ca02c",
     "Outros": "#d3d3d3"
-}
-
-def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao):
+}   
     fig1 = px.bar(
         receitas_por_categoria,
         x="Grupo",
