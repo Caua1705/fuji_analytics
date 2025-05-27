@@ -20,9 +20,9 @@ col1, col2 = st.columns([0.2, 0.8])
 
 with col1:
     st.image(
-        "https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novo_logo.png", 
-        width=180
-    )
+    "https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji_horizontal.png", 
+    width=180
+)
 
 with col2:
     st.markdown(
