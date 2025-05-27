@@ -38,7 +38,17 @@ st.markdown(
 
 
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
-st.divider()
+st.markdown(
+    """
+    <hr style="
+        margin-top: 3px;
+        margin-bottom: 3px;
+        border: none;
+        border-top: 0.7px solid rgba(0,0,0,0.1);
+    ">
+    """,
+    unsafe_allow_html=True
+)
 #Filtros Sidebar
 with st.sidebar:
     st.markdown("### 🏢 **Filial**")
