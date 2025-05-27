@@ -12,3 +12,10 @@ def exibir_abas():
             ["Valores absolutos", "Proporção percentual"], 
             horizontal=True
         )
+
+    if tipo_visualizacao == "📉 Proporção percentual":
+        agrupar_outros = True
+    else:
+        agrupar_outros = False
+    return tipo_visualizacao,agrupar_outros
+
