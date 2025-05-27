@@ -21,7 +21,7 @@ st.markdown(
     <style>
         .logo-fixed {
             position: fixed;
-            top: 25px; /* 🔸 Distância do topo */
+            top: 20px; /* 🔸 Distância do topo */
             right: 20px; /* 🔸 Distância da direita */
             z-index: 100;
         }
