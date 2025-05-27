@@ -36,8 +36,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
+st.markdown("""
+## 🍣 **Fuji Analytics | Visão Estratégica**
+> Monitoramento financeiro e acompanhamento de performance.
+""")
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
