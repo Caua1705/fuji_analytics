@@ -47,6 +47,7 @@ df_receitas_filtrado,df_despesas_filtrado=processar_filial(dict_receitas,
                                                            data_fim)
 #Métricas
 exibir_metricas_financeiras(df_receitas_filtrado,df_despesas_filtrado)
+st.divider()
 
 #Abas
 tipo_visualizacao,agrupar_outros=exibir_abas()
