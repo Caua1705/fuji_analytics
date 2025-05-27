@@ -9,11 +9,11 @@ def agrupar_por_filial(df):
 def receitas_por_categoria(df_receitas):
     df_receitas["Grupo"]=df_receitas["Grupo"].replace({"COUVERT ARTISTICO":"COUVERT"})
     df_receitas_por_categoria=df_receitas.groupby("Grupo")["Valor"].sum().sort_values(ascending=False).reset_index()
-    if len(df_receitas_por_categoria) > 5:
-        top5 = df_receitas_por_categoria.iloc[:5]
-        outros_valor = df_receitas_por_categoria.iloc[5:]["Valor"].sum()
+    if len(df_receitas_por_categoria) > 7:
+        top7 = df_receitas_por_categoria.iloc[:7]
+        outros_valor = df_receitas_por_categoria.iloc[7:]["Valor"].sum()
         outros = pd.DataFrame([{"Grupo": "Outros", "Valor": outros_valor}])
-        df_receitas_por_categoria = pd.concat([top5, outros], ignore_index=True)
+        df_receitas_por_categoria = pd.concat([top7, outros], ignore_index=True)
     return df_receitas_por_categoria
 
 def despesas_por_categoria(df_despesas):
@@ -24,11 +24,11 @@ def despesas_por_categoria(df_despesas):
         "LVP SERVIÇOS  ADMINISTRATIVOS LTDA":"LVP",
         "PUBLICIDADE E PROPAGANDA":"PUBLICIDADE"})
     df_despesas_por_categoria=df_despesas.groupby("Centro_Custo")["Valor_Pago/Recebido"].sum().sort_values(ascending=False).reset_index()
-    if len(df_despesas_por_categoria)>4:
-        top5=df_despesas_por_categoria.iloc[:4]
-        outros_valor = df_despesas_por_categoria.iloc[4:]["Valor_Pago/Recebido"].sum()
+    if len(df_despesas_por_categoria)>7:
+        top7=df_despesas_por_categoria.iloc[:7]
+        outros_valor = df_despesas_por_categoria.iloc[7:]["Valor_Pago/Recebido"].sum()
         outros = pd.DataFrame([{"Centro_Custo": "Outros", "Valor_Pago/Recebido": outros_valor}])
-        df_despesas_por_categoria = pd.concat([top5, outros], ignore_index=True)
+        df_despesas_por_categoria = pd.concat([top7, outros], ignore_index=True)
     return df_despesas_por_categoria
 
     
