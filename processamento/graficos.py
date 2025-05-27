@@ -35,7 +35,7 @@ def criar_graficos_principais_receitas(receitas_por_categoria, tipo_visualizacao
         receitas_por_categoria,
         names="Grupo",
         values="Valor",
-        title="Receitas por Categoria",
+        title="Despesas por Categoria",
         hole=0.4)
     fig2.update_traces(textinfo="percent+label")
 
@@ -71,6 +71,14 @@ def criar_graficos_principais_despesas(despesas_por_categoria,tipo_visualizacao)
     fig1.update_traces(texttemplate='%{y:.2s}', textposition='outside')
 
     fig2=px.pie(despesas_por_categoria,names="Centro_Custo",values="Valor_Pago/Recebido",title="Despesas por Categoria")
+    fig2 = px.pie(
+        despesas_por_categoria,
+        names="Centro_Custo",
+        values="Valor_Pago/Recebido",
+        title="Despesas por Categoria",
+        hole=0.4)    
+    fig2.update_traces(textinfo="percent+label")
+
     if tipo_visualizacao=="📊 Valores absolutos":
         st.plotly_chart(fig1)
     else:
