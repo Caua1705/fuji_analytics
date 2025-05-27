@@ -15,29 +15,24 @@ from view.abas import exibir_abas
 #Exibir Gráficos
 from view.graficos import exibir_graficos
 st.set_page_config(layout="wide")
-st.markdown(
-    """
-    <div style="
-        display: flex;
-        align-items: flex-start;
-        gap: 16px;
-        margin-bottom: -50px;
-    ">
-        <img 
-            src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novo_logo.png" 
-            width="180"
-            style="padding-top: 60px;">
-        <h1 style="
-            font-weight: 600;
-            margin: 0;
-            padding-top: 125px;
-        ">
+# Cabeçalho com logo e título
+col1, col2 = st.columns([0.2, 0.8])
+
+with col1:
+    st.image(
+        "https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novo_logo.png", 
+        width=180
+    )
+
+with col2:
+    st.markdown(
+        """
+        <h1 style="padding-top: 50px; margin: 0; font-weight: 600;">
             Visão Estratégica
         </h1>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+        """,
+        unsafe_allow_html=True
+    )
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
