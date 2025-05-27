@@ -15,24 +15,12 @@ from view.abas import exibir_abas
 #Exibir Gráficos
 from view.graficos import exibir_graficos
 st.set_page_config(layout="wide")
-# Cabeçalho com logo e título
-col1, col2 = st.columns([0.2, 0.8])
 
-with col1:
-    st.image(
-    "https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji_horizontal.png", 
-    width=180
-)
-
-with col2:
-    st.markdown(
-        """
-        <h1 style="padding-top: 50px; margin: 0; font-weight: 600;">
-            Visão Estratégica
-        </h1>
-        """,
-        unsafe_allow_html=True
-    )
+# 🔥 Remove espaço superior da página
+st.markdown("## Visão Estratégica")
+with st.sidebar:
+    st.image("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/logo_fuji_horizontal.png", width=150)
+    st.markdown("---")
 #Filtros Sidebar
 with st.sidebar:
     st.subheader("Filial")
