@@ -76,5 +76,5 @@ df_despesas_por_categoria = agrupar_por_categoria(
 
 # Gráficos
 exibir_graficos(
-    tipo_visualizacao, df_receitas_por_categoria, df_despesas_por_categoria
+    tipo_visualizacao, df_receitas_por_categoria, df_despesas_por_categoria,filial
 )
