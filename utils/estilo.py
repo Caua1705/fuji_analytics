@@ -34,19 +34,7 @@ def aplicar_estilo():
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-h2 {
-    color: #7C3AED; /* 🔥 Ou substitua pela cor da sua logo (ex: marrom ou rosa) */
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    border-bottom: 2px solid #F472B6; /* linha sutil abaixo do título */
-    padding-bottom: 4px;
-    margin-bottom: 12px;
-}
 
-h2:hover {
-    color: #F472B6; /* Efeito hover: muda para rosa claro */
-    transition: color 0.3s ease;
-}
         </style>
         """,
         unsafe_allow_html=True

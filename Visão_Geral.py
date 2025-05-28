@@ -68,6 +68,26 @@ else:
 # Agrupar por Categoria
 df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Valor",agrupar_outros)
 df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
+def aplicar_estilo():
+    st.markdown(
+        """
+        <style>
+        h2 {
+            color: #A17C6B; /* marrom da logo */
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #D977A1; /* rosa da logo */
+            padding-bottom: 4px;
+            margin-bottom: 12px;
+        }
 
+        h2:hover {
+            color: #D977A1; /* muda pra rosa no hover */
+            transition: color 0.3s ease;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 # Gráficos
 exibir_graficos(df_receitas_por_categoria, df_despesas_por_categoria,filial,agrupar_outros)
