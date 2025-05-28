@@ -1,12 +1,19 @@
 import streamlit as st
 
 def exibir_abas(filial):
-    col_esquerda, col_titulo, col_botao = st.columns([0.5, 6.5, 1])
+    # Título centralizado, sem espaço extra
+    st.markdown(
+        f"""
+        <h3 style='text-align: center; margin-bottom: 0; margin-top: 0;'>
+            Distribuição de Receita e Despesas | {filial}
+        </h3>
+        """,
+        unsafe_allow_html=True
+    )
 
-    with col_titulo:
-        st.subheader(f"Distribuição de Receita e Despesas | {filial}")
-
-    with col_botao:
+    # Toggle alinhado à direita
+    col1, col2, col3 = st.columns([8, 1, 1])
+    with col3:
         modo_percentual = st.toggle("📊 %", help="Mostrar proporção percentual")
 
     if modo_percentual:
