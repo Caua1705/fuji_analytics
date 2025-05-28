@@ -13,8 +13,8 @@ def exibir_abas(filial):
     st.markdown("""
     <style>
     h3 {
-        margin-top: -50px;
-        margin-bottom: 0px;
+        margin-top: -10px;
+        margin-bottom: 20px;
     }
     </style>
 """, unsafe_allow_html=True)
