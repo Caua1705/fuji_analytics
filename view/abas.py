@@ -6,7 +6,7 @@ def exibir_abas(filial):
     """
     <style>
     div[data-testid="stHorizontalBlock"] div[role="checkbox"] {
-        transform: translateY(-30px);
+        transform: translateY(-100px);
     }
     </style>
     """,
