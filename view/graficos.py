@@ -5,10 +5,10 @@ import streamlit as st
 def criar_graficos_barra(df_agrupado,tipo_df,x,y,filial):
     if tipo_df=="Receitas":
         cores = ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b"]
-        titulo=f"### Distribuição da Receita por Categoria - {filial}"
+        titulo=f"Distribuição da Receita por Categoria - {filial}"
     else:
         cores = ["#17becf","#bcbd22","#e377c2","#7f7f7f","#ffbb78","#aec7e8"]
-        titulo=f"### Distribuição das Despesas por Centro de Custo - {filial}"
+        titulo=f"Distribuição das Despesas por Centro de Custo - {filial}"
 
     fig_bar=px.bar(
         df_agrupado,
