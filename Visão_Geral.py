@@ -26,7 +26,6 @@ inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/ass
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
 
 # Linha depois do título
-linha_divisoria()
 
 # Sidebar – Filtros
 with st.sidebar:
@@ -61,7 +60,6 @@ df_receitas_filtrado, df_despesas_filtrado = processar_filial(
 
 # 🔥 Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
-linha_divisoria()
 
 # Abas
 tipo_visualizacao, agrupar_outros = exibir_abas(filial)
