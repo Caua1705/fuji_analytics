@@ -20,23 +20,46 @@ def aplicar_estilo():
                 padding-right: 2rem;
             }
 
+            /* 🎯 Estilo das Métricas */
             .stMetric {
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+                background-color: #fdfdfd;
+                border-radius: 12px;
+                padding: 16px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+                border: 1px solid #f0f0f0;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
 
-        /* 🌟 Efeito ao passar o mouse */
-        .stMetric:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+            /* 🌟 Hover Suave */
+            .stMetric:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            }
+
+            /* 🏷️ Label da métrica */
+            .stMetric > label {
+                color: #8B5E3C; /* Marrom Fuji */
+                font-size: 0.85rem;
+                font-weight: 500;
+            }
+
+            /* 💰 Valor da métrica */
+            .stMetric > div {
+                color: #D66BA0; /* Rosa Fuji */
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+
+            /* 🔸 Subtexto da métrica */
+            .stMetric small {
+                color: #999999;
+                font-size: 0.75rem;
+            }
         </style>
         """,
         unsafe_allow_html=True
     )
+
 
 def inserir_logo(url_logo,tamanho):
     st.markdown(
