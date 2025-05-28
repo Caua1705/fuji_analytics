@@ -5,7 +5,7 @@ def exibir_abas(filial):
     with col1:
         st.subheader(f"Distribuição de Receita e Despesas | {filial}")
     with col2:
-        proporcao = st.toggle("📊 %", help="Mostrar proporção percentual")
+        modo_percentual = st.toggle("📊 %", help="Mostrar proporção percentual")
     if modo_percentual:
         tipo_visualizacao = "Proporção percentual"
         agrupar_outros = True
