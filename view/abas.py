@@ -3,9 +3,9 @@ import streamlit as st
 def exibir_abas(filial):
     col1, col2 = st.columns([5, 1])
     with col1:
-        st.markdown(f"## Distribuição de Receita e Despesas | {filial}")
+        st.subheader(f"Distribuição de Receita e Despesas | {filial}")
     with col2:
-        modo_percentual = st.toggle("Mostrar proporção (%)", value=False)
+        proporcao = st.toggle("📊 %", help="Mostrar proporção percentual")
     if modo_percentual:
         tipo_visualizacao = "Proporção percentual"
         agrupar_outros = True
