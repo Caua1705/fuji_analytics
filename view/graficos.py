@@ -64,6 +64,27 @@ def exibir_graficos(df_receitas, df_despesas, filial,agrupar_outros):
     col1, col2 = st.columns(2)
 
     with col1:
+        def aplicar_estilo():
+            st.markdown(
+                """
+                <style>
+                h2 {
+                    color: #A17C6B; /* marrom da logo */
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                    border-bottom: 2px solid #D977A1; /* rosa da logo */
+                    padding-bottom: 4px;
+                    margin-bottom: 12px;
+                }
+
+                h2:hover {
+                    color: #D977A1; /* muda pra rosa no hover */
+                    transition: color 0.3s ease;
+                }
+                </style>
+                """,
+                unsafe_allow_html=True
+            )
         st.subheader("Análise de Receitas")
         if agrupar_outros:
             criar_graficos_pizza(df_receitas, "Receitas", "Grupo", "Valor", filial)
