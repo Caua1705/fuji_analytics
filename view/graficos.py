@@ -65,14 +65,14 @@ def exibir_graficos(df_receitas, df_despesas, filial,agrupar_outros):
 
     with col1:
         
-        st.subheader("Distribuição de Receita por Categoria")
+        st.subheader("Receitas por Categoria")
         if agrupar_outros:
             criar_graficos_pizza(df_receitas, "Receitas", "Grupo", "Valor", filial)
         else:
             criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor", filial)
 
     with col2:
-        st.subheader("Distribuição das Despesas por Centro de Custo")
+        st.subheader("Despesas por Centro de Custo")
         if agrupar_outros:
             criar_graficos_pizza(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido", filial)
         else:
