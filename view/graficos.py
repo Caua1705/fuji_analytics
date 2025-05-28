@@ -24,7 +24,11 @@ def criar_graficos_barra(df_agrupado,tipo_df,x,y,filial):
         yaxis_title=y,
         showlegend=False,
         xaxis_tickangle=0,
-        title={'text': titulo,'x': 0.5,'xanchor': 'center'})
+        title={
+        'text': titulo,
+        'x': 0.0,
+        'xanchor': 'left'
+    })
     
     fig_bar.update_traces(textposition='outside')  
     
