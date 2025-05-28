@@ -60,10 +60,14 @@ exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
 
 modo_percentual = st.toggle("📊 Mostrar em proporção (%)", value=False)
+if modo_percentual:
+    agrupar_outros=True
+else:
+    agrupar_outros=False
 
 # Agrupar por Categoria
-df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Valor")
-df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido")
+df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Valor",agrupar_outros)
+df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
 
 # Gráficos
-exibir_graficos(modo_percentual, df_receitas_por_categoria, df_despesas_por_categoria,filial)
+exibir_graficos(modo_percentual, df_receitas_por_categoria, df_despesas_por_categoria,filial,agrupar_outros)

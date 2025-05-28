@@ -1,13 +1,13 @@
 import pandas as pd
 
-def agrupar_por_categoria(df,coluna_agrupada,valor_agrupado):
+def agrupar_por_categoria(df,coluna_agrupada,valor_agrupado,agrupar_outros):
     df_agrupado = (
     df.groupby(coluna_agrupada)[valor_agrupado]
     .sum()
     .sort_values(ascending=False)
     .reset_index()
 )
-    if len(df_agrupado) > 7:
+    if agrupar_outros and len(df_agrupado) > 7:
         top7 = df_agrupado.iloc[:7]
         outros_valor = df_agrupado.iloc[7:][valor_agrupado].sum()
         outros = pd.DataFrame([{coluna_agrupada: "Outros", valor_agrupado: outros_valor}])
