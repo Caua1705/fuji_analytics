@@ -1,14 +1,12 @@
 import streamlit as st
 
 def exibir_abas(filial):
-    col1, col2, col3 = st.columns([1, 6, 1])
+    col1, col2 = st.columns([8, 1])
 
-    with col2:
+    with col1:
         st.subheader(f"Distribuição de Receita e Despesas | {filial}")
-
-    col_esquerda, col_toggle, col_direita = st.columns([10, 1, 1])
-    with col_toggle:
-        modo_percentual = st.toggle("📊 %", help="Mostrar proporção percentual")
+    with col2:
+        modo_percentual = st.toggle("📊 %", help="Mostrar proporção percentual", label_visibility="collapsed")
 
     if modo_percentual:
         tipo_visualizacao = "Proporção percentual"
