@@ -59,7 +59,7 @@ df_receitas_filtrado, df_despesas_filtrado = processar_filial(
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
 
-modo_percentual = st.toggle("📊 Mostrar em proporção (%)", value=False)
+modo_percentual = st.toggle("(%)", value=False)
 
 # Agrupar por Categoria
 df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Valor")
