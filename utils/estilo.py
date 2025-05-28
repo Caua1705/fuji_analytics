@@ -13,66 +13,6 @@ def aplicar_estilo():
                 z-index: 100;
             }
 
-            /* 🔸 Divisor fino, discreto e elegante */
-            hr {
-                margin-top: 5px;
-                margin-bottom: 5px;
-                border: none;
-                border-top: 1px solid #DADADA;
-            }
-
-            /* 🔹 Reduzir espaço interno da página */
-            .block-container {
-                padding-top: 1.5rem;
-                padding-bottom: 1.5rem;
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-
-            /* 🎯 Reduz espaço da sidebar */
-            [data-testid="stSidebar"] > div:first-child {
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-            }
-
-            /* 🧽 Remove espaçamentos desnecessários */
-            .stMarkdown {
-                margin-bottom: 0.5rem;
-            }
-
-            /* 🎨 Ajusta títulos */
-            h1 {
-                font-size: 2.2rem;
-                margin-bottom: 0.2rem;
-            }
-            h2 {
-                font-size: 1.8rem;
-                margin-bottom: 0.2rem;
-            }
-            h3 {
-                font-size: 1.4rem;
-                margin-bottom: 0.2rem;
-            }
-            h4, h5, h6 {
-                margin-bottom: 0.1rem;
-            }
-
-            /* 🌈 Fonte geral mais clean */
-            html, body, [class*="css"] {
-                font-family: 'Inter', sans-serif;
-                font-size: 0.95rem;
-            }
-
-            /* 🔳 Bordas dos containers */
-            .stContainer {
-                border-radius: 8px;
-            }
-
-            /* 🔗 Remove underline dos links */
-            a {
-                text-decoration: none;
-            }
-
             /* 💠 Caixa das métricas */
             .stMetric {
                 background-color: #f9f9f9;
