@@ -1,7 +1,6 @@
 import streamlit as st
 
 def aplicar_estilo():
-    """Aplica CSS global para o app."""
     st.markdown(
         """
         <style>
@@ -21,12 +20,18 @@ def aplicar_estilo():
                 padding-right: 2rem;
             }
 
-            /* 💠 Caixa das métricas */
             .stMetric {
-                background-color: #f9f9f9;
-                border-radius: 10px;
-                padding: 10px;
-                box-shadow: 0 0 5px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e6e6e6;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+            .stMetric:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             }
         </style>
         """,
