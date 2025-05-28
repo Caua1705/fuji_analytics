@@ -1,7 +1,7 @@
 import streamlit as st
 
 def exibir_abas(filial):
-    col_esquerda, col_titulo, col_botao = st.columns([1, 6, 1])
+    col_esquerda, col_titulo, col_botao = st.columns([0.5, 6.5, 1])
 
     with col_titulo:
         st.subheader(f"Distribuição de Receita e Despesas | {filial}")
