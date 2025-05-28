@@ -60,6 +60,7 @@ df_receitas_filtrado, df_despesas_filtrado = processar_filial(
 
 # 🔥 Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
+linha_divisoria()
 
 # Abas
 tipo_visualizacao, agrupar_outros = exibir_abas(filial)
