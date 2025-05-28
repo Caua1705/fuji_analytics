@@ -17,7 +17,7 @@ def criar_graficos_barra(df_agrupado,tipo_df,x,y,filial):
         text_auto=".2s",
         color=x,
         color_discrete_sequence=cores,
-        width=400
+        width=300
         )
     fig_bar.update_layout(
         xaxis_title=x,
