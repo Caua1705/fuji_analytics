@@ -20,13 +20,19 @@ def aplicar_estilo():
                 padding-right: 2rem;
             }
 
-            /* 💠 Caixa das métricas */
             .stMetric {
-                background-color: #f9f9f9;
-                border-radius: 10px;
-                padding: 10px;
-                box-shadow: 0 0 5px rgba(0,0,0,0.05);
-            }
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* 🌟 Efeito ao passar o mouse */
+        .stMetric:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
         </style>
         """,
         unsafe_allow_html=True
