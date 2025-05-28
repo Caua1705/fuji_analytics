@@ -70,4 +70,4 @@ df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo",
 df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
 
 # Gráficos
-exibir_graficos(modo_percentual, df_receitas_por_categoria, df_despesas_por_categoria,filial,agrupar_outros)
+exibir_graficos(df_receitas_por_categoria, df_despesas_por_categoria,filial,agrupar_outros)
