@@ -11,21 +11,18 @@ from processamento.filtrar import filtrar_por_filial, processar_filial
 from view.metricas import exibir_metricas_financeiras
 # Agrupar Dados
 from processamento.agrupar import agrupar_por_categoria
-# Exibir Abas
-from view.abas import exibir_abas
 # Exibir Gráficos
 from view.graficos import exibir_graficos
 
 # Configuração da Página
 st.set_page_config(layout="wide")
 aplicar_estilo()
+
 # Logo Fixa
 inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png", 100)
 
 # Título
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
-
-# Linha depois do título
 
 # Sidebar – Filtros
 with st.sidebar:
@@ -47,7 +44,7 @@ df_despesas = formatar_dataframe(df_despesas, **config_despesas)
 dict_receitas = filtrar_por_filial(df_receitas)
 dict_despesas = filtrar_por_filial(df_despesas)
 
-# Filtrar por Data e Filial
+# Filtrar por Data
 df_receitas_filtrado, df_despesas_filtrado = processar_filial(
     dict_receitas,
     dict_despesas,
@@ -58,22 +55,15 @@ df_receitas_filtrado, df_despesas_filtrado = processar_filial(
     data_fim
 )
 
-# 🔥 Métricas Financeiras
+#Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
 
-# Abas
-tipo_visualizacao, agrupar_outros = exibir_abas()
+modo_percentual = st.toggle("📊 Mostrar em proporção (%)", value=False)
 
 # Agrupar por Categoria
-df_receitas_por_categoria = agrupar_por_categoria(
-    df_receitas_filtrado, "Grupo", "Valor", agrupar_outros
-)
-df_despesas_por_categoria = agrupar_por_categoria(
-    df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido", agrupar_outros
-)
+df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Valor")
+df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido")
 
 # Gráficos
-exibir_graficos(
-    tipo_visualizacao, df_receitas_por_categoria, df_despesas_por_categoria,filial
-)
+exibir_graficos(modo_percentual, df_receitas_por_categoria, df_despesas_por_categoria,filial)

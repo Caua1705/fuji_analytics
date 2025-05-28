@@ -38,8 +38,7 @@ def aplicar_estilo():
         unsafe_allow_html=True
     )
 
-def inserir_logo(url_logo: str, tamanho: int = 100):
-    """Insere logo fixa no topo direito."""
+def inserir_logo(url_logo,tamanho):
     st.markdown(
         f"""
         <div class="logo-fixed">
