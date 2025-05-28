@@ -12,63 +12,61 @@ def aplicar_estilo():
                 z-index: 100;
             }
 
-            /* 🔹 Espaçamento interno */
+            /* 🔹 Página */
             .block-container {
-                padding-top: 1.5rem;
-                padding-bottom: 1.5rem;
-                padding-left: 2rem;
-                padding-right: 2rem;
-                background-color: #FDF9F7; /* Fundo leve */
+                padding: 1.5rem 2rem;
+                background-color: #F3F4F6;
             }
 
             /* 🎯 Sidebar */
             [data-testid="stSidebar"] {
-                background-color: #F9F6F3;
-                border-right: 1px solid #ECECEC;
+                background-color: #FFFFFF;
+                border-right: 1px solid #E0E0E0;
             }
 
             /* 🚀 Títulos */
             h1, h2, h3, h4 {
-                color: #8B5E3C;
+                color: #164863;
                 font-family: 'Segoe UI', sans-serif;
+                font-weight: 600;
             }
 
             /* 🔸 Texto padrão */
-            p, label, span {
-                color: #4A4A4A;
+            p, label, span, div {
+                color: #1B1B1B;
                 font-family: 'Segoe UI', sans-serif;
             }
 
             /* 🎯 Métricas */
             .stMetric {
-                background-color: #fdfdfd;
+                background-color: #FFFFFF;
                 border-radius: 12px;
                 padding: 16px;
                 box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-                border: 1px solid #f0f0f0;
+                border: 1px solid #E0E0E0;
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
 
             .stMetric:hover {
                 transform: translateY(-3px);
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
             }
 
             .stMetric > label {
-                color: #8B5E3C;
+                color: #6B7280;
                 font-size: 0.85rem;
                 font-weight: 500;
             }
 
             .stMetric > div {
-                color: #D66BA0;
-                font-size: 1.8rem;
+                color: #164863;
+                font-size: 1.9rem;
                 font-weight: 700;
             }
 
             /* 🔘 Botões */
             button {
-                background-color: #D66BA0;
+                background-color: #164863;
                 color: white;
                 border: none;
                 border-radius: 8px;
@@ -77,22 +75,22 @@ def aplicar_estilo():
             }
 
             button:hover {
-                background-color: #8B5E3C;
+                background-color: #113549;
                 color: white;
             }
 
-            /* 🔘 Checkboxes e selects */
+            /* 🔘 Inputs */
             .stSelectbox, .stDateInput, .stRadio, .stCheckbox {
                 background-color: #FFFFFF;
                 border-radius: 8px;
                 padding: 8px;
-                border: 1px solid #E0E0E0;
+                border: 1px solid #D1D5DB;
             }
 
-            /* 🔥 Remover linhas extras */
+            /* 🔥 Linhas */
             hr {
                 border: none;
-                border-top: 1px solid #EAEAEA;
+                border-top: 1px solid #E5E7EB;
             }
         </style>
         """,
