@@ -4,7 +4,7 @@ def aplicar_estilo():
     st.markdown(
         """
         <style>
-            /* 🔥 Logo fixa no topo direito */
+            /* 🔥 Logo fixa */
             .logo-fixed {
                 position: fixed;
                 top: 20px;
@@ -12,15 +12,34 @@ def aplicar_estilo():
                 z-index: 100;
             }
 
-            /* 🔹 Reduzir espaço interno da página */
+            /* 🔹 Espaçamento interno */
             .block-container {
                 padding-top: 1.5rem;
                 padding-bottom: 1.5rem;
                 padding-left: 2rem;
                 padding-right: 2rem;
+                background-color: #FDF9F7; /* Fundo leve */
             }
 
-            /* 🎯 Estilo das Métricas */
+            /* 🎯 Sidebar */
+            [data-testid="stSidebar"] {
+                background-color: #F9F6F3;
+                border-right: 1px solid #ECECEC;
+            }
+
+            /* 🚀 Títulos */
+            h1, h2, h3, h4 {
+                color: #8B5E3C;
+                font-family: 'Segoe UI', sans-serif;
+            }
+
+            /* 🔸 Texto padrão */
+            p, label, span {
+                color: #4A4A4A;
+                font-family: 'Segoe UI', sans-serif;
+            }
+
+            /* 🎯 Métricas */
             .stMetric {
                 background-color: #fdfdfd;
                 border-radius: 12px;
@@ -30,30 +49,50 @@ def aplicar_estilo():
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
 
-            /* 🌟 Hover Suave */
             .stMetric:hover {
                 transform: translateY(-3px);
                 box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
             }
 
-            /* 🏷️ Label da métrica */
             .stMetric > label {
-                color: #8B5E3C; /* Marrom Fuji */
+                color: #8B5E3C;
                 font-size: 0.85rem;
                 font-weight: 500;
             }
 
-            /* 💰 Valor da métrica */
             .stMetric > div {
-                color: #D66BA0; /* Rosa Fuji */
+                color: #D66BA0;
                 font-size: 1.8rem;
                 font-weight: 700;
             }
 
-            /* 🔸 Subtexto da métrica */
-            .stMetric small {
-                color: #999999;
-                font-size: 0.75rem;
+            /* 🔘 Botões */
+            button {
+                background-color: #D66BA0;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 8px 16px;
+                transition: background-color 0.2s ease;
+            }
+
+            button:hover {
+                background-color: #8B5E3C;
+                color: white;
+            }
+
+            /* 🔘 Checkboxes e selects */
+            .stSelectbox, .stDateInput, .stRadio, .stCheckbox {
+                background-color: #FFFFFF;
+                border-radius: 8px;
+                padding: 8px;
+                border: 1px solid #E0E0E0;
+            }
+
+            /* 🔥 Remover linhas extras */
+            hr {
+                border: none;
+                border-top: 1px solid #EAEAEA;
             }
         </style>
         """,
