@@ -21,18 +21,18 @@ def aplicar_estilo():
             }
 
             .stMetric {
-    background-color: #1F2937; /* 🔥 Cinza bem escuro */
+    background-color: #f9f9f9;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 5px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    color: white; /* 🔥 Texto branco dentro da métrica */
+    color: #111827; /* 🔥 Cor do texto mais escura (preto suave) */
 }
 
-/* 🌟 Efeito hover */
+/* 🌟 Efeito ao passar o mouse */
 .stMetric:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
         </style>
         """,
