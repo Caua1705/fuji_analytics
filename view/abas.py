@@ -10,14 +10,6 @@ def exibir_abas(filial):
         """,
         unsafe_allow_html=True
     )
-    st.markdown("""
-    <style>
-    h3 {
-        margin-top: -10px;
-        margin-bottom: 20px;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
     # Toggle alinhado à direita
     col1, col2, col3 = st.columns([8, 1, 1])
