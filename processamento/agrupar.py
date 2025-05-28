@@ -1,6 +1,6 @@
 import pandas as pd
-
-def agrupar_por_categoria(df,coluna_agrupada,valor_agrupado,agrupar_outros):
+import streamlit as st
+def agrupar_valor_por_categoria(df,coluna_agrupada,valor_agrupado,agrupar_outros):
     df_agrupado = (
     df.groupby(coluna_agrupada)[valor_agrupado]
     .sum()
@@ -15,5 +15,8 @@ def agrupar_por_categoria(df,coluna_agrupada,valor_agrupado,agrupar_outros):
     else:
        df_final=df_agrupado.iloc[:7]
     return df_final
+
+def agrupar_quantidade_por_categoria(df):
+    st.write(df)
 
     

@@ -1,9 +1,7 @@
 import plotly.express as px
 from plotly.colors import qualitative
 import streamlit as st
-
-
-# 🔥 Gráfico de Barras
+                            
 def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
     if tipo_df == "Receitas":
         cores =['#D66BA0', '#8B5E3C', '#6BCBDB', '#F5CBA7', '#A9CCE3']
