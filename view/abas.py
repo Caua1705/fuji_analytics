@@ -1,7 +1,7 @@
 import streamlit as st
 
 def exibir_abas():
-    col1, col2 = st.columns([5, 1])
+    col1, col2 = st.columns(2)
     with col1:
         st.subheader("Análise de Receitas")
     with col2:
