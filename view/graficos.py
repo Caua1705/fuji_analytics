@@ -29,11 +29,11 @@ def criar_graficos_barra(df_agrupado,tipo_df,x,y,filial):
     
     st.plotly_chart(fig_bar,use_container_width=True)
 
-def criar_graficos_pizza(df_agrupado,tipo_df,x,y):
+def criar_graficos_pizza(df_agrupado,tipo_df,x,y,filial):
     if tipo_df=="Receitas":
-        titulo="Receitas por Categoria"
+        titulo=f"Distribuição da Receita por Categoria - {filial}"
     else:
-        titulo="Despesas por Categoria"
+        titulo=f"Distribuição das Despesas por Centro de Custo - {filial}"
     fig_pie = px.pie(
         df_agrupado,
         names=x,
