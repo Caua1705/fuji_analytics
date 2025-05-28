@@ -2,13 +2,13 @@ import plotly.express as px
 from plotly.colors import qualitative
 import streamlit as st
 
-def criar_graficos_barra(df_agrupado,tipo_df,x,y):
+def criar_graficos_barra(df_agrupado,tipo_df,x,y,filial):
     if tipo_df=="Receitas":
         cores = ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b"]
-        titulo="Receitas por Categoria"
+        titulo=f"### Distribuição da Receita por Categoria - {filial}"
     else:
         cores = ["#17becf","#bcbd22","#e377c2","#7f7f7f","#ffbb78","#aec7e8"]
-        titulo="Despesas por Categoria"
+        titulo=f"### Distribuição das Despesas por Centro de Custo - {filial}"
 
     fig_bar=px.bar(
         df_agrupado,
@@ -52,13 +52,11 @@ def exibir_graficos(tipo_visualizacao, df_receitas, df_despesas,filial):
 
     if tipo_visualizacao == "Valores absolutos":
         with col1:
-            st.markdown(f"### Distribuição da Receita por Categoria - {filial}")
-            criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor")
+            criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor",filial)
         with col2:
-            st.markdown(f"### Despesas por Centro de Custo - {filial}")
-            criar_graficos_barra(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido")
+            criar_graficos_barra(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido",filial)
     else:
         with col1:
-            criar_graficos_pizza(df_receitas, "Receitas", "Grupo", "Valor")
+            criar_graficos_pizza(df_receitas, "Receitas", "Grupo", "Valor",filial)
         with col2:
-            criar_graficos_pizza(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido")
+            criar_graficos_pizza(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido",filial)
