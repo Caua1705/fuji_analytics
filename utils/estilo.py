@@ -21,18 +21,18 @@ def aplicar_estilo():
             }
 
             .stMetric {
-            background-color: #ffffff;
+            background-color: #f9fafb; /* 🔸 Fundo cinza muito claro */
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             border: 1px solid #e6e6e6;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-            .stMetric:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            }
+        .stMetric:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
         </style>
         """,
         unsafe_allow_html=True
