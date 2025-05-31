@@ -14,10 +14,9 @@ def insight_receitas(df_receitas_por_categoria):
         .sort_values(by="Valor por Item", ascending=False)
         .iloc[0]
     )
-    st.markdown(f'''🟢 Categoria **{categoria_selecionada["Grupo"]}**:
-        menor volume ({categoria_selecionada["Quantidade"]:.0f} itens),
-        mas alta receita média por item (R${categoria_selecionada["Valor por Item"]:.2f}).
-        Um segmento estratégico de **alto valor**!''')
-
+    st.markdown(f'''🟢 **{categoria_selecionada["Grupo"]}**:
+        Baixo volume ({categoria_selecionada["Quantidade"]:.0f} itens),
+        alto ticket médio (R${categoria_selecionada["Valor por Item"]:.2f}).
+        Segmento estratégico de **alto valor**!''')
 def insight_despesas(df_despesas_por_categoria):
     st.write(df_despesas_por_categoria)
