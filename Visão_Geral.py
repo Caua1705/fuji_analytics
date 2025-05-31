@@ -10,7 +10,7 @@ from processamento.filtrar import filtrar_por_filial, processar_filial
 # Exibir Métricas
 from view.metricas import exibir_metricas_financeiras
 # Agrupar Dados
-from processamento.agrupar import agrupar_valor_por_categoria,agrupar_quantidade_por_categoria
+from processamento.agrupar import agrupar_receitas_por_categoria,agrupar_despesas_por_categoria
 # Exibir Gráficos
 from view.graficos import exibir_graficos
 from view.insights import insight_receitas
@@ -67,9 +67,9 @@ else:
     agrupar_outros=False
 
 # Agrupar por Categoria
-df_receitas_por_categoria = agrupar_valor_por_categoria(df_receitas_filtrado, "Grupo", "Valor",agrupar_outros)
-df_despesas_por_categoria = agrupar_valor_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
-agrupar_quantidade_por_categoria(df_receitas_filtrado)
+df_receitas_por_categoria = agrupar_receitas_por_categoria(df_receitas_filtrado, "Grupo", "Valor","Quantidade",agrupar_outros)
+df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
+
 # Gráficos
 exibir_graficos(df_receitas_por_categoria, df_despesas_por_categoria,filial,agrupar_outros)
 insight_receitas(df_receitas_por_categoria)

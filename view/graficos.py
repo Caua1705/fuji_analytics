@@ -58,16 +58,15 @@ def criar_graficos_pizza(df_agrupado, tipo_df, x, y, filial):
 
     st.plotly_chart(fig, use_container_width=True)
 
-def exibir_graficos(df_receitas, df_despesas, filial,agrupar_outros):
+def exibir_graficos(df_receitas, df_despesas,filial,agrupar_outros):
     col1, col2 = st.columns(2)
 
     with col1:
-        
         st.subheader("Receitas por Categoria")
         if agrupar_outros:
-            criar_graficos_pizza(df_receitas, "Receitas", "Grupo", "Valor", filial)
+            criar_graficos_pizza(df_receitas, "Receitas", "Grupo", "Valor_Total", filial)
         else:
-            criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor", filial)
+            criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor_Total", filial)
 
     with col2:
         st.subheader("Despesas por Centro de Custo")

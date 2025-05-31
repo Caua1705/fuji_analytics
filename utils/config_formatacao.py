@@ -1,7 +1,7 @@
 config_receitas = {
     "colunas_nulas": ["Produto", "Grupo", "Quantidade", "Valor", "Filial"],
     "colunas_data": "Data",
-    "coluna_valor": "Valor",
+    "colunas_valores": ["Valor","Quantidade"],
     "coluna_alterada": "Grupo",
     "substituicoes": {
         "COUVERT ARTISTICO": "COUVERT"
@@ -22,7 +22,7 @@ config_despesas={
         "Data_Vencimento",
         "Data_Pagamento"
         ],
-    "coluna_valor": "Valor_Pago/Recebido",
+    "colunas_valores": "Valor_Pago/Recebido",
     "coluna_alterada": "Centro_Custo",
     "substituicoes": {
         "DESPESAS FIXAS": "FIXAS",
