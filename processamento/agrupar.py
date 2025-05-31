@@ -13,10 +13,10 @@ def agrupar_receitas_por_categoria(df,coluna_agrupada,coluna_valor,coluna_quanti
     if agrupar_outros and len(df_agrupado) > 7:
         top7 = df_agrupado.iloc[:7]
         outros_valor = df_agrupado.iloc[7:]["Valor"].sum()
-        outros_quantidade = df_agrupado.iloc[7:]["Quantidade_total"].sum()
+        outros_quantidade = df_agrupado.iloc[7:]["Quantidade"].sum()
         df_com_outros = pd.DataFrame([{coluna_agrupada: "Outros",
                                         "Valor": outros_valor,
-                                        "Quantidade_total":outros_quantidade}])
+                                        "Quantidade":outros_quantidade}])
         df_final= pd.concat([top7, df_com_outros], ignore_index=True)
     else:
        df_final=df_agrupado.iloc[:7]
