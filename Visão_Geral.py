@@ -68,7 +68,7 @@ df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado,
 
 # Gráficos
 tab,tab2=st.tabs(["graficos","outras"])
-with tab[0]:
+with tab:
     col1, col2 = st.columns(2)
 
     with col1:
