@@ -5,10 +5,10 @@ import streamlit as st
 def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
     if tipo_df == "Receitas":
         cores =['#D66BA0', '#8B5E3C', '#6BCBDB', '#F5CBA7', '#A9CCE3']
-        titulo = f"Distribuição da Receita por Categoria - {filial}"
+        # titulo = f"Distribuição da Receita por Categoria - {filial}"
     else:
         cores = ["#17becf", "#bcbd22", "#e377c2", "#7f7f7f", "#ffbb78", "#aec7e8"]
-        titulo = f"Distribuição das Despesas por Centro de Custo - {filial}"
+        # titulo = f"Distribuição das Despesas por Centro de Custo - {filial}"
 
     fig = px.bar(
         df_agrupado,
@@ -24,11 +24,11 @@ def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
         yaxis_title=y,
         showlegend=False,
         xaxis_tickangle=0,
-        title={
-            'text': titulo,
-            'x': 0.0,
-            'xanchor': 'left'
-        }
+        # title={
+        #     'text': titulo,
+        #     'x': 0.0,
+        #     'xanchor': 'left'
+        # }
     )
 
     fig.update_traces(textposition='outside')
@@ -36,16 +36,16 @@ def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
     st.plotly_chart(fig, use_container_width=True)
 
 def criar_graficos_pizza(df_agrupado, tipo_df, x, y, filial):
-    if tipo_df == "Receitas":
-        titulo = f"Distribuição da Receita por Categoria - {filial}"
-    else:
-        titulo = f"Distribuição das Despesas por Centro de Custo - {filial}"
+    # if tipo_df == "Receitas":
+    #     # titulo = f"Distribuição da Receita por Categoria - {filial}"
+    # else:
+    #     # titulo = f"Distribuição das Despesas por Centro de Custo - {filial}"
 
     fig = px.pie(
         df_agrupado,
         names=x,
         values=y,
-        title=titulo,
+        # title=titulo,
         hole=0.4,
         color_discrete_sequence=qualitative.Set3,
     )
