@@ -2,11 +2,13 @@ import streamlit as st
 # Carregar Dados
 from carregamento.carregar_dados import carregar_dataframes
 # Formatar Dados
-from utils.formatar import formatar_dataframe
+from utils.formatadores import formatar_dataframe
 from utils.config_formatacao import config_receitas, config_despesas
 from utils.estilo import aplicar_estilo,inserir_logo,linha_divisoria
 # Filtrar Dados
 from processamento.filtrar import filtrar_por_filial, processar_filial
+#Exibir Sidebar:
+from view.sidebar import exibir_sidebar
 # Exibir Métricas
 from view.metricas import exibir_metricas_financeiras
 # Agrupar Dados
@@ -25,14 +27,8 @@ inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/ass
 # Título
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
 
-# Sidebar – Filtros
-with st.sidebar:
-    st.markdown("### 🏢 **Filial**")
-    filial = st.selectbox("Selecione a filial", ["Todas", "Aldeota", "Cambeba"])
-
-    st.markdown("### 📅 **Período**")
-    data_inicio = st.date_input("Data de início")
-    data_fim = st.date_input("Data de fim")
+# Sidebar 
+data_inicio,data_fim,filial=exibir_sidebar()
 
 # Carregar Dados
 df_receitas, df_despesas = carregar_dataframes()
