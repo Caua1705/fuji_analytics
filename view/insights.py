@@ -16,7 +16,6 @@ def insight_receitas(df_receitas_por_categoria):
     )
     col1,col2=st.columns(2)
     with col1:
-
         st.success(f'''🟢 **{categoria_selecionada["Grupo"]}**:
             Baixo volume ({categoria_selecionada["Quantidade"]:.0f} itens),
             alto ticket médio (R${categoria_selecionada["Valor por Item"]:.2f}).
