@@ -12,7 +12,7 @@ from view.metricas import exibir_metricas_financeiras
 # Agrupar Dados
 from processamento.agrupar import agrupar_receitas_por_categoria,agrupar_despesas_por_categoria
 # Exibir Gráficos
-from view.graficos import exibir_graficos
+from view.graficos import criar_graficos_barra,criar_graficos_pizza
 from view.insights import insight_receitas
 
 # Configuração da Página
@@ -71,5 +71,19 @@ df_receitas_por_categoria = agrupar_receitas_por_categoria(df_receitas_filtrado,
 df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
 
 # Gráficos
-exibir_graficos(df_receitas_por_categoria, df_despesas_por_categoria,filial,agrupar_outros)
-insight_receitas(df_receitas_por_categoria)
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("Receitas por Categoria")
+    if agrupar_outros:
+        criar_graficos_pizza(df_receitas, "Receitas", "Grupo", "Valor", filial)
+    else:
+        criar_graficos_barra(df_receitas, "Receitas", "Grupo", "Valor", filial)
+    insight_receitas(df_receitas_por_categoria)
+
+with col2:
+    st.subheader("Despesas por Centro de Custo")
+    if agrupar_outros:
+        criar_graficos_pizza(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido", filial)
+    else:
+        criar_graficos_barra(df_despesas, "Despesas", "Centro_Custo", "Valor_Pago/Recebido", filial)

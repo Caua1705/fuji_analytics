@@ -14,11 +14,10 @@ def insight_receitas(df_receitas_por_categoria):
         .sort_values(by="Valor por Item", ascending=False)
         .iloc[0]
     )
-    col1,col2=st.columns(2)
-    with col1:
-        st.success(f'''🟢 **{categoria_selecionada["Grupo"]}**:
-            Vende apenas **{categoria_selecionada["Quantidade"]:.0f} itens**,
-            mas com ticket médio de **R${categoria_selecionada["Valor por Item"]:.2f}**.
-            É Segmento estratégico de **alto valor**!''')
+    st.success(f'''🟢 **{categoria_selecionada["Grupo"]}**:
+        Vende apenas **{categoria_selecionada["Quantidade"]:.0f} itens**,
+        mas com ticket médio de **R${categoria_selecionada["Valor por Item"]:.2f}**.
+        É Segmento estratégico de **alto valor**!''')
+    
 def insight_despesas(df_despesas_por_categoria):
     st.write(df_despesas_por_categoria)
