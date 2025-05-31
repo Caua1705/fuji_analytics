@@ -19,7 +19,7 @@ def agrupar_receitas_por_categoria(df,coluna_agrupada,coluna_valor,coluna_quanti
                                         "Quantidade_total":outros_quantidade}])
         df_final= pd.concat([top7, df_com_outros], ignore_index=True)
     else:
-       df_final=df_agrupado
+       df_final=df_agrupado.iloc[:7]
     return df_final
 
 def agrupar_despesas_por_categoria(df, coluna_agrupada, coluna_valor, agrupar_outros):
