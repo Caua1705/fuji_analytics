@@ -71,6 +71,5 @@ df_receitas_por_categoria = agrupar_receitas_por_categoria(df_receitas_filtrado,
 df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
 
 # Gráficos
-exibir_graficos(df_receitas_por_categoria, df_despesas_por_categoria,filial,agrupar_outros)
-linha_divisoria()
 insight_receitas(df_receitas_por_categoria)
+exibir_graficos(df_receitas_por_categoria, df_despesas_por_categoria,filial,agrupar_outros)
