@@ -15,7 +15,7 @@ from view.metricas import exibir_metricas_financeiras
 from processamento.agrupar import agrupar_receitas_por_categoria,agrupar_despesas_por_categoria
 # Exibir Gráficos
 from view.graficos import criar_graficos_barra,criar_graficos_pizza
-from view.insights import insight_receitas
+from view.insights import insight_receitas,insight_despesas
 
 # Configuração da Página
 st.set_page_config(layout="wide")
@@ -43,7 +43,7 @@ dict_receitas = filtrar_por_filial(df_receitas)
 dict_despesas = filtrar_por_filial(df_despesas)
 
 # Filtrar por Data
-df_receitas_filtrado, df_despesas_filtrado = processar_filial(
+df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despesas_filtrado_anterior = processar_filial(
     dict_receitas,
     dict_despesas,
     df_receitas,
@@ -65,6 +65,7 @@ else:
 
 # Agrupar por Categoria
 df_receitas_por_categoria = agrupar_receitas_por_categoria(df_receitas_filtrado, "Grupo", "Valor","Quantidade",agrupar_outros)
+df_despesas_anterior_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado_anterior, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
 df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
 
 # Gráficos
@@ -78,7 +79,7 @@ with col1:
         criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
 
 with col2:
-    insight_receitas(df_receitas_por_categoria,data_inicio,data_fim)
+    insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categoria,data_inicio,data_fim)
     st.subheader("Despesas por Centro de Custo")
     if agrupar_outros:
         criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor_Pago/Recebido", filial)
