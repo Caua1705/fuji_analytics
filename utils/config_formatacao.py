@@ -1,7 +1,7 @@
 config_receitas = {
     "colunas_nulas": ["Produto", "Grupo", "Quantidade", "Valor", "Filial"],
     "colunas_data": "Data",
-    "colunas_valores": ["Valor","Quantidade"],
+    "colunas_valores": "Valor",
     "coluna_alterada": "Grupo",
     "substituicoes": {
         "COUVERT ARTISTICO": "COUVERT"

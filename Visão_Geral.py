@@ -2,7 +2,7 @@ import streamlit as st
 # Carregar Dados
 from carregamento.carregar_dados import carregar_dataframes
 # Formatar Dados
-from utils.formatadores import formatar_dataframe
+from utils.formatadores import formatar_dataframe,formatar_quantidade
 from utils.config_formatacao import config_receitas, config_despesas
 from utils.estilo import aplicar_estilo,inserir_logo,linha_divisoria
 # Filtrar Dados
@@ -35,6 +35,7 @@ df_receitas, df_despesas = carregar_dataframes()
 
 # Formatar Dados
 df_receitas = formatar_dataframe(df_receitas, **config_receitas)
+df_receitas = formatar_quantidade(df_receitas,"Quantidade")
 df_despesas = formatar_dataframe(df_despesas, **config_despesas)
 
 # Filtrar por Filial

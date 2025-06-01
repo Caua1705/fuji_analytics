@@ -19,6 +19,13 @@ def formatar_colunas_valores(df,colunas_valores):
         df[coluna] = pd.to_numeric(df[coluna], errors="coerce").abs().fillna(0)
     return df
 
+def formatar_quantidade(df,coluna_quantidade):
+    coluna_quantidade=[coluna_quantidade]
+    for coluna in coluna_quantidade:
+        serie_temporaria = df[coluna].astype(str).str.replace('.', '', regex=False).str.replace(',', '.')
+        df[coluna] = pd.to_numeric(serie_temporaria, errors='coerce').abs().fillna(0).astype(int)
+    return df
+
 def padronizar_valores(df,coluna_alterada,substituicoes):
     df[coluna_alterada]=df[coluna_alterada].replace(substituicoes)
     return df
