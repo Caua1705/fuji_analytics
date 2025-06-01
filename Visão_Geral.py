@@ -67,22 +67,30 @@ df_receitas_por_categoria = agrupar_receitas_por_categoria(df_receitas_filtrado,
 df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor_Pago/Recebido",agrupar_outros)
 
 # Gráficos
-tab,tab2=st.tabs(["graficos","outras"])
-with tab:
-    col1, col2 = st.columns(2)
+# Bloco de Receitas
+st.subheader(f"Receitas por Categoria - {filial}")
+col1, col2 = st.columns([0.7, 0.3])
 
-    with col1:
-        insight_receitas(df_receitas_por_categoria)
-        st.subheader(f"Receitas por Categoria - {filial}")
-        if agrupar_outros:
-            criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
-        else:
-            criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
+with col1:
+    if agrupar_outros:
+        criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
+    else:
+        criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
 
-    with col2:
-        insight_receitas(df_receitas_por_categoria)
-        st.subheader("Despesas por Centro de Custo")
-        if agrupar_outros:
-            criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor_Pago/Recebido", filial)
-        else:
-            criar_graficos_barra(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor_Pago/Recebido", filial)
+with col2:
+    insight_receitas(df_receitas_por_categoria)
+
+linha_divisoria()  # Linha opcional para separação
+
+# Bloco de Despesas
+st.subheader(f"Despesas por Centro de Custo - {filial}")
+col3, col4 = st.columns([0.7, 0.3])
+
+with col3:
+    if agrupar_outros:
+        criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor_Pago/Recebido", filial)
+    else:
+        criar_graficos_barra(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor_Pago/Recebido", filial)
+
+with col4:
+    insight_receitas(df_receitas_por_categoria)
