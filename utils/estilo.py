@@ -63,18 +63,22 @@ def linha_divisoria():
         unsafe_allow_html=True
     )
 
-def mostrar_insight(tipo, emoji, texto_markdown):
-    cor = {
-        "erro": "#fdecea",     # vermelho claro
-        "sucesso": "#e6f4ea",  # verde claro
-        "info": "#e8f0fe",     # azul claro
-    }.get(tipo, "#f9f9f9")
+def criar_bloco_insight(tipo,conteudo_html):
+    if tipo == "Info":
+        bg = "#e8f0fe"
+        borda = "#4285f4"
+    elif tipo == "Receitas":
+        bg = "#e6f4ea"
+        borda = "#34a853"
+    elif tipo == "Despesas":
+        bg = "#fdecea"
+        borda = "#f44336"
 
-    st.markdown(
-        f"""
-        <div style="background-color:{cor}; padding: 16px; border-radius: 8px; border-left: 6px solid #ccc;">
-            <span style="font-size: 1.1rem;">{emoji} {texto_markdown}</span>
+    html_msg = f"""
+        <div style="background-color:{bg}; padding:16px; border-left:6px solid {borda}; border-radius:8px;">
+            {conteudo_html}
         </div>
-        """,
-        unsafe_allow_html=True
-    )
+    """
+    st.markdown(html_msg, unsafe_allow_html=True)
+
+   
