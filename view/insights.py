@@ -12,14 +12,24 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
     top_categorias=df_insight_receitas["Grupo"].head(3).tolist()
 
     if diferenca_dias==0:
-        st.success(
-        f"🍽️ **Top 1 Receita** do dia **{data_inicio_formatada}**: "
-        f"🥇 **{top_categorias[0]}**")
+
+        html_msg = f"""
+            <div style="background-color:#e6f4ea; padding:16px; border-left:6px solid #34a853; border-radius:8px;">
+                🍽️ <strong>Top 1 Receita</strong> do dia <strong>{data_inicio_formatada}</strong>: 
+                🥇 <strong>{top_categorias[0]}</strong>
+            </div>
+        """
+        st.markdown(html_msg, unsafe_allow_html=True)
 
     elif diferenca_dias<7:
-        st.success(
-    f"🍽️ **Top 3 Receitas** (de **{data_inicio_formatada}** a **{data_fim_formatada}**): "
-    f"🥇 **{top_categorias[0]}**, 🥈 **{top_categorias[1]}** e 🥉 **{top_categorias[2]}**")
+
+        html_msg = f"""
+            <div style="background-color:#e6f4ea; padding:16px; border-left:6px solid #34a853; border-radius:8px;">
+                🍽️ <strong>Top 3 Receitas</strong> (de <strong>{data_inicio_formatada}</strong> a <strong>{data_fim_formatada}</strong>): 
+                🥇 <strong>{top_categorias[0]}</strong>, 🥈 <strong>{top_categorias[1]}</strong> e 🥉 <strong>{top_categorias[2]}</strong>
+            </div>
+        """
+        st.markdown(html_msg, unsafe_allow_html=True)
         
     else:
         df_insight_receitas["Valor por Item"]=df_insight_receitas["Valor"] / df_insight_receitas["Quantidade"]
@@ -34,10 +44,15 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
             .sort_values(by="Valor por Item", ascending=False)
             .iloc[0]
         )
-        st.success(f'''🟢 **{categoria_selecionada["Grupo"]}**:
-📦 Vende apenas **{categoria_selecionada["Quantidade"]:.0f} itens**, 
-💰 mas com ticket médio de **R${categoria_selecionada["Valor por Item"]:.2f}**.
-🚀 É segmento estratégico de **alto valor**!''')
+
+        html_msg = f"""
+    <div style="background-color:#e6f4ea; padding:16px; border-left:6px solid #34a853; border-radius:8px;">
+        🟢 <strong>{categoria_selecionada["Grupo"]}</strong> vende pouco (<strong>{categoria_selecionada["Quantidade"]:.0f} itens</strong>), 
+        mas com ticket médio de <strong>R${categoria_selecionada["Valor por Item"]:.2f}</strong>.<br>
+        🚀 É um segmento estratégico de <strong>alto valor</strong>!
+    </div>
+"""
+        st.markdown(html_msg, unsafe_allow_html=True)
 
 def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categoria,data_inicio,data_fim):
 
@@ -56,8 +71,11 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
         df_comparacao=df_comparacao.sort_values(by="Diferença",ascending=False)
 
         maior_aumento=df_comparacao.iloc[0]
-    st.error(
-        f"🔺 O centro de custo **{maior_aumento['Centro_Custo']}** teve o **maior aumento nas despesas**, "
-        f"com acréscimo de **R${maior_aumento['Diferença']:,.2f}**, "
-        f"subindo de **R${maior_aumento['Valor_Pago/Recebido_anterior']:,.2f}** para **R${maior_aumento['Valor_Pago/Recebido_atual']:,.2f}**."
-    )
+
+        html_msg = f"""
+            <div style="background-color:#fdecea; padding:16px; border-left:6px solid #f44336; border-radius:8px;">
+                🔺 O centro <strong>{maior_aumento["Centro_Custo"]}</strong> registrou aumento de <strong>{maior_aumento["Diferença"]}</strong>,
+                passando de <strong>{maior_aumento["Valor_Pago/Recebido_anterior"]}</strong> para <strong>{maior_aumento["Valor_Pago/Recebido_atual"]}</strong>.
+            </div>
+            """
+        st.markdown(html_msg, unsafe_allow_html=True)

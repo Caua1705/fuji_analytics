@@ -1,6 +1,6 @@
 import streamlit as st
 
-def aplicar_estilo():
+def aplicar_estilo_pagina():
     st.markdown(
         """
         <style>
@@ -59,6 +59,22 @@ def linha_divisoria():
             border: none;
             border-top: 1px solid rgba(0,0,0,0.15);
         ">
+        """,
+        unsafe_allow_html=True
+    )
+
+def mostrar_insight(tipo, emoji, texto_markdown):
+    cor = {
+        "erro": "#fdecea",     # vermelho claro
+        "sucesso": "#e6f4ea",  # verde claro
+        "info": "#e8f0fe",     # azul claro
+    }.get(tipo, "#f9f9f9")
+
+    st.markdown(
+        f"""
+        <div style="background-color:{cor}; padding: 16px; border-radius: 8px; border-left: 6px solid #ccc;">
+            <span style="font-size: 1.1rem;">{emoji} {texto_markdown}</span>
+        </div>
         """,
         unsafe_allow_html=True
     )
