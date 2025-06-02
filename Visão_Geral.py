@@ -26,11 +26,14 @@ aplicar_estilo_pagina()
 # Este código cria a barra superior fixa com a logo e o nome do sistema.
 header_html = """
 <style>
-    /* Estilos gerais para o body para evitar margens padrão */
-    body {
+    /* Estilos para o elemento HTML body - para garantir que não haja margens */
+    html, body {
         margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f4f7fa; /* Cor de fundo geral da página, se desejar */
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif; /* Garante uma fonte padrão */
+        background-color: #f4f7fa; /* Cor de fundo geral da página */
     }
 
     /* Estilos para a barra superior fixa */
@@ -45,7 +48,8 @@ header_html = """
         display: flex; /* Usa Flexbox para alinhar os itens */
         justify-content: space-between; /* Distribui os itens: esquerda, centro, direita */
         align-items: center; /* Alinha os itens verticalmente no centro */
-        z-index: 9999; /* Garante que a barra fique acima de outros elementos */
+        /* O z-index é CRÍTICO para que a barra fique ACIMA de outros elementos do Streamlit */
+        z-index: 9999; /* Um valor alto para garantir que esteja no topo */
         box-sizing: border-box; /* Inclui padding e borda no tamanho total */
     }
 
@@ -59,6 +63,8 @@ header_html = """
     .header-logo {
         height: 40px; /* Altura da logo */
         margin-right: 15px; /* Espaçamento à direita da logo */
+        /* Garante que a imagem se ajuste */
+        object-fit: contain;
     }
 
     /* Estilo do nome do sistema */
@@ -85,12 +91,24 @@ header_html = """
         color: #007bff; /* Cor ao passar o mouse */
     }
 
-    /* Regra importante: Adiciona um padding ao conteúdo principal da página
-       para que ele não seja escondido pela barra superior fixa.
-       Ajuste o valor (70px) se a altura da sua barra for diferente. */
-    .block-container { /* Esta classe é geralmente usada pelo Streamlit para o conteúdo principal */
-        padding-top: 70px; /* Empurra o conteúdo para baixo */
+    /* *** CRÍTICO para Streamlit: Adiciona um padding ao contêiner principal do Streamlit *** */
+    /* Inspecione o elemento no navegador (F12) para encontrar a classe do contêiner principal
+       do seu Streamlit se '.st-emotion-cache-1jm6gvw' não funcionar.
+       Esta classe é uma suposição para versões mais recentes do Streamlit.
+       Pode ser 'st-main', '.main' ou outro hash gerado pelo Streamlit. */
+    .st-emotion-cache-1jm6gvw { /* Exemplo de classe comum para o main container do Streamlit */
+        padding-top: 70px !important; /* Empurra o conteúdo para baixo, !important pode ser necessário */
     }
+    /* Se a classe acima não funcionar, tente também: */
+    .main { /* Outra classe comum para o contêiner principal */
+        padding-top: 70px !important;
+    }
+    .stApp > header { /* Para algumas versões, o header do Streamlit pode interferir */
+        z-index: 0 !important; /* Coloca o header do Streamlit por baixo do seu */
+        height: 0 !important; /* Esconde o header padrão do Streamlit */
+        visibility: hidden !important;
+    }
+
 </style>
 
 <div class="fixed-header">
@@ -101,7 +119,9 @@ header_html = """
         <span class="header-system-name">Visão Estratégica | Fuji Analytics</span>
     </div>
     <div class="header-right">
-        <span class="header-icon-button">📤</span> <span class="header-icon-button">⚙️</span> </div>
+        <span class="header-icon-button">📤</span>
+        <span class="header-icon-button">⚙️</span>
+    </div>
 </div>
 """
 
