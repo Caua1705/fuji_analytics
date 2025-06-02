@@ -50,7 +50,7 @@ def aplicar_estilo_pagina():
            Uma destas DEVE ser a que o Streamlit usa para o corpo principal.
            AUMENTE O 'padding-top' AQUI PARA DESCER MAIS O CONTEÚDO. */
         .st-emotion-cache-1jm6gvw { /* Comum em versões recentes */
-            padding-top: 100px !important; /* Experimente valores como 80px, 100px, 120px, etc. */
+            padding-top: 150px !important; /* Experimente valores como 80px, 100px, 120px, etc. */
         }
         .main { /* Classe mais antiga */
             padding-top: 100px !important; /* Ajuste este também se estiver usando .main */
