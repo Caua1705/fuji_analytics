@@ -24,7 +24,7 @@ def aplicar_estilo_pagina():
             position: fixed; /* Fixa a logo na tela */
             top: 10px;       /* Distância do topo - AJUSTE ESTE VALOR SE A LOGO ESTIVER MUITO ALTA/BAIXA */
             right: 20px;     /* Distância da direita - AJUSTE ESTE VALOR SE PRECISAR */
-            height: 40px;    /* Altura da logo - AJUSTE ESTE VALOR PARA O TAMANHO DESEJADO */
+            height: 120px;    /* Altura da logo - AJUSTE ESTE VALOR PARA O TAMANHO DESEJADO */
             z-index: 10000;  /* Garante que a logo fique acima de tudo */
         }
 
