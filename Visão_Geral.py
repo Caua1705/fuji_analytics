@@ -36,7 +36,7 @@ title_html_css = """
     }
 </style>
 
-<h1 class='dashboard-main-title'>Painel de Performance | Fuji Analytics</h1>
+<h1 class='dashboard-main-title'>🍣 Painel de Performance | Fuji Analytics</h1>
 """
 
 # Você injetaria este HTML/CSS no Streamlit
