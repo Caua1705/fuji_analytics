@@ -10,6 +10,10 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
         return
     
     df_insight_receitas=df_receitas_por_categoria.copy()
+    
+    if df_insight_receitas.empty:
+        criar_bloco_insight("Receitas", "⚠️ Nenhuma receita encontrada no período.")
+        return
 
     data_inicio_formatada = data_inicio.strftime("%d-%m")
     data_fim_formatada = data_fim.strftime("%d-%m")
@@ -20,12 +24,16 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
 
     if diferenca_dias==1:
 
+        categoria_dia = df_insight_receitas["Grupo"].iloc[0]
+
         conteudo_html = f'''<strong>Receita líder</strong> do dia {data_inicio_formatada}: 
-                🥇 <strong>{top_categorias[0]}</strong>'''
+                🥇 <strong>{categoria_dia}</strong>'''
         
         criar_bloco_insight("Receitas",conteudo_html)
 
     elif 1 < diferenca_dias < 28:
+
+        top_categorias=df_insight_receitas["Grupo"].head(3).tolist()
 
         conteudo_html = f'''<strong>Top 3 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
                 🥇 <strong>{top_categorias[0]}</strong>, 🥈 {top_categorias[1]} e 🥉 {top_categorias[2]}'''
@@ -60,21 +68,25 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
         criar_bloco_insight("Info",conteudo_html)
         return
     
+    if df_despesas_por_categoria.empty:
+        criar_bloco_insight("Despesas", "⚠️ Nenhuma despesa encontrada no período.")
+        return
+    
     data_inicio_formatada = data_inicio.strftime("%d-%m")
     data_fim_formatada = data_fim.strftime("%d-%m")
 
     diferenca_dias=(data_fim-data_inicio).days+1
 
-    top_centro_de_custo=df_despesas_por_categoria["Centro_Custo"].head(3).tolist()
-
-
     if diferenca_dias==1:
+        
+        centro_custo_dia = df_despesas_por_categoria["Centro_Custo"].iloc[0]
 
-        conteudo_html = f'''<strong>Despesa mais alta</strong> do dia {data_inicio_formatada}: 🧾 <strong>{top_centro_de_custo[0]}</strong>'''
+        conteudo_html = f'''<strong>Despesa mais alta</strong> do dia {data_inicio_formatada}: 🧾 <strong>{centro_custo_dia}</strong>'''
 
         criar_bloco_insight("Despesas",conteudo_html)
 
     elif 1 < diferenca_dias < 28:
+        top_centro_de_custo=df_despesas_por_categoria["Centro_Custo"].head(3).tolist()
 
         conteudo_html = f'''<strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
                 🥇 <strong>{top_centro_de_custo[0]}</strong>, 🥈 {top_centro_de_custo[1]} e 🥉 {top_centro_de_custo[2]}'''

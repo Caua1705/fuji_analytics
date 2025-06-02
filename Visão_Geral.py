@@ -45,7 +45,7 @@ df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despe
     data_inicio,
     data_fim
 )
-
+st.write(df_despesas_filtrado)
 #Verifica se há Dados
 if df_receitas_filtrado.empty or df_despesas_filtrado.empty:
     st.warning("⚠️ **Aviso:** Nenhum dado disponível para o período selecionado. Verifique os parâmetros e refaça a consulta.")
