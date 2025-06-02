@@ -2,8 +2,8 @@ import streamlit as st
 
 def aplicar_estilo_pagina():
     st.markdown(
-        """
-        <style>
+    """
+    <style>
             /* 🔥 Logo fixa no topo direito */
             .logo-fixed {
                 position: fixed;
@@ -20,20 +20,52 @@ def aplicar_estilo_pagina():
                 padding-right: 2rem;
             }
 
+            /* Estilo base para todas as métricas */
             .stMetric {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    color: #111827; /* 🔥 Cor do texto mais escura (preto suave) */
-}
+                /* APENAS COR DE FUNDO PADRÃO AQUI, SEM SOMBRA, BORDA OU TRANSITION */
+                background-color: #f9f9f9; /* Fundo padrão, será sobrescrito por cores específicas */
+                border-radius: 10px;
+                padding: 10px;
+                color: #111827; /* Cor do texto padrão */
+                /* Removidos: box-shadow, transition, e estilos de hover */
+            }
 
-/* 🌟 Efeito ao passar o mouse */
-.stMetric:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+            /* Removendo completamente o efeito ao passar o mouse */
+            .stMetric:hover {
+                transform: none; /* Garante que não haja levantamento */
+                box-shadow: none; /* Remove a sombra ao passar o mouse */
+            }
+
+            /* Estilo para a 1ª Métrica (Receita Total) - APENAS VERDE */
+            [data-testid="stColumn"]:nth-of-type(1) .stMetric {
+                background-color: #e8f5e9; /* Verde muito claro */
+                border-left: none; /* Removida a barra lateral */
+            }
+
+            /* Estilo para a 2ª Métrica (Despesa Total) - APENAS VERMELHO */
+            [data-testid="stColumn"]:nth-of-type(2) .stMetric {
+                background-color: #ffebee; /* Vermelho muito claro */
+                border-left: none; /* Removida a barra lateral */
+            }
+
+            /* Estilo para a 3ª Métrica (Resultado Financeiro) - APENAS AZUL */
+            [data-testid="stColumn"]:nth-of-type(3) .stMetric {
+                background-color: #e3f2fd; /* Azul muito claro */
+                border-left: none; /* Removida a barra lateral */
+            }
+
+            /* Estilo para a 4ª Métrica (Margem de Lucro) - APENAS ROXO */
+            [data-testid="stColumn"]:nth-of-type(4) .stMetric {
+                background-color: #ede7f6; /* Roxo muito claro */
+                border-left: none; /* Removida a barra lateral */
+            }
+
+            /* Removendo qualquer sombra ou transição dos valores internos das métricas também */
+            .stMetric > div > div:first-child, /* Label da métrica */
+            .stMetric > div > div:nth-child(2) { /* Valor da métrica */
+                transition: none;
+                box-shadow: none;
+            }
 
         </style>
         """,
