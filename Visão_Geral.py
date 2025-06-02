@@ -49,7 +49,8 @@ df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despe
 if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
     st.warning("⚠️ **Aviso:** Nenhum dado disponível para o período selecionado. Verifique os parâmetros e refaça a consulta.")
     st.stop()
-    
+st.write(df_receitas_filtrado)
+st.write(df_despesas_filtrado)
 #Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
@@ -69,18 +70,24 @@ df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado,
 col1, col2 = st.columns(2)
 with col1:
     insight_receitas(df_receitas_por_categoria,data_inicio,data_fim)
-    st.subheader(f"Receitas por Categoria")
-    if agrupar_outros:
-        criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
+    if not df_receitas_por_categoria.empty:
+        st.subheader(f"Receitas por Categoria")
+        if agrupar_outros:
+            criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
+        else:
+            criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
     else:
-        criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
+        st.info("Gráfico não exibido pois não há dados suficientes no período.")
 
 with col2:
     insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categoria,data_inicio,data_fim)
-    st.subheader("Despesas por Centro de Custo")
-    if agrupar_outros:
-        criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
+    if not df_despesas_por_categoria.empty:
+        st.subheader("Despesas por Centro de Custo")
+        if agrupar_outros:
+            criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
+        else:
+            criar_graficos_barra(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
     else:
-        criar_graficos_barra(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
+        st.info("Gráfico não exibido pois não há dados suficientes no período.")
 
-  
+    
