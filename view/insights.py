@@ -113,8 +113,8 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
 
         conteudo_html = f'''O centro <strong>{maior_aumento["Centro_Custo"]}</strong> registrou aumento de 
 <strong>{formatar_porcentagem(percentual_aumento)}</strong> 
-({formatar_moeda(maior_aumento["Diferença"])}), passando de 
-{formatar_moeda(maior_aumento["Valor Pago_anterior"])} para 
+({formatar_moeda(maior_aumento["Diferença"])}), <strong>nos últimos {diferenca_dias} dias</strong>, 
+passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para 
 {formatar_moeda(maior_aumento["Valor Pago_atual"])}.'''
         
         criar_bloco_insight("Despesas",conteudo_html)
