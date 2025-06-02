@@ -3,18 +3,24 @@ import streamlit as st
 def aplicar_estilo_pagina():
     html_css_content = """
 <style>
-    /* Estilos gerais para o html e body para remover margens padrão */
-    html, body {
+    /* Resetar todas as margens e paddings padrão no início para evitar conflitos */
+    * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Estilos gerais para o html e body */
+    html, body {
         width: 100%;
         height: 100%;
         font-family: Arial, sans-serif;
         background-color: #ffffff; /* Fundo GERAL da página para branco */
     }
 
-    /* Esconde o cabeçalho padrão do Streamlit (Share, Edit, etc.) */
-    .stApp > header {
+    /* 🛑 ESCONDE O CABEÇALHO PADRÃO DO STREAMLIT (Share, Edit, etc.) 🛑 */
+    /* Usamos a classe exata identificada na inspeção: stAppHeader */
+    .stAppHeader { /* */
         display: none !important;
     }
 
@@ -23,9 +29,44 @@ def aplicar_estilo_pagina():
         position: fixed;
         top: 10px;
         right: 20px;
-        height: 40px; /* Mantenha a altura da sua logo separada do spacer */
+        height: 40px; /* Altura da logo */
         z-index: 10000;
+        box-shadow: none;
+        border: none;
     }
+
+    /* BARRA FIXA SUPERIOR INVISÍVEL (que empurra o conteúdo) */
+    .top-spacer-bar {
+        /* ESTE É O VALOR QUE DEFINE O TAMANHO TOTAL DA BARRA FIXA NO TOPO */
+        height: 120px; /* <--- AJUSTE ESTE VALOR PARA O ESPAÇO DESEJADO (ex: 80px, 100px, 150px) */
+        background-color: #ffffff; /* Mesma cor de fundo da página */
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999; /* Alto, mas menor que a logo */
+        box-shadow: none; /* Sem sombra */
+    }
+
+    /* Redefinição agressiva de padding-top para os principais contêineres do Streamlit */
+    /* Isso garante que o conteúdo não tenha padding-top extra do Streamlit */
+    /* ZERA PADDING-TOP EM QUASE TUDO NO TOPO para evitar conflitos */
+    .stAppViewContainer, .stMainBlockContainer, .st-emotion-cache-*, .block-container, .main { /* */
+        padding-top: 0px !important;
+    }
+
+    /* 🚨 🚨 🚨 NOVO: MARGIN-TOP FORÇADO NO CONTÊINER PRINCIPAL DO APP 🚨 🚨 🚨 */
+    /* Usamos a classe exata do stAppViewContainer ou stMainBlockContainer */
+    /* Este é o método mais robusto para empurrar o conteúdo para baixo. */
+    /* A altura deve ser igual à altura da .top-spacer-bar para um alinhamento perfeito. */
+    .stAppViewContainer { /* */
+        margin-top: 120px !important; /* <--- AJUSTE ESTE VALOR PARA DESCER O CONTEÚDO */
+    }
+    /* Alternativa, se a anterior não funcionar tão bem, use esta em vez de stAppViewContainer */
+    .stMainBlockContainer { /* */
+        /* margin-top: 120px !important; */
+    }
+
 
     /* Estilos para as métricas (st.metric) */
     .stMetric {
@@ -36,47 +77,10 @@ def aplicar_estilo_pagina():
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         color: #111827;
     }
-
-    /* Efeito ao passar o mouse nas métricas */
     .stMetric:hover {
         transform: translateY(-3px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-
-    /* BARRA FIXA SUPERIOR INVISÍVEL (que empurra o conteúdo) */
-    .top-spacer-bar {
-        /* ESTE É O VALOR PRINCIPAL QUE VOCÊ DEVE AJUSTAR PARA DESCER A PÁGINA */
-        height: 70px; /* <--- AUMENTE ESTE VALOR PARA DESCER MAIS A PÁGINA */
-        background-color: #ffffff; /* Mesma cor de fundo da página */
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 9999; /* Alto, mas menor que a logo */
-        box-shadow: none; /* Sem sombra */
-    }
-
-    /* Resetar paddings padrão do Streamlit para evitar duplicação ou conflito */
-    /* Garante que o conteúdo real comece logo abaixo da nossa 'top-spacer-bar' */
-    .block-container {
-        padding-top: 0 !important;
-        padding-bottom: 1.5rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    .st-emotion-cache-1jm6gvw {
-        padding-top: 0 !important;
-    }
-    .main {
-        padding-top: 0 !important;
-    }
-
-    /* ADICIONAL: Margem extra para o conteúdo principal, se necessário (último recurso) */
-    /* Use este se o padding-top da top-spacer-bar e o div vazio não forem suficientes */
-    /* .stApp > div:first-child > div:nth-child(1) {
-        margin-top: 70px !important;
-    } */
-
 </style>
 
 <img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right">
@@ -87,10 +91,6 @@ def aplicar_estilo_pagina():
 # Injetar o HTML/CSS no Streamlit
     st.markdown(html_css_content, unsafe_allow_html=True)
 
-# --- Conteúdo principal do seu Dashboard Streamlit ---
-# ESTE DIV É CRÍTICO! SUA ALTURA DEVE SER IGUAL À ALTURA DA .top-spacer-bar
-# Ele empurra o conteúdo visível para baixo, compensando a barra fixa invisível.
-    st.markdown(f"<div style='height: 120px;'></div>", unsafe_allow_html=True)
 def linha_divisoria():
     st.markdown(
         """
