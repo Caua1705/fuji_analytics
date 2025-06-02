@@ -49,7 +49,7 @@ df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despe
 if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
     st.warning("⚠️ **Aviso:** Nenhum dado disponível para o período selecionado. Verifique os parâmetros e refaça a consulta.")
     st.stop()
-    
+
 #Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
@@ -75,8 +75,6 @@ with col1:
             criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
         else:
             criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
-    else:
-        st.info("Gráfico não exibido pois não há dados suficientes no período.")
 
 with col2:
     insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categoria,data_inicio,data_fim)
@@ -86,7 +84,5 @@ with col2:
             criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
         else:
             criar_graficos_barra(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
-    else:
-        st.info("Gráfico não exibido pois não há dados suficientes no período.")
 
     
