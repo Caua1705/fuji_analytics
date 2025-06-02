@@ -21,33 +21,11 @@ from view.insights import insight_receitas,insight_despesas
 st.set_page_config(layout="wide")
 aplicar_estilo_pagina()
 
-title_html_css = """
-<style>
-    /* Estilo para o Título Principal do Dashboard */
-    .dashboard-main-title {
-        font-family: 'Arial', sans-serif; 
-        font-size: 2.2em; 
-        font-weight: 700; 
-        color: #333333; 
-        text-align: left;
-        margin-top: 20px; 
-        margin-bottom: 25px; 
-        padding-left: 20px; 
-    }
-</style>
-
-<h1 class='dashboard-main-title'>🍣 Painel de Performance | Fuji Analytics</h1>
-"""
-
-# Você injetaria este HTML/CSS no Streamlit
-st.markdown(title_html_css, unsafe_allow_html=True)
-
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
 
 # Carregar Dados
 df_receitas, df_despesas = carregar_dataframes()
-
 
 # Formatar Dados
 df_receitas = formatar_dataframe(df_receitas, **config_receitas)
