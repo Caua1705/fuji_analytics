@@ -31,7 +31,10 @@ config_despesas={
     "substituicoes_valores": {
         "DESPESAS FIXAS": "FIXAS",
         "DESPESAS VARIÁVEIS": "VARIÁVEIS",
+        "DESPESAS VARIÃVEIS": "VARIÁVEIS",
+        "PRODUÃ‡ÃƒO": "PRODUÇÃO",
         "DESPESA COM PESSOAL": "PESSOAL",
+        "LVP SERVIÃ‡OS  ADMINISTRATIVOS LTDA": "LVP",
         "LVP SERVIÇOS  ADMINISTRATIVOS LTDA": "LVP",
         "PUBLICIDADE E PROPAGANDA": "PUBLICIDADE"
         }
