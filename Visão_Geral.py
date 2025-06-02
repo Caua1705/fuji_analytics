@@ -25,7 +25,73 @@ aplicar_estilo_pagina()
 inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png", 100)
 
 # Título
-st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
+header_html = """
+<style>
+    .fixed-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff; /* Fundo branco */
+        padding: 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 9999; /* Alto z-index para garantir que fique no topo */
+        box-sizing: border-box;
+    }
+    .header-left, .header-center, .header-right {
+        display: flex;
+        align-items: center;
+    }
+    .header-logo {
+        height: 40px; /* Ajuste o tamanho da logo */
+        margin-right: 15px;
+    }
+    .header-system-name {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #333;
+        flex-grow: 1;
+        text-align: center;
+    }
+    .header-icon-button {
+        background: none;
+        border: none;
+        font-size: 1.5em;
+        color: #555;
+        cursor: pointer;
+        margin-left: 15px;
+        transition: color 0.2s ease-in-out;
+    }
+    .header-icon-button:hover {
+        color: #007bff;
+    }
+    /* Adiciona um padding ao corpo principal para evitar que o conteúdo fique atrás do header */
+    body {
+        padding-top: 70px; /* Ajuste conforme a altura da sua barra */
+    }
+</style>
+<div class="fixed-header">
+    <div class="header-left">
+        <img src="https://via.placeholder.com/40x40?text=FUJI" alt="Logo FUJI" class="header-logo"> </div>
+    <div class="header-center">
+        <span class="header-system-name">Visão Estratégica | Fuji Analytics</span>
+    </div>
+    <div class="header-right">
+        <span class="header-icon-button">📤</span> <span class="header-icon-button">⚙️</span> </div>
+</div>
+"""
+
+# Injetar o HTML/CSS no Streamlit
+st.markdown(header_html, unsafe_allow_html=True)
+
+# --- Conteúdo Principal do Streamlit ---
+# O padding-top no CSS tenta compensar o header fixo.
+st.markdown("<br><br><br><br><br>", unsafe_allow_html=True) # Quebra de linha para empurrar o conteúdo para baixo
+st.title("Bem-vindo ao Dashboard")
+# st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
 
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
