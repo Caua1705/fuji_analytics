@@ -18,48 +18,54 @@ def aplicar_estilo_pagina():
         background-color: #ffffff; /* Fundo GERAL da página para branco */
     }
 
-    /* 🚨 MUDANÇA PRINCIPAL: NÃO ESCONDEMOS O stAppHeader INTEIRO! 🚨 */
-    /* Apenas removemos seus elementos internos */
+    /* 🚨 MUDANÇA PRINCIPAL: Estilizando o stAppHeader (barra padrão do Streamlit) 🚨 */
+    .stAppHeader {
+        background-color: #ffffff; /* Garante que a barra seja branca */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Opcional: Adiciona uma sombra sutil se quiser */
+        padding: 0 20px; /* Ajusta o padding interno da barra */
+        display: flex; /* Usa flexbox para alinhamento */
+        justify-content: space-between; /* Alinha a seta/título à esquerda e sua logo à direita */
+        align-items: center; /* Alinha verticalmente */
+        height: 60px; /* Altura padrão da barra, ajuste se precisar */
+        position: fixed; /* A barra já é fixa por padrão, mas reforçamos */
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000; /* Garante que ela fique no topo */
+    }
 
-    /* Esconde o ícone de "seta para trás" (se presente) e outros elementos de navegação iniciais */
+    /* Esconde o ícone de "seta para trás" e outros elementos de navegação iniciais da barra */
+    /* Este seletor mira o primeiro div dentro do header que geralmente contém a seta e o título do arquivo */
     .stAppHeader > div:first-child {
-        display: none !important;
+        display: none !important; /* Esconde o ícone da seta e o título do app */
     }
 
     /* Esconde a área de botões "Share", "Edit", "Settings", etc. */
-    /* O seletor pode variar ligeiramente, mas este tenta cobrir a maioria */
-    .stAppHeader > div:nth-child(2) > div:nth-child(1) { /* A área com os botões */
-         display: none !important;
-    }
-    /* Específico para o botão "Manage app" que pode ser externo a essa div */
-    button[data-testid="manage-app-button"] {
-        display: none !important;
+    /* Este seletor mira o div que contém esses botões no lado direito */
+    .stAppHeader > div:nth-child(2) {
+         display: none !important; /* Esconde todos os botões padrão à direita */
     }
 
-
-    /* ✨ ESTILO DA LOGO FUJI AGORA DENTRO DA BARRA PADRÃO ✨ */
-    .fuji-logo-top-right-in-header {
-        position: absolute; /* Posição absoluta DENTRO do header fixo */
-        top: 50%; /* Alinha verticalmente no centro */
-        right: 20px; /* Distância da direita */
-        transform: translateY(-50%); /* Ajuste fino para centralizar verticalmente */
+    /* ✨ LOGO FUJI AGORA POSICIONADA DENTRO DO stAppHeader ✨ */
+    .fuji-logo-in-header {
         height: 40px; /* Altura da logo */
-        z-index: 10000; /* Garante que a logo fique acima de tudo */
-        box-shadow: none;
-        border: none;
+        margin-left: auto; /* Empurra a logo para a direita se estiver no flexbox */
+        /* Opcional: ajuste top/right se não ficar perfeito com margin-left auto */
+        /* position: absolute; */
+        /* top: 50%; */
+        /* right: 20px; */
+        /* transform: translateY(-50%); */
     }
 
-    /* Redefinição de paddings para o conteúdo principal - deve ser menos agressivo agora */
-    /* A barra Streamlit já fornece padding no topo */
+    /* Redefinição de paddings para o conteúdo principal */
+    /* O Streamlit já adiciona padding-top automaticamente com o header padrão */
     .stAppViewContainer, .stMainBlockContainer, .st-emotion-cache-*, .block-container, .main {
-        padding-top: 0px !important; /* Mantenha zerado para evitar padding extra */
+        /* Garante que o padding-top seja suficiente para o conteúdo começar abaixo do header */
+        padding-top: 80px !important; /* Ajuste este valor (altura do stAppHeader + um pouco de espaço) */
         padding-bottom: 1.5rem;
         padding-left: 2rem;
         padding-right: 2rem;
     }
-
-    /* O stAppHeader já é fixo por padrão, então não precisamos de .top-spacer-bar ou margin-top */
-    /* Removemos o .top-spacer-bar e o margin-top agressivo */
 
 
     /* Estilos para as métricas (st.metric) */
@@ -77,11 +83,35 @@ def aplicar_estilo_pagina():
     }
 </style>
 
-<img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right-in-header">
 """
 
 # Injetar o HTML/CSS no Streamlit
     st.markdown(html_css_content, unsafe_allow_html=True)
+
+# 🚨 TRUQUE PARA INSERIR A LOGO DENTRO DO HEADER DO STREAMLIT 🚨
+# Vamos usar JavaScript para mover a sua imagem logo que ela for renderizada.
+# Isso é uma forma de "inserir" a logo dentro de um elemento existente do Streamlit.
+    st.markdown(
+    """
+    <script>
+        const interval = setInterval(function() {
+            const header = document.querySelector('.stAppHeader');
+            const logo = document.getElementById('custom-fuji-logo');
+            if (header && logo && !header.contains(logo)) {
+                header.appendChild(logo);
+                logo.style.position = 'relative'; /* Ajusta o posicionamento dentro do flexbox */
+                logo.style.top = 'auto';
+                logo.style.right = 'auto';
+                logo.style.transform = 'none';
+                logo.style.marginLeft = 'auto'; /* Empurra para a direita */
+                clearInterval(interval);
+            }
+        }, 100); // Tenta a cada 100ms
+    </script>
+    <img id="custom-fuji-logo" src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" style="height: 40px; z-index: 10000;"/>
+    """,
+    unsafe_allow_html=True
+)
 
 def linha_divisoria():
     st.markdown(
