@@ -1,7 +1,7 @@
 import streamlit as st
 
 def aplicar_estilo_pagina():
-    custom_css = """
+    html_css_content = """
 <style>
     /* Estilos gerais para o html e body para remover margens padrão */
     html, body {
@@ -10,7 +10,7 @@ def aplicar_estilo_pagina():
         width: 100%;
         height: 100%;
         font-family: Arial, sans-serif;
-        background-color: #f4f7fa; /* Cor de fundo geral da página */
+        background-color: #ffffff; /* Fundo GERAL da página para branco */
     }
 
     /* Esconde o cabeçalho padrão do Streamlit (Share, Edit, etc.) */
@@ -21,15 +21,15 @@ def aplicar_estilo_pagina():
     /* Estilo da Logo Fuji no Canto Superior Direito */
     .fuji-logo-top-right {
         position: fixed;
-        top: 10px;       /* Distância do topo */
-        right: 20px;     /* Distância da direita */
-        height: 40px;    /* Altura da logo (ajuste conforme necessário) */
-        z-index: 10000;  /* Garante que a logo fique acima de tudo */
+        top: 10px;
+        right: 20px;
+        height: 40px;
+        z-index: 10000;
     }
 
     /* Estilos para as métricas (st.metric) */
     .stMetric {
-        background-color: #f9f9f9;
+        background-color: #f9f9f9; /* Fundo das métricas pode continuar um off-white para destaque */
         border-radius: 10px;
         padding: 10px;
         box-shadow: 0 0 5px rgba(0,0,0,0.05);
@@ -43,42 +43,35 @@ def aplicar_estilo_pagina():
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    /* 🚨 NOVO: Estilo para a barra de "padding" visível no topo 🚨 */
-    /* Este div será inserido no Streamlit para criar o espaço com fundo */
+    /* 🚨 MUDANÇA AQUI: Estilo para a barra de "espaço" visual no topo 🚨 */
     .top-spacer-bar {
-        height: 80px; /* <--- AJUSTE ESTE VALOR para a altura da barra de "espaço" */
-        background-color: #ffffff; /* <--- Cor de fundo para a barra de espaço. Use a cor que desejar. */
+        height: 80px; /* Ajuste esta altura para o espaço que você quer */
+        background-color: #ffffff; /* Mesma cor de fundo da página */
         width: 100%;
-        position: relative; /* Importante para que o conteúdo abaixo seja empurrado */
-        z-index: 999; /* Um z-index alto, mas menor que a logo */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Opcional: sombra sutil */
+        position: relative;
+        z-index: 999;
+        box-shadow: none; /* <--- MUDANÇA PRINCIPAL AQUI: REMOVIDO A SOMBRA */
     }
 
     /* Resetar paddings padrão que podem estar causando espaço extra */
     .block-container {
-        padding-top: 0 !important; /* Remove o padding-top padrão do block-container */
+        padding-top: 0 !important;
         padding-bottom: 1.5rem;
         padding-left: 2rem;
         padding-right: 2rem;
     }
-    .st-emotion-cache-1jm6gvw { /* Ou .main */
-        padding-top: 0 !important; /* Remove o padding-top dessas classes também */
+    .st-emotion-cache-1jm6gvw {
+        padding-top: 0 !important;
     }
 </style>
+
+<img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right">
+
+<div class="top-spacer-bar"></div>
 """
 
-# Injetar o CSS
-    st.markdown(custom_css, unsafe_allow_html=True)
-
-# Injetar a logo no canto superior direito
-    st.markdown(
-    f'<img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right">',
-    unsafe_allow_html=True
-    )
-
-# 🚨 NOVO: Insere a barra de espaço visual no topo 🚨
-# Este div é o que cria a "área preenchida" que empurra o conteúdo para baixo.
-    st.markdown('<div class="top-spacer-bar"></div>', unsafe_allow_html=True)
+# Injetar o HTML/CSS no Streamlit usando a variável
+    st.markdown(html_css_content, unsafe_allow_html=True)
     
 def linha_divisoria():
     st.markdown(
