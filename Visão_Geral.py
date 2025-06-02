@@ -31,7 +31,7 @@ title_html_css = """
         color: #333333; 
         text-align: left;
         margin-top: 20px; 
-        margin-bottom: 35px; 
+        margin-bottom: 60px; 
         padding-left: 20px; 
     }
 </style>
