@@ -2,58 +2,53 @@ import streamlit as st
 
 def aplicar_estilo_pagina():
     st.markdown(
-    """
-    <style>
-        /* 🛑 ESCONDE O CABEÇALHO PADRÃO DO STREAMLIT (Share, Edit, etc.) 🛑 */
-        .stApp > header {
-            display: none !important; /* Força a ocultação do cabeçalho padrão */
-        }
+        """
+        <style>
+            /* 🔥 Logo fixa no topo direito */
+            .logo-fixed {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 100;
+            }
 
-        /* ✨ ESTILO DA LOGO FUJI NO CANTO SUPERIOR DIREITO ✨ */
-        .fuji-logo-top-right {
-            position: fixed; /* Fixa a logo na tela */
-            top: 10px;       /* Distância do topo */
-            right: 20px;     /* Distância da direita */
-            height: 40px;    /* Altura da logo (ajuste conforme necessário) */
-            z-index: 10000;  /* Garante que a logo fique acima de tudo */
-        }
+            /* 🔹 Reduzir espaço interno da página */
+            .block-container {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
 
-        /* .logo-fixed {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-        } */
+            .stMetric {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #111827; /* 🔥 Cor do texto mais escura (preto suave) */
+}
 
-        /* 🔹 Reduzir espaço interno da página */
-        .block-container {
-            padding-top: 1.5rem;    /* Pode ser ajustado se houver outra barra fixa que precise de padding-top */
-            padding-bottom: 1.5rem;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
+/* 🌟 Efeito ao passar o mouse */
+.stMetric:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-        .stMetric {
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            color: #111827; /* 🔥 Cor do texto mais escura (preto suave) */
-        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
-        /* 🌟 Efeito ao passar o mouse */
-        .stMetric:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-    </style>
-
-    <img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right">
-    """,
-    unsafe_allow_html=True
-)
+def inserir_logo(url_logo,tamanho):
+    st.markdown(
+        f"""
+        <div class="logo-fixed">
+            <img src="{url_logo}" width="{tamanho}">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 def linha_divisoria():
     st.markdown(
