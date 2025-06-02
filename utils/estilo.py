@@ -2,8 +2,8 @@ import streamlit as st
 
 def aplicar_estilo_pagina():
     st.markdown(
-        """
-        <style>
+    """
+    <style>
             /* 🔥 Logo fixa no topo direito */
             .logo-fixed {
                 position: fixed;
@@ -21,20 +21,43 @@ def aplicar_estilo_pagina():
             }
 
             .stMetric {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    color: #111827; /* 🔥 Cor do texto mais escura (preto suave) */
-}
+                background-color: #f9f9f9;
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 0 5px rgba(0,0,0,0.05);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                color: #111827;
+            }
 
-/* 🌟 Efeito ao passar o mouse */
-.stMetric:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+            /* 🌟 Efeito ao passar o mouse */
+            .stMetric:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
 
+            /* Estilo para a 1ª Métrica (Receita Total) - VERDE */
+            [data-testid="stColumn"]:nth-of-type(1) .stMetric {
+                background-color: #e8f5e9;
+                border-left: 5px solid #4CAF50;
+            }
+
+            /* Estilo para a 2ª Métrica (Despesa Total) - VERMELHO */
+            [data-testid="stColumn"]:nth-of-type(2) .stMetric {
+                background-color: #ffebee;
+                border-left: 5px solid #F44336;
+            }
+
+            /* Estilo para a 3ª Métrica (Resultado Financeiro) - AZUL */
+            [data-testid="stColumn"]:nth-of-type(3) .stMetric {
+                background-color: #e3f2fd;
+                border-left: 5px solid #2196F3;
+            }
+
+            /* Estilo para a 4ª Métrica (Margem de Lucro) - ROXO */
+            [data-testid="stColumn"]:nth-of-type(4) .stMetric {
+                background-color: #ede7f6;
+                border-left: 5px solid #9C27B0;
+            }
         </style>
         """,
         unsafe_allow_html=True
