@@ -45,7 +45,7 @@ def aplicar_estilo_pagina():
 
     /* 🚨 MUDANÇA AQUI: Estilo para a barra de "espaço" visual no topo 🚨 */
     .top-spacer-bar {
-        height: 200px; /* Ajuste esta altura para o espaço que você quer */
+        height: 100px; /* Ajuste esta altura para o espaço que você quer */
         background-color: #ffffff; /* Mesma cor de fundo da página */
         width: 100%;
         position: relative;
