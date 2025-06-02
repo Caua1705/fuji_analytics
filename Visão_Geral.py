@@ -22,54 +22,77 @@ st.set_page_config(layout="wide")
 aplicar_estilo_pagina()
 
 # Logo Fixa
+# --- Parte HTML/CSS para a barra superior fixa e estilização ---
+# Este código cria a barra superior fixa com a logo e o nome do sistema.
 header_html = """
 <style>
+    /* Estilos gerais para o body para evitar margens padrão */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f7fa; /* Cor de fundo geral da página, se desejar */
+    }
+
+    /* Estilos para a barra superior fixa */
     .fixed-header {
-        position: fixed;
+        position: fixed; /* Fixa a barra no topo da tela */
         top: 0;
         left: 0;
-        width: 100%;
-        background-color: #ffffff; /* Fundo branco */
-        padding: 10px 20px;
+        width: 100%; /* Ocupa a largura total */
+        background-color: #ffffff; /* Fundo branco para a barra */
+        padding: 10px 20px; /* Espaçamento interno */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 9999; /* Alto z-index para garantir que fique no topo */
-        box-sizing: border-box;
+        display: flex; /* Usa Flexbox para alinhar os itens */
+        justify-content: space-between; /* Distribui os itens: esquerda, centro, direita */
+        align-items: center; /* Alinha os itens verticalmente no centro */
+        z-index: 9999; /* Garante que a barra fique acima de outros elementos */
+        box-sizing: border-box; /* Inclui padding e borda no tamanho total */
     }
+
+    /* Contêineres internos da barra para alinhamento */
     .header-left, .header-center, .header-right {
         display: flex;
         align-items: center;
     }
+
+    /* Estilo da logo */
     .header-logo {
-        height: 40px; /* Ajuste o tamanho da logo */
-        margin-right: 15px;
+        height: 40px; /* Altura da logo */
+        margin-right: 15px; /* Espaçamento à direita da logo */
     }
+
+    /* Estilo do nome do sistema */
     .header-system-name {
-        font-size: 1.2em;
-        font-weight: bold;
-        color: #333;
-        flex-grow: 1;
-        text-align: center;
+        font-size: 1.2em; /* Tamanho da fonte */
+        font-weight: bold; /* Negrito */
+        color: #333; /* Cor do texto */
+        flex-grow: 1; /* Permite que ocupe o espaço restante no centro */
+        text-align: center; /* Centraliza o texto */
     }
+
+    /* Estilo dos botões de ícone (Exportar, Configurações) */
     .header-icon-button {
-        background: none;
-        border: none;
-        font-size: 1.5em;
-        color: #555;
-        cursor: pointer;
-        margin-left: 15px;
-        transition: color 0.2s ease-in-out;
+        background: none; /* Sem fundo */
+        border: none; /* Sem borda */
+        font-size: 1.5em; /* Tamanho do ícone */
+        color: #555; /* Cor do ícone */
+        cursor: pointer; /* Cursor de mão ao passar por cima */
+        margin-left: 15px; /* Espaçamento entre os ícones */
+        transition: color 0.2s ease-in-out; /* Transição suave na cor */
     }
+
     .header-icon-button:hover {
-        color: #007bff;
+        color: #007bff; /* Cor ao passar o mouse */
     }
-    /* Adiciona um padding ao corpo principal para evitar que o conteúdo fique atrás do header */
-    body {
-        padding-top: 70px; /* Ajuste conforme a altura da sua barra */
+
+    /* Regra importante: Adiciona um padding ao conteúdo principal da página
+       para que ele não seja escondido pela barra superior fixa.
+       Ajuste o valor (70px) se a altura da sua barra for diferente. */
+    .block-container { /* Esta classe é geralmente usada pelo Streamlit para o conteúdo principal */
+        padding-top: 70px; /* Empurra o conteúdo para baixo */
     }
 </style>
+
 <div class="fixed-header">
     <div class="header-left">
         <img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="Logo FUJI" class="header-logo">
@@ -78,29 +101,12 @@ header_html = """
         <span class="header-system-name">Visão Estratégica | Fuji Analytics</span>
     </div>
     <div class="header-right">
-        <span class="header-icon-button">📤</span>
-        <span class="header-icon-button">⚙️</span>
-    </div>
+        <span class="header-icon-button">📤</span> <span class="header-icon-button">⚙️</span> </div>
 </div>
 """
 
-# Injetar o HTML/CSS no Streamlit
+# Injetar o HTML/CSS da barra superior no Streamlit
 st.markdown(header_html, unsafe_allow_html=True)
-
-# --- Conteúdo Principal do Streamlit ---
-# O padding-top no CSS tenta compensar o header fixo.
-st.markdown("<br><br><br><br><br>", unsafe_allow_html=True) # Quebra de linha para empurrar o conteúdo para baixo
-st.title("Bem-vindo ao Dashboard")
-st.write("Aqui você encontrará seus principais indicadores e análises.")
-
-st.subheader("Gráfico de Vendas")
-st.line_chart({"data": [10, 20, 15, 30, 25]})
-
-st.subheader("Tabela de Dados")
-st.dataframe({"Produto": ["A", "B", "C"], "Vendas": [100, 150, 80]})
-
-st.write("---")
-st.write("Mais conteúdo do dashboard...")
 
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
