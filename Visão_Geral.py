@@ -22,7 +22,7 @@ st.set_page_config(layout="wide")
 aplicar_estilo_pagina()
 
 # Título
-st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
+st.title("## 🍣 **Visão Estratégica | Fuji Analytics**")
 
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
