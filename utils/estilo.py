@@ -20,66 +20,44 @@ def aplicar_estilo_pagina():
                 padding-right: 2rem;
             }
 
-            /* 🚨 NOVO: ESTILOS PERSONALIZADOS PARA CADA CAIXA DE MÉTRICA 🚨 */
-
-            /* Estilo base para todas as métricas */
             .stMetric {
-                background-color: #f9f9f9; /* Fundo padrão, será sobrescrito por cores específicas */
+                background-color: #f9f9f9;
                 border-radius: 10px;
-                padding: 15px; /* Aumentado o padding para mais "ar" */
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); /* Sombra mais sutil */
-                transition: all 0.3s cubic-bezier(.25,.8,.25,1); /* Transição para o hover */
-                color: #111827; /* Cor do texto padrão para todas as métricas */
+                padding: 10px;
+                box-shadow: 0 0 5px rgba(0,0,0,0.05);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                color: #111827;
             }
 
-            /* 🌟 Efeito ao passar o mouse - aplicado a todas as métricas */
+            /* 🌟 Efeito ao passar o mouse */
             .stMetric:hover {
-                transform: translateY(-2px); /* Levanta um pouco menos */
-                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); /* Sombra mais pronunciada ao hover */
+                transform: translateY(-3px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
 
             /* Estilo para a 1ª Métrica (Receita Total) - VERDE */
-            /* Isso mira a 1ª coluna e, dentro dela, o contêiner .stMetric */
             [data-testid="stColumn"]:nth-of-type(1) .stMetric {
-                background-color: #e8f5e9; /* Verde muito claro */
-                border-left: 5px solid #4CAF50; /* Barra lateral verde mais forte */
+                background-color: #e8f5e9;
+                border-left: 5px solid #4CAF50;
             }
 
             /* Estilo para a 2ª Métrica (Despesa Total) - VERMELHO */
-            /* Isso mira a 2ª coluna e, dentro dela, o contêiner .stMetric */
             [data-testid="stColumn"]:nth-of-type(2) .stMetric {
-                background-color: #ffebee; /* Vermelho muito claro */
-                border-left: 5px solid #F44336; /* Barra lateral vermelha mais forte */
+                background-color: #ffebee;
+                border-left: 5px solid #F44336;
             }
 
-            /* Estilo para a 3ª Métrica (Resultado Financeiro) - AZUL (neutro/informativo) */
-            /* Isso mira a 3ª coluna e, dentro dela, o contêiner .stMetric */
+            /* Estilo para a 3ª Métrica (Resultado Financeiro) - AZUL */
             [data-testid="stColumn"]:nth-of-type(3) .stMetric {
-                background-color: #e3f2fd; /* Azul muito claro */
-                border-left: 5px solid #2196F3; /* Barra lateral azul mais forte */
+                background-color: #e3f2fd;
+                border-left: 5px solid #2196F3;
             }
 
-            /* Estilo para a 4ª Métrica (Margem de Lucro) - ROXO (para diferenciar e indicar insights) */
-            /* Isso mira a 4ª coluna e, dentro dela, o contêiner .stMetric */
+            /* Estilo para a 4ª Métrica (Margem de Lucro) - ROXO */
             [data-testid="stColumn"]:nth-of-type(4) .stMetric {
-                background-color: #ede7f6; /* Roxo muito claro */
-                border-left: 5px solid #9C27B0; /* Barra lateral roxa mais forte */
+                background-color: #ede7f6;
+                border-left: 5px solid #9C27B0;
             }
-
-            /* Opcional: Estilizar o label e o valor dentro da métrica (geral para todas) */
-            /* Esses seletores são mais genéricos e devem funcionar */
-            .stMetric > div > div:first-child { /* Label da métrica */
-                color: #555; /* Cor um pouco mais escura para o label */
-                font-size: 0.9em;
-                margin-bottom: 5px;
-            }
-
-            .stMetric > div > div:nth-child(2) { /* Valor da métrica */
-                font-size: 1.8em; /* Aumentar o tamanho do valor */
-                font-weight: bold;
-                color: #333; /* Cor mais escura para o valor */
-            }
-
         </style>
         """,
         unsafe_allow_html=True
