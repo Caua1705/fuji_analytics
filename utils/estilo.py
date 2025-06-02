@@ -4,38 +4,76 @@ def aplicar_estilo_pagina():
     st.markdown(
     """
     <style>
-        .logo-fixed {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-        }
+            /* Resetar margens e paddings padrão */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        .block-container {
-            padding-top: 3rem;
-            padding-bottom: 1.5rem;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
+            /* Estilos gerais para o html e body */
+            html, body {
+                width: 100%;
+                height: 100%;
+                font-family: Arial, sans-serif;
+                background-color: #ffffff;
+            }
 
-        .stMetric {
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            color: #111827;
-        }
+            /* 🔥 Logo fixa no topo direito */
+            .logo-fixed {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 100;
+            }
 
-        .stMetric:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+            /* 🔹 Reduzir espaço interno da página */
+            .block-container {
+                padding-top: 3rem;
+                padding-bottom: 1.5rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .stMetric {
+                background-color: #f9f9f9;
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 0 5px rgba(0,0,0,0.05);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                color: #111827; /* 🔥 Cor do texto mais escura (preto suave) */
+            }
+
+            /* 🌟 Efeito ao passar o mouse */
+            .stMetric:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            /* 🚨 SOLUÇÃO PARA REMOVER O BOTÃO "GERENCIAR APLICATIVO" 🚨 */
+            /* Seletor direto para o botão com o data-testid */
+            button[data-testid="manage-app-button"] {
+                display: none !important;
+            }
+            /* Seletor para a classe específica do botão que você inspecionou */
+            ._terminalButton_rix23_138 {
+                display: none !important;
+            }
+            /* Seletor para a div pai que possa conter o botão flutuante */
+            /* Com base na imagem, o botão parece estar dentro de um div com a classe "css-xxxx"
+               ou dentro de um elemento "portal". Vamos tentar uma classe mais genérica se
+               as de cima não funcionarem, ou uma que envolva esses botões de rodapé. */
+            div[class^="_terminalButton_"] { /* Oculta qualquer div cuja classe comece com _terminalButton_ */
+                display: none !important;
+            }
+            div[data-testid="stStatusWidget"] { /* Oculta o widget de status, onde o botão pode estar */
+                display: none !important;
+            }
+
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 def inserir_logo(url_logo,tamanho):
