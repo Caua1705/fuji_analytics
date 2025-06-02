@@ -86,20 +86,38 @@ def linha_divisoria():
         unsafe_allow_html=True
     )
 
-def criar_bloco_insight(tipo,conteudo_html):
+def criar_bloco_insight(tipo, conteudo_html, icone=None): # Adicionado parâmetro 'icone'
+    bg = ""
+    borda = ""
+    cor_texto = "#333333" # Cor de texto padrão para insights
+
     if tipo == "Info":
-        bg = "#e8f0fe"
-        borda = "#4285f4"
+        bg = "#f0f8ff"  # Tom de azul muito mais claro
+        borda = "#a9d9f5" # Borda mais clara
+        estilo_borda_extra = "border: 1px solid;" # Borda mais fina e visível em vez de border-left grossa
     elif tipo == "Receitas":
-        bg = "#e6f4ea"
-        borda = "#34a853"
+        bg = "#f0fff4"  # Verde muito mais claro/pastel
+        borda = "#a7e9b4" # Borda mais clara
+        estilo_borda_extra = "border: 1px solid;"
     elif tipo == "Despesas":
-        bg = "#fdecea"
-        borda = "#f44336"
+        bg = "#fff0f0"  # Vermelho muito mais claro/pastel
+        borda = "#f5c6cb" # Borda mais clara
+        estilo_borda_extra = "border: 1px solid;"
+        
+    # Ícone, se fornecido
+    icone_html = f'<span style="margin-right: 8px; font-size: 1.2em;">{icone}</span>' if icone else ''
 
     html_msg = f"""
-        <div style="background-color:{bg}; padding:16px; border-left:6px solid {borda}; border-radius:8px;">
-            {conteudo_html}
+        <div style="
+            background-color:{bg};
+            padding:12px; /* Padding um pouco menor */
+            border-radius:6px; /* Cantos menos arredondados */
+            font-size: 0.9em; /* Fonte ligeiramente menor */
+            color: {cor_texto};
+            {estilo_borda_extra} border-color: {borda}; /* Aplica a borda fina com a cor */
+            box-shadow: none; /* Remove qualquer sombra para um visual mais plano */
+        ">
+            {icone_html} {conteudo_html}
         </div>
     """
     st.markdown(html_msg, unsafe_allow_html=True)
