@@ -12,7 +12,7 @@ def aplicar_estilo_pagina():
         /* ✨ ESTILO DA LOGO FUJI NO CANTO SUPERIOR DIREITO ✨ */
         .fuji-logo-top-right {
             position: fixed; /* Fixa a logo na tela */
-            top: -40px;       /* Distância do topo */
+            top: -10px;       /* Distância do topo */
             right: 20px;     /* Distância da direita */
             height: 100px;    /* Altura da logo (ajuste conforme necessário) */
             z-index: 10000;  /* Garante que a logo fique acima de tudo */
