@@ -21,8 +21,26 @@ from view.insights import insight_receitas,insight_despesas
 st.set_page_config(layout="wide")
 aplicar_estilo_pagina()
 
-# Título
-st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
+title_html_css = """
+<style>
+    /* Estilo para o Título Principal do Dashboard */
+    .dashboard-main-title {
+        font-family: 'Arial', sans-serif; /* Fonte similar à padrão do Streamlit */
+        font-size: 2.2em; /* Tamanho do título, ajuste conforme necessário */
+        font-weight: 700; /* Negrito para destaque */
+        color: #333333; /* Cor cinza escuro para profissionalismo */
+        text-align: left; /* Alinhamento à esquerda */
+        margin-top: 20px; /* Espaço acima do título (ajuste) */
+        margin-bottom: 25px; /* Espaço abaixo do título (ajuste) */
+        padding-left: 20px; /* Alinha com o conteúdo principal, se block-container tiver padding */
+    }
+</style>
+
+<h1 class='dashboard-main-title'>Visão Estratégica | Fuji Analytics</h1>
+"""
+
+# Você injetaria este HTML/CSS no Streamlit
+st.markdown(title_html_css, unsafe_allow_html=True)
 
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
