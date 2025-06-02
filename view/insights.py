@@ -20,14 +20,14 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
 
     if diferenca_dias==1:
 
-        conteudo_html = f'''📈 <strong>Receita líder</strong> do dia {data_inicio_formatada}: 
+        conteudo_html = f'''<strong>Receita líder</strong> do dia {data_inicio_formatada}: 
                 🥇 <strong>{top_categorias[0]}</strong>'''
         
         criar_bloco_insight("Receitas",conteudo_html)
 
     elif 1 < diferenca_dias < 28:
 
-        conteudo_html = f'''🍽️ <strong>Top 3 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+        conteudo_html = f'''<strong>Top 3 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
                 🥇 <strong>{top_categorias[0]}</strong>, 🥈 {top_categorias[1]} e 🥉 {top_categorias[2]}'''
         
         criar_bloco_insight("Receitas",conteudo_html)
@@ -47,7 +47,7 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
             .iloc[0]
         )
 
-        conteudo_html = f'''✅ A categoria <strong>{categoria_selecionada["Grupo"]}</strong> vendeu apenas 
+        conteudo_html = f'''A categoria <strong>{categoria_selecionada["Grupo"]}</strong> vendeu apenas 
 {categoria_selecionada["Quantidade"]} unidades, mas com ticket médio alto de 
 {formatar_moeda(categoria_selecionada["Valor por Item"])} — bom potencial.'''
         
@@ -70,13 +70,13 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
 
     if diferenca_dias==1:
 
-        conteudo_html = f'''📉 <strong>Despesa mais alta</strong> do dia {data_inicio_formatada}: 🧾 <strong>{top_centro_de_custo[0]}</strong>'''
+        conteudo_html = f'''<strong>Despesa mais alta</strong> do dia {data_inicio_formatada}: 🧾 <strong>{top_centro_de_custo[0]}</strong>'''
 
         criar_bloco_insight("Despesas",conteudo_html)
 
     elif 1 < diferenca_dias < 28:
 
-        conteudo_html = f'''➖ <strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+        conteudo_html = f'''<strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
                 🥇 <strong>{top_centro_de_custo[0]}</strong>, 🥈 {top_centro_de_custo[1]} e 🥉 {top_centro_de_custo[2]}'''
         
         criar_bloco_insight("Despesas",conteudo_html)
@@ -99,7 +99,7 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
 
         percentual_aumento=(maior_aumento["Diferença"] / maior_aumento["Valor_Pago/Recebido_anterior"]) * 100
 
-        conteudo_html = f'''🔺 O centro <strong>{maior_aumento["Centro_Custo"]}</strong> registrou aumento de 
+        conteudo_html = f'''O centro <strong>{maior_aumento["Centro_Custo"]}</strong> registrou aumento de 
 <strong>{formatar_porcentagem(percentual_aumento)}</strong> 
 ({formatar_moeda(maior_aumento["Diferença"])}), passando de 
 {formatar_moeda(maior_aumento["Valor_Pago/Recebido_anterior"])} para 
