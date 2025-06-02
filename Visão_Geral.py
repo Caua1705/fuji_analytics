@@ -33,6 +33,7 @@ data_inicio,data_fim,filial=exibir_sidebar()
 # Carregar Dados
 df_receitas, df_despesas = carregar_dataframes()
 
+
 # Formatar Dados
 df_receitas = formatar_dataframe(df_receitas, **config_receitas)
 df_receitas = formatar_quantidade(df_receitas,"Quantidade")
@@ -46,12 +47,15 @@ dict_despesas = filtrar_por_filial(df_despesas)
 df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despesas_filtrado_anterior = processar_filial(
     dict_receitas,
     dict_despesas,
-    df_receitas,
-    df_despesas,
     filial,
     data_inicio,
     data_fim
 )
+
+#Verifica se há Dados
+if df_receitas_filtrado.empty or df_despesas_filtrado.empty:
+    st.warning("⚠️ **Aviso:** Nenhum dado disponível para o período selecionado. Verifique os parâmetros e refaça a consulta.")
+    st.stop()
 
 #Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
