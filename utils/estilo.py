@@ -80,12 +80,3 @@ def criar_bloco_insight(tipo,conteudo_html):
         </div>
     """
     st.markdown(html_msg, unsafe_allow_html=True)
-
-    st.markdown(
-        f"""
-        <div style="background-color:{cor}; padding: 16px; border-radius: 8px; border-left: 6px solid #ccc;">
-            <span style="font-size: 1.1rem;">{emoji} {texto_markdown}</span>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
