@@ -74,7 +74,7 @@ def aplicar_estilo_pagina():
     /* ADICIONAL: Margem extra para o conteúdo principal, se necessário (último recurso) */
     /* Use este se o padding-top da top-spacer-bar e o div vazio não forem suficientes */
     /* .stApp > div:first-child > div:nth-child(1) {
-        margin-top: 120px !important;
+        margin-top: 70px !important;
     } */
 
 </style>
