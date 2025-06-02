@@ -86,36 +86,45 @@ def linha_divisoria():
         unsafe_allow_html=True
     )
 
-def criar_bloco_insight(tipo, conteudo_html, icone=None): # Adicionado parâmetro 'icone'
+def criar_bloco_insight(tipo, conteudo_html): # Removido o parâmetro 'icone'
     bg = ""
     borda = ""
-    cor_texto = "#333333" # Cor de texto padrão para insights
+    icone = "" # Variável para armazenar o ícone
+    cor_texto = "#333333"
 
     if tipo == "Info":
-        bg = "#f0f8ff"  # Tom de azul muito mais claro
-        borda = "#a9d9f5" # Borda mais clara
-        estilo_borda_extra = "border: 1px solid;" # Borda mais fina e visível em vez de border-left grossa
+        bg = "#f0f8ff"
+        borda = "#a9d9f5"
+        icone = "ℹ️" # Ícone de informação
+        estilo_borda_extra = "border: 1px solid;"
     elif tipo == "Receitas":
-        bg = "#f0fff4"  # Verde muito mais claro/pastel
-        borda = "#a7e9b4" # Borda mais clara
+        bg = "#f0fff4"
+        borda = "#a7e9b4"
+        icone = "📈" # Ícone de gráfico para cima
         estilo_borda_extra = "border: 1px solid;"
     elif tipo == "Despesas":
-        bg = "#fff0f0"  # Vermelho muito mais claro/pastel
-        borda = "#f5c6cb" # Borda mais clara
+        bg = "#fff0f0"
+        borda = "#f5c6cb"
+        icone = "⚠️" # Ícone de alerta (triângulo de aviso)
         estilo_borda_extra = "border: 1px solid;"
-        
-    # Ícone, se fornecido
-    icone_html = f'<span style="margin-right: 8px; font-size: 1.2em;">{icone}</span>' if icone else ''
+    else: # Caso padrão para outros tipos não especificados
+        bg = "#f8f8f8"
+        borda = "#e0e0e0"
+        icone = "💡" # Ícone de lâmpada para insights gerais
+        estilo_borda_extra = "border: 1px solid;"
+
+    # Ícone HTML (agora 'icone' não é None)
+    icone_html = f'<span style="margin-right: 8px; font-size: 1.2em;">{icone}</span>'
 
     html_msg = f"""
         <div style="
             background-color:{bg};
-            padding:12px; /* Padding um pouco menor */
-            border-radius:6px; /* Cantos menos arredondados */
-            font-size: 0.9em; /* Fonte ligeiramente menor */
+            padding:12px;
+            border-radius:6px;
+            font-size: 0.9em;
             color: {cor_texto};
-            {estilo_borda_extra} border-color: {borda}; /* Aplica a borda fina com a cor */
-            box-shadow: none; /* Remove qualquer sombra para um visual mais plano */
+            {estilo_borda_extra} border-color: {borda};
+            box-shadow: none;
         ">
             {icone_html} {conteudo_html}
         </div>
