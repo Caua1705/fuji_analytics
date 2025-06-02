@@ -2,43 +2,41 @@ import streamlit as st
 
 def aplicar_estilo_pagina():
     st.markdown(
-        """
-        <style>
-            /* 🔥 Logo fixa no topo direito */
-            .logo-fixed {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 100;
-            }
+    """
+    <style> 
+        .logo-fixed {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
 
-            /* 🔹 Reduzir espaço interno da página */
-            .block-container {
-                padding-top: 3rem;
-                padding-bottom: 1.5rem;
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
+        .block-container {
+            padding-top: 3rem;
+            padding-bottom: 1.5rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
 
-            .stMetric {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    color: #111827; /* 🔥 Cor do texto mais escura (preto suave) */
-}
+        .stMetric {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: #111827;
+        }
 
-/* 🌟 Efeito ao passar o mouse */
-.stMetric:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+        .stMetric:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+        #MainMenu {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 def inserir_logo(url_logo,tamanho):
     st.markdown(
