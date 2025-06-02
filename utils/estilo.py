@@ -1,75 +1,76 @@
 import streamlit as st
 
 def aplicar_estilo_pagina():
-    # Oculta os warnings de "Streamlit is in development mode"
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-
     html_css_content = """
 <style>
-    /* 1. Esconde o cabeçalho padrão do Streamlit (com os ícones de Share, Edit, etc.) */
-    .stApp > header {
-        display: none !important;
-    }
-
-    /* 2. Estilos gerais para o html e body: fundo branco, sem margens padrão */
+    /* Estilos gerais para o html e body para remover margens padrão */
     html, body {
         margin: 0;
         padding: 0;
         width: 100%;
         height: 100%;
         font-family: Arial, sans-serif;
-        background-color: #ffffff; /* Fundo GERAL da página para BRANCO */
+        background-color: #ffffff; /* Fundo GERAL da página para branco */
     }
 
-    /* 3. Estilo da Logo FUJI no Canto Superior Direito (posição fixa) */
+    /* Esconde o cabeçalho padrão do Streamlit (Share, Edit, etc.) */
+    .stApp > header {
+        display: none !important;
+    }
+
+    /* Estilo da Logo Fuji no Canto Superior Direito */
     .fuji-logo-top-right {
         position: fixed;
-        top: 10px;       /* Distância do topo da tela */
-        right: 20px;     /* Distância da direita da tela */
-        height: 40px;    /* Altura da logo - ajuste conforme necessário */
-        z-index: 10000;  /* Garante que a logo fique acima de tudo */
-        /* Opcional: Remova qualquer sombra ou borda da própria imagem se ela tiver */
-        box-shadow: none;
-        border: none;
+        top: 10px;
+        right: 20px;
+        height: 40px;
+        z-index: 10000;
     }
 
-    /* 4. Ajusta o espaçamento do conteúdo principal do Streamlit.
-       Este é o espaço que vai empurrar o conteúdo para baixo da logo.
-       Ele parecerá "branco" porque o fundo do body é branco. */
-    .st-emotion-cache-1jm6gvw { /* Classe comum para o contêiner principal em versões recentes */
-        padding-top: 80px !important; /* <--- AJUSTE ESTE VALOR para descer mais o conteúdo */
-    }
-    .main { /* Classe alternativa para o contêiner principal */
-        padding-top: 80px !important; /* <--- AJUSTE ESTE VALOR TAMBÉM */
-    }
-    /* O .block-container é mais para margens laterais e inferiores,
-       e seu padding-top pode ser sobrescrito pelos de cima se forem mais específicos. */
-    .block-container {
-        /* padding-top: 1.5rem; <--- Este pode ser removido ou zerado se os de cima funcionarem */
-        padding-bottom: 1.5rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-
-    /* Estilos para as métricas (st.metric) - mantidos como estão */
+    /* Estilos para as métricas (st.metric) */
     .stMetric {
-        background-color: #f9f9f9;
+        background-color: #f9f9f9; /* Fundo das métricas pode continuar um off-white para destaque */
         border-radius: 10px;
         padding: 10px;
         box-shadow: 0 0 5px rgba(0,0,0,0.05);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         color: #111827;
     }
+
+    /* Efeito ao passar o mouse nas métricas */
     .stMetric:hover {
         transform: translateY(-3px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
+
+    /* 🚨 MUDANÇA AQUI: Estilo para a barra de "espaço" visual no topo 🚨 */
+    .top-spacer-bar {
+        height: 100px; /* Ajuste esta altura para o espaço que você quer */
+        background-color: #ffffff; /* Mesma cor de fundo da página */
+        width: 100%;
+        position: relative;
+        z-index: 999;
+        box-shadow: none; /* <--- MUDANÇA PRINCIPAL AQUI: REMOVIDO A SOMBRA */
+    }
+
+    /* Resetar paddings padrão que podem estar causando espaço extra */
+    .block-container {
+        padding-top: 0 !important;
+        padding-bottom: 1.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .st-emotion-cache-1jm6gvw {
+        padding-top: 0 !important;
+    }
 </style>
 
 <img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right">
+
+<div class="top-spacer-bar"></div>
 """
 
-# Injetar o HTML/CSS no Streamlit
+# Injetar o HTML/CSS no Streamlit usando a variável
     st.markdown(html_css_content, unsafe_allow_html=True)
     
 def linha_divisoria():
