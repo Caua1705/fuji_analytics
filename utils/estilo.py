@@ -48,9 +48,11 @@ def aplicar_estilo_pagina():
         height: 100px; /* Ajuste esta altura para o espaço que você quer */
         background-color: #ffffff; /* Mesma cor de fundo da página */
         width: 100%;
-        position: relative;
-        z-index: 999;
-        box-shadow: none; /* <--- MUDANÇA PRINCIPAL AQUI: REMOVIDO A SOMBRA */
+        position: fixed; /* MUDANÇA: AGORA É FIXA! */
+        top: 0;          /* MUDANÇA: Começa no topo da tela */
+        left: 0;         /* MUDANÇA: Começa na esquerda da tela */
+        z-index: 9999;   /* MUDANÇA: Z-index alto para ficar acima do conteúdo, mas abaixo da logo */
+        box-shadow: none; /* Sem sombra para ser imperceptível */
     }
 
     /* Resetar paddings padrão que podem estar causando espaço extra */
@@ -63,6 +65,10 @@ def aplicar_estilo_pagina():
     .st-emotion-cache-1jm6gvw {
         padding-top: 0 !important;
     }
+    /* Adicionando .main aqui para garantir compatibilidade */
+    .main {
+        padding-top: 0 !important;
+    }
 </style>
 
 <img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right">
@@ -72,7 +78,12 @@ def aplicar_estilo_pagina():
 
 # Injetar o HTML/CSS no Streamlit usando a variável
     st.markdown(html_css_content, unsafe_allow_html=True)
-    
+
+# --- Conteúdo principal do seu Dashboard Streamlit ---
+# Precisamos adicionar um "padding" no primeiro elemento do Streamlit para que ele não fique
+# embaixo da barra fixa. Vamos usar um st.markdown com altura.
+# A altura deve ser igual ou maior que a height da .top-spacer-bar
+    st.markdown(f"<div style='height: 100px;'></div>", unsafe_allow_html=True)
 def linha_divisoria():
     st.markdown(
         """
