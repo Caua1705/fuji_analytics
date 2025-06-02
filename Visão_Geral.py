@@ -55,7 +55,7 @@ if df_receitas_filtrado.empty or df_despesas_filtrado.empty:
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
 
-modo_percentual = st.toggle("📊 Mostrar em proporção (%)", value=False)
+modo_percentual = st.toggle("Mostrar em proporção (%)", value=False)
 if modo_percentual:
     agrupar_outros=True
 else:
