@@ -40,7 +40,7 @@ def aplicar_estilo_pagina():
         .block-container {
             /* ESTE É O padding-top DO SEU CÓDIGO ORIGINAL.
                Se o conteúdo ainda estiver subindo, o Streamlit pode estar usando outras classes. */
-            padding-top: 9rem; /* Ajuste se necessário para descer o conteúdo */
+            padding-top: 8.5rem; /* Ajuste se necessário para descer o conteúdo */
             padding-bottom: 1.5rem;
             padding-left: 2rem;
             padding-right: 2rem;
