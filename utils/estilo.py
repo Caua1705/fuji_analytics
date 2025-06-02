@@ -4,6 +4,16 @@ def aplicar_estilo_pagina():
     st.markdown(
     """
     <style>
+        /* Estilos gerais para o html e body para remover margens padrão */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+        }
+
         /* 🛑 ESCONDE O CABEÇALHO PADRÃO DO STREAMLIT (Share, Edit, etc.) 🛑 */
         .stApp > header {
             display: none !important; /* Força a ocultação do cabeçalho padrão */
@@ -12,9 +22,9 @@ def aplicar_estilo_pagina():
         /* ✨ ESTILO DA LOGO FUJI NO CANTO SUPERIOR DIREITO ✨ */
         .fuji-logo-top-right {
             position: fixed; /* Fixa a logo na tela */
-            top: -10px;       /* Distância do topo */
-            right: 20px;     /* Distância da direita */
-            height: 100px;    /* Altura da logo (ajuste conforme necessário) */
+            top: 10px;       /* Distância do topo - AJUSTE ESTE VALOR SE A LOGO ESTIVER MUITO ALTA/BAIXA */
+            right: 20px;     /* Distância da direita - AJUSTE ESTE VALOR SE PRECISAR */
+            height: 40px;    /* Altura da logo - AJUSTE ESTE VALOR PARA O TAMANHO DESEJADO */
             z-index: 10000;  /* Garante que a logo fique acima de tudo */
         }
 
@@ -25,12 +35,25 @@ def aplicar_estilo_pagina():
             z-index: 100;
         } */
 
-        /* 🔹 Reduzir espaço interno da página */
+        /* 🔹 Reduzir espaço interno da página e DESCER O CONTEÚDO INTEIRO */
+        /* FOQUE NESTAS REGRAS PARA AJUSTAR O ESPAÇAMENTO DO CONTEÚDO PRINCIPAL */
         .block-container {
-            padding-top: 0.5rem;    /* Pode ser ajustado se houver outra barra fixa que precise de padding-top */
-            padding-bottom: 1rem;
+            /* ESTE É O padding-top DO SEU CÓDIGO ORIGINAL.
+               Se o conteúdo ainda estiver subindo, o Streamlit pode estar usando outras classes. */
+            padding-top: 1.5rem; /* Ajuste se necessário para descer o conteúdo */
+            padding-bottom: 1.5rem;
             padding-left: 2rem;
             padding-right: 2rem;
+        }
+
+        /* Classes alternativas para o contêiner principal do Streamlit.
+           Uma destas DEVE ser a que o Streamlit usa para o corpo principal.
+           AUMENTE O 'padding-top' AQUI PARA DESCER MAIS O CONTEÚDO. */
+        .st-emotion-cache-1jm6gvw { /* Comum em versões recentes */
+            padding-top: 100px !important; /* Experimente valores como 80px, 100px, 120px, etc. */
+        }
+        .main { /* Classe mais antiga */
+            padding-top: 100px !important; /* Ajuste este também se estiver usando .main */
         }
 
         .stMetric {
@@ -39,7 +62,7 @@ def aplicar_estilo_pagina():
             padding: 10px;
             box-shadow: 0 0 5px rgba(0,0,0,0.05);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            color: #111827; /* 🔥 Cor do texto mais escura (preto suave) */
+            color: #111827; /* Cor do texto mais escura (preto suave) */
         }
 
         /* 🌟 Efeito ao passar o mouse */
@@ -54,7 +77,6 @@ def aplicar_estilo_pagina():
     """,
     unsafe_allow_html=True
 )
-
 def linha_divisoria():
     st.markdown(
         """
