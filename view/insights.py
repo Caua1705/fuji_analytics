@@ -69,7 +69,7 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
         return
     
     if df_despesas_por_categoria.empty:
-        criar_bloco_insight("Despesas", "⚠️ Nenhuma despesa encontrada no período.")
+        criar_bloco_insight("Despesas", "Nenhuma despesa encontrada no período.")
         return
     
     data_inicio_formatada = data_inicio.strftime("%d-%m")
