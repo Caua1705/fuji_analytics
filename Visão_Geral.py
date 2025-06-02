@@ -25,14 +25,14 @@ title_html_css = """
 <style>
     /* Estilo para o Título Principal do Dashboard */
     .dashboard-main-title {
-        font-family: 'Arial', sans-serif; /* Fonte similar à padrão do Streamlit */
-        font-size: 2.2em; /* Tamanho do título, ajuste conforme necessário */
-        font-weight: 700; /* Negrito para destaque */
-        color: #333333; /* Cor cinza escuro para profissionalismo */
-        text-align: left; /* Alinhamento à esquerda */
-        margin-top: 20px; /* Espaço acima do título (ajuste) */
-        margin-bottom: 25px; /* Espaço abaixo do título (ajuste) */
-        padding-left: 20px; /* Alinha com o conteúdo principal, se block-container tiver padding */
+        font-family: 'Arial', sans-serif; 
+        font-size: 2.2em; 
+        font-weight: 700; 
+        color: #333333; 
+        text-align: left;
+        margin-top: 20px; 
+        margin-bottom: 35px; 
+        padding-left: 20px; 
     }
 </style>
 
