@@ -46,7 +46,7 @@ def aplicar_estilo_pagina():
     /* BARRA FIXA SUPERIOR INVISÍVEL (que empurra o conteúdo) */
     .top-spacer-bar {
         /* ESTE É O VALOR PRINCIPAL QUE VOCÊ DEVE AJUSTAR PARA DESCER A PÁGINA */
-        height: 120px; /* <--- AUMENTE ESTE VALOR PARA DESCER MAIS A PÁGINA */
+        height: 70px; /* <--- AUMENTE ESTE VALOR PARA DESCER MAIS A PÁGINA */
         background-color: #ffffff; /* Mesma cor de fundo da página */
         width: 100%;
         position: fixed;
