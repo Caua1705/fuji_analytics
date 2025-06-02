@@ -44,63 +44,65 @@ def aplicar_estilo_pagina():
             padding: 10px;
             box-shadow: 0 0 5px rgba(0,0,0,0.05);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            color: #111827; /* Cor do texto mais escura (preto suave) */
+            color: #111827; /* Cor do texto padrão para todas as métricas */
         }
 
         /* Efeito ao passar o mouse - aplicado a todas as métricas */
         .stMetric:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         /* Estilo para a 1ª Métrica (Receita Total) - VERDE */
-        div.stMetric:nth-child(1) { /* Seleciona a primeira métrica dentro de suas colunas */
+        /* Isso mira a 1ª coluna e, dentro dela, o contêiner .stMetric */
+        [data-testid="stColumn"]:nth-of-type(1) .stMetric {
             background-color: #e8f5e9; /* Verde muito claro */
-            border-left: 5px solid #4CAF50; /* Uma barra lateral verde mais forte */
+            border-left: 5px solid #4CAF50; /* Barra lateral verde mais forte */
         }
 
         /* Estilo para a 2ª Métrica (Despesa Total) - VERMELHO */
-        div.stMetric:nth-child(2) { /* Seleciona a segunda métrica */
+        /* Isso mira a 2ª coluna e, dentro dela, o contêiner .stMetric */
+        [data-testid="stColumn"]:nth-of-type(2) .stMetric {
             background-color: #ffebee; /* Vermelho muito claro */
-            border-left: 5px solid #F44336; /* Uma barra lateral vermelha mais forte */
+            border-left: 5px solid #F44336; /* Barra lateral vermelha mais forte */
         }
 
-        /* Estilo para a 3ª Métrica (Resultado Financeiro) - AZUL (neutro/informativo) */
-        div.stMetric:nth-child(3) { /* Seleciona a terceira métrica */
+        /* Estilo para a 3ª Métrica (Resultado Financeiro) - AZUL */
+        /* Isso mira a 3ª coluna e, dentro dela, o contêiner .stMetric */
+        [data-testid="stColumn"]:nth-of-type(3) .stMetric {
             background-color: #e3f2fd; /* Azul muito claro */
-            border-left: 5px solid #2196F3; /* Uma barra lateral azul mais forte */
+            border-left: 5px solid #2196F3; /* Barra lateral azul mais forte */
         }
 
-        /* Estilo para a 4ª Métrica (Margem de Lucro) - ROXO (para diferenciar e indicar insights) */
-        div.stMetric:nth-child(4) { /* Seleciona a quarta métrica */
+        /* Estilo para a 4ª Métrica (Margem de Lucro) - ROXO */
+        /* Isso mira a 4ª coluna e, dentro dela, o contêiner .stMetric */
+        [data-testid="stColumn"]:nth-of-type(4) .stMetric {
             background-color: #ede7f6; /* Roxo muito claro */
-            border-left: 5px solid #9C27B0; /* Uma barra lateral roxa mais forte */
+            border-left: 5px solid #9C27B0; /* Barra lateral roxa mais forte */
         }
 
-        /* Opcional: Estilizar o label e o valor dentro da métrica */
-        .stMetric > div:nth-child(1) > div:first-child { /* Label da métrica */
-            color: #555; /* Cor um pouco mais escura para o label */
+        /* Opcional: Estilizar o label e o valor dentro da métrica (geral para todas) */
+        /* Esses seletores são mais genéricos e devem funcionar */
+        .stMetric > div > div:first-child { /* Label da métrica (ex: "Receita Total") */
+            color: #555;
             font-size: 0.9em;
+            margin-bottom: 5px;
         }
 
-        .stMetric > div:nth-child(1) > div:nth-child(2) { /* Valor da métrica */
+        .stMetric > div > div:nth-child(2) { /* Valor da métrica (ex: R$ 370.293,73) */
             font-size: 1.8em; /* Aumentar o tamanho do valor */
             font-weight: bold;
             color: #333; /* Cor mais escura para o valor */
         }
 
-        /* Isso é para ocultar o botão "Gerenciar Aplicativo" (tentativa final) */
-        /* Mantendo os seletores mais agressivos que geralmente funcionam */
-        section[data-testid="stStatusWidget"] {
-            display: none !important;
-        }
+        /* Linha para remover o botão "Gerenciar aplicativo" (mantida) */
         button[data-testid="manage-app-button"] {
             display: none !important;
         }
-        [class^="_terminalButton_"] {
+        section[data-testid="stStatusWidget"] {
             display: none !important;
         }
-        .st-emotion-cache-1jc7l8v, .st-emotion-cache-v065m3, .st-emotion-cache-15r3q2k, .st-emotion-cache-r423a2 {
+        [class^="_terminalButton_"] {
             display: none !important;
         }
 
