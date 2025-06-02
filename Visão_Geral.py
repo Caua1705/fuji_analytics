@@ -22,9 +22,6 @@ st.set_page_config(layout="wide")
 aplicar_estilo_pagina()
 
 # Logo Fixa
-inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png", 100)
-
-# Título
 header_html = """
 <style>
     .fixed-header {
@@ -75,12 +72,15 @@ header_html = """
 </style>
 <div class="fixed-header">
     <div class="header-left">
-        <img src="https://via.placeholder.com/40x40?text=FUJI" alt="Logo FUJI" class="header-logo"> </div>
+        <img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="Logo FUJI" class="header-logo">
+    </div>
     <div class="header-center">
         <span class="header-system-name">Visão Estratégica | Fuji Analytics</span>
     </div>
     <div class="header-right">
-        <span class="header-icon-button">📤</span> <span class="header-icon-button">⚙️</span> </div>
+        <span class="header-icon-button">📤</span>
+        <span class="header-icon-button">⚙️</span>
+    </div>
 </div>
 """
 
@@ -91,7 +91,16 @@ st.markdown(header_html, unsafe_allow_html=True)
 # O padding-top no CSS tenta compensar o header fixo.
 st.markdown("<br><br><br><br><br>", unsafe_allow_html=True) # Quebra de linha para empurrar o conteúdo para baixo
 st.title("Bem-vindo ao Dashboard")
-# st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
+st.write("Aqui você encontrará seus principais indicadores e análises.")
+
+st.subheader("Gráfico de Vendas")
+st.line_chart({"data": [10, 20, 15, 30, 25]})
+
+st.subheader("Tabela de Dados")
+st.dataframe({"Produto": ["A", "B", "C"], "Vendas": [100, 150, 80]})
+
+st.write("---")
+st.write("Mais conteúdo do dashboard...")
 
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
