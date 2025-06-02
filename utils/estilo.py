@@ -53,7 +53,7 @@ def aplicar_estilo_pagina():
             padding-top: 150px !important; /* Experimente valores como 80px, 100px, 120px, etc. */
         }
         .main { /* Classe mais antiga */
-            padding-top: 100px !important; /* Ajuste este também se estiver usando .main */
+            padding-top: 150px !important; /* Ajuste este também se estiver usando .main */
         }
 
         .stMetric {
