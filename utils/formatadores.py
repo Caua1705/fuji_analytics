@@ -31,7 +31,7 @@ def padronizar_valores(df,coluna_alterada,substituicoes):
     return df
 
 def formatar_dataframe(df,substituicoes_colunas,colunas_nulas,colunas_data,colunas_valores,coluna_alterada,substituicoes_valores):
-    if substituicoes_valores:
+    if substituicoes_colunas:
         df = df.rename(columns=substituicoes_colunas)
     df= padronizar_valores(df,coluna_alterada,substituicoes_valores)
     df = formatar_valores_nulos(df,colunas_nulas)
