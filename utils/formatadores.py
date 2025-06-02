@@ -37,3 +37,8 @@ def formatar_dataframe(df,colunas_nulas,colunas_data,colunas_valores,coluna_alte
     df = formatar_data(df,colunas_data)
     return df
 
+def formatar_moeda(valor):
+    return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+def formatar_porcentagem(valor):
+    return f"{valor:.2f}%"

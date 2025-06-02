@@ -1,4 +1,5 @@
 import streamlit as st
+from utils.formatadores import formatar_moeda,formatar_porcentagem
 
 def calcular_receita_total(df_receitas):
     return df_receitas["Valor"].sum()
@@ -19,13 +20,13 @@ def exibir_metricas_financeiras(df_receitas,df_despesas):
     margem_lucro=calcular_margem_lucro(resultado,receita_total)
     col1,col2,col3,col4=st.columns(4)
     with col1:
-        st.metric("Receita Total",f"R$ {receita_total:,.2f}")
+        st.metric("Receita Total",f"{formatar_moeda(receita_total)}")
     with col2:
-        st.metric("Despesa Total",f"R$ {despesa_total:,.2f}")
+        st.metric("Despesa Total",f"{formatar_moeda(despesa_total)}")
     with col3:
-        st.metric("Resultado Financeiro",f"R${resultado:,.2f}")
+        st.metric("Resultado Financeiro",f"{formatar_moeda(resultado)}")
     with col4:
-        st.metric("Margem de Lucro",f"{margem_lucro:,.2f}%")
+        st.metric("Margem de Lucro",f"{formatar_porcentagem(margem_lucro)}")
 
 
         
