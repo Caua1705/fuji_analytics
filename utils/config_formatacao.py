@@ -1,20 +1,24 @@
 config_receitas = {
+    "substituicoes_colunas": {},
     "colunas_nulas": ["Produto", "Grupo", "Quantidade", "Valor", "Filial"],
     "colunas_data": "Data",
     "colunas_valores": "Valor",
     "coluna_alterada": "Grupo",
-    "substituicoes": {
+    "substituicoes_valores": {
         "COUVERT ARTISTICO": "COUVERT"
     },
 }
 
 config_despesas={
+    "substituicoes_colunas": {
+        "Valor_Pago/Recebido": "Valor Pago"
+    },
     "colunas_nulas": [
         "Filial","Tipo_Lancamento",
         "Sintetica","Analitica",
         "Detalhada","Observacao","Fornecedor/Cliente",
         "Conta","Forma_Pag/Rec","Valor_Original",
-        "Valor_Pago/Recebido","Status"
+        "Valor Pago","Status"
         ],
     "colunas_data": [
         "Data_Lancamento",
@@ -22,15 +26,14 @@ config_despesas={
         "Data_Vencimento",
         "Data_Pagamento"
         ],
-    "colunas_valores": "Valor_Pago/Recebido",
+    "colunas_valores": "Valor Pago",
     "coluna_alterada": "Centro_Custo",
-    "substituicoes": {
+    "substituicoes_valores": {
         "DESPESAS FIXAS": "FIXAS",
         "DESPESAS VARIÁVEIS": "VARIÁVEIS",
         "DESPESA COM PESSOAL": "PESSOAL",
         "LVP SERVIÇOS  ADMINISTRATIVOS LTDA": "LVP",
-        "PUBLICIDADE E PROPAGANDA": "PUBLICIDADE",
-        "Valor_Pago/Recebido": "Valor_Pago"
+        "PUBLICIDADE E PROPAGANDA": "PUBLICIDADE"
         }
 }
     

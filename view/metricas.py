@@ -5,7 +5,7 @@ def calcular_receita_total(df_receitas):
     return df_receitas["Valor"].sum()
     
 def calcular_despesa_total(df_despesas):
-    return df_despesas["Valor_Pago/Recebido"].sum()
+    return df_despesas["Valor Pago"].sum()
 
 def calcular_resultado(receitas,despesas):
     return receitas-despesas
