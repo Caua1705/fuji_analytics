@@ -76,7 +76,7 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
 
     elif 1 < diferenca_dias < 28:
 
-        conteudo_html = f'''💸 <strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+        conteudo_html = f'''➖ <strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
                 🥇 <strong>{top_centro_de_custo[0]}</strong>, 🥈 {top_centro_de_custo[1]} e 🥉 {top_centro_de_custo[2]}'''
         
         criar_bloco_insight("Despesas",conteudo_html)
