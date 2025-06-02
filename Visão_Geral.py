@@ -97,7 +97,7 @@ header_html = """
        Esta classe é uma suposição para versões mais recentes do Streamlit.
        Pode ser 'st-main', '.main' ou outro hash gerado pelo Streamlit. */
     .st-emotion-cache-1jm6gvw { /* Exemplo de classe comum para o main container do Streamlit */
-        padding-top: 70px !important; /* Empurra o conteúdo para baixo, !important pode ser necessário */
+        padding-top: 120px !important; /* Empurra o conteúdo para baixo, !important pode ser necessário */
     }
     /* Se a classe acima não funcionar, tente também: */
     .main { /* Outra classe comum para o contêiner principal */
