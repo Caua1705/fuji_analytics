@@ -2,54 +2,9 @@
 
 PÁGINA VISAO GERAL:
 
-st.title("📊 Visão Geral do Negócio")
+ALTERAÇÕES: COLOCAR CONDIÇÃO NA MÉTRICA MARGEM DE LUCRO
 
-# Sidebar – Filtros
-with st.sidebar:
-    st.subheader("📅 Filtros de Período")
-    data_inicio = st.date_input("Data de início")
-    data_fim = st.date_input("Data de fim")
-    st.selectbox("Filtrar por praça", options=["Todas", "Salão", "Delivery"])
-    st.button("🔄 Atualizar Dados")
-
-# Tabs principais
-aba1, aba2 = st.tabs(["📈 Visão Financeira", "📅 Evolução Mensal"])
-
-with aba1:
-    st.subheader("✅ Métricas Financeiras")
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Receita Total", "R$ 125.000")
-    col2.metric("Despesa Total", "R$ 72.000")
-    col3.metric("Lucro Total", "R$ 53.000")
-    col4.metric("Ticket Médio", "R$ 29,75")
-
-    st.markdown("---")
-    st.subheader("📊 Distribuição de Receita e Despesas")
-
-    col5, col6 = st.columns(2)
-    with col5:
-        st.plotly_chart(grafico_receita_por_categoria, use_container_width=True)
-    with col6:
-        st.plotly_chart(grafico_despesas_por_categoria, use_container_width=True)
-
-    st.markdown("---")
-    st.subheader("🔍 Insights")
-    st.success("🟢 Bebidas representam 20% das vendas, mas 35% da receita.")
-    st.warning("🔴 Despesas com fornecedores são 65% do custo total.")
-
-with aba2:
-    st.subheader("📅 Evolução Mensal")
-
-    st.plotly_chart(grafico_linha_receita_despesa, use_container_width=True)
-
-    st.markdown("---")
-    st.subheader("📄 Detalhamento por Mês")
-    st.dataframe(tabela_mensal)
-
-    st.markdown("---")
-    st.info("📌 Maio foi o mês com maior lucro do trimestre.")
-
-    ----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 
     PÁGINA DESEMPENHO DE PRODUTOS
 
