@@ -3,7 +3,7 @@ import streamlit as st
 def aplicar_estilo_pagina():
     html_css_content = """
 <style>
-    /* Resetar todas as margens e paddings padrão no início para evitar conflitos */
+    /* Resetar margens e paddings padrão */
     * {
         margin: 0;
         padding: 0;
@@ -18,54 +18,48 @@ def aplicar_estilo_pagina():
         background-color: #ffffff; /* Fundo GERAL da página para branco */
     }
 
-    /* 🛑 ESCONDE O CABEÇALHO PADRÃO DO STREAMLIT (Share, Edit, etc.) 🛑 */
-    /* Usamos a classe exata identificada na inspeção: stAppHeader */
-    .stAppHeader { /* */
+    /* 🚨 MUDANÇA PRINCIPAL: NÃO ESCONDEMOS O stAppHeader INTEIRO! 🚨 */
+    /* Apenas removemos seus elementos internos */
+
+    /* Esconde o ícone de "seta para trás" (se presente) e outros elementos de navegação iniciais */
+    .stAppHeader > div:first-child {
         display: none !important;
     }
 
-    /* Estilo da Logo Fuji no Canto Superior Direito */
-    .fuji-logo-top-right {
-        position: fixed;
-        top: 10px;
-        right: 20px;
+    /* Esconde a área de botões "Share", "Edit", "Settings", etc. */
+    /* O seletor pode variar ligeiramente, mas este tenta cobrir a maioria */
+    .stAppHeader > div:nth-child(2) > div:nth-child(1) { /* A área com os botões */
+         display: none !important;
+    }
+    /* Específico para o botão "Manage app" que pode ser externo a essa div */
+    button[data-testid="manage-app-button"] {
+        display: none !important;
+    }
+
+
+    /* ✨ ESTILO DA LOGO FUJI AGORA DENTRO DA BARRA PADRÃO ✨ */
+    .fuji-logo-top-right-in-header {
+        position: absolute; /* Posição absoluta DENTRO do header fixo */
+        top: 50%; /* Alinha verticalmente no centro */
+        right: 20px; /* Distância da direita */
+        transform: translateY(-50%); /* Ajuste fino para centralizar verticalmente */
         height: 40px; /* Altura da logo */
-        z-index: 10000;
+        z-index: 10000; /* Garante que a logo fique acima de tudo */
         box-shadow: none;
         border: none;
     }
 
-    /* BARRA FIXA SUPERIOR INVISÍVEL (que empurra o conteúdo) */
-    .top-spacer-bar {
-        /* ESTE É O VALOR QUE DEFINE O TAMANHO TOTAL DA BARRA FIXA NO TOPO */
-        height: 120px; /* <--- AJUSTE ESTE VALOR PARA O ESPAÇO DESEJADO (ex: 80px, 100px, 150px) */
-        background-color: #ffffff; /* Mesma cor de fundo da página */
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 9999; /* Alto, mas menor que a logo */
-        box-shadow: none; /* Sem sombra */
+    /* Redefinição de paddings para o conteúdo principal - deve ser menos agressivo agora */
+    /* A barra Streamlit já fornece padding no topo */
+    .stAppViewContainer, .stMainBlockContainer, .st-emotion-cache-*, .block-container, .main {
+        padding-top: 0px !important; /* Mantenha zerado para evitar padding extra */
+        padding-bottom: 1.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
 
-    /* Redefinição agressiva de padding-top para os principais contêineres do Streamlit */
-    /* Isso garante que o conteúdo não tenha padding-top extra do Streamlit */
-    /* ZERA PADDING-TOP EM QUASE TUDO NO TOPO para evitar conflitos */
-    .stAppViewContainer, .stMainBlockContainer, .st-emotion-cache-*, .block-container, .main { /* */
-        padding-top: 0px !important;
-    }
-
-    /* 🚨 🚨 🚨 NOVO: MARGIN-TOP FORÇADO NO CONTÊINER PRINCIPAL DO APP 🚨 🚨 🚨 */
-    /* Usamos a classe exata do stAppViewContainer ou stMainBlockContainer */
-    /* Este é o método mais robusto para empurrar o conteúdo para baixo. */
-    /* A altura deve ser igual à altura da .top-spacer-bar para um alinhamento perfeito. */
-    .stAppViewContainer { /* */
-        margin-top: 120px !important; /* <--- AJUSTE ESTE VALOR PARA DESCER O CONTEÚDO */
-    }
-    /* Alternativa, se a anterior não funcionar tão bem, use esta em vez de stAppViewContainer */
-    .stMainBlockContainer { /* */
-        /* margin-top: 120px !important; */
-    }
+    /* O stAppHeader já é fixo por padrão, então não precisamos de .top-spacer-bar ou margin-top */
+    /* Removemos o .top-spacer-bar e o margin-top agressivo */
 
 
     /* Estilos para as métricas (st.metric) */
@@ -83,9 +77,7 @@ def aplicar_estilo_pagina():
     }
 </style>
 
-<img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right">
-
-<div class="top-spacer-bar"></div>
+<img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right-in-header">
 """
 
 # Injetar o HTML/CSS no Streamlit
