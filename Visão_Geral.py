@@ -62,10 +62,9 @@ with col_v:
     # Use o toggle padrão ou o customizado (ver abaixo)
     modo_percentual = st.toggle("Mostrar em proporção (%)", key="toggle_proporcao")
     if modo_percentual:
-        modo_percentual=True
+        agrupar_outros=True
     else:
-        modo_percentual=False
-
+        agrupar_outros=False
 
 with col_space:
     # Você pode deixar esta coluna vazia ou usá-la para algo que se alinha
