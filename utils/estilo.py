@@ -27,7 +27,7 @@ def aplicar_estilo_pagina():
 
         /* 🔹 Reduzir espaço interno da página */
         .block-container {
-            padding-top: 1.5rem;    /* Pode ser ajustado se houver outra barra fixa que precise de padding-top */
+            padding-top: 0.5rem;    /* Pode ser ajustado se houver outra barra fixa que precise de padding-top */
             padding-bottom: 1.5rem;
             padding-left: 2rem;
             padding-right: 2rem;
