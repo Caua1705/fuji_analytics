@@ -2,7 +2,7 @@ import streamlit as st
 
 def aplicar_estilo_pagina():
     st.markdown(
-    """
+    '''
     <style>
         /* Estilos gerais para o html e body para remover margens padrão */
         html, body {
@@ -46,16 +46,6 @@ def aplicar_estilo_pagina():
             padding-right: 2rem;
         }
 
-        /* Classes alternativas para o contêiner principal do Streamlit.
-           Uma destas DEVE ser a que o Streamlit usa para o corpo principal.
-           AUMENTE O 'padding-top' AQUI PARA DESCER MAIS O CONTEÚDO. */
-        .st-emotion-cache-1jm6gvw { /* Comum em versões recentes */
-            padding-top: 150px !important; /* Experimente valores como 80px, 100px, 120px, etc. */
-        }
-        .main { /* Classe mais antiga */
-            padding-top: 150px !important; /* Ajuste este também se estiver usando .main */
-        }
-
         .stMetric {
             background-color: #f9f9f9;
             border-radius: 10px;
@@ -74,9 +64,10 @@ def aplicar_estilo_pagina():
     </style>
 
     <img src="https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png" alt="FUJI" class="fuji-logo-top-right">
-    """,
+    ''',
     unsafe_allow_html=True
 )
+    
 def linha_divisoria():
     st.markdown(
         """
