@@ -22,7 +22,7 @@ st.set_page_config(layout="wide")
 aplicar_estilo_pagina()
 
 # Logo Fixa
-inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png", 100)
+# inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png", 100)
 
 # Título
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")
