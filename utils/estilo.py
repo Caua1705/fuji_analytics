@@ -31,7 +31,7 @@ def aplicar_estilo_pagina():
             position: fixed; /* Fixa a logo na tela */
             top: 10px;       /* Distância do topo - ajuste se precisar */
             right: 20px;     /* Distância da direita - ajuste se precisar */
-            height: 40px;    /* Altura da logo (ajuste conforme necessário) */
+            height: 120px;    /* Altura da logo (ajuste conforme necessário) */
             z-index: 10000;  /* Garante que a logo fique acima de tudo */
             box-shadow: none; /* Remove qualquer sombra */
             border: none;    /* Remove qualquer borda */
