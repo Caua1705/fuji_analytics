@@ -56,8 +56,8 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
         )
 
         conteudo_html = f'''A categoria <strong>{categoria_selecionada["Grupo"]}</strong> vendeu apenas 
-{categoria_selecionada["Quantidade"]} unidades, mas com ticket médio alto de 
-{formatar_moeda(categoria_selecionada["Valor por Item"])} — bom potencial.'''
+<strong>{categoria_selecionada["Quantidade"]}</strong> unidades, mas apresentou um ticket médio elevado de 
+<strong>{formatar_moeda(categoria_selecionada["Valor por Item"])}</strong> — indica bom potencial de margem.'''
         
         criar_bloco_insight("Receitas",conteudo_html)
 
