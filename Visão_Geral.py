@@ -4,7 +4,7 @@ from carregamento.carregar_dados import carregar_dataframes
 # Formatar Dados
 from utils.formatadores import formatar_dataframe,formatar_quantidade
 from utils.config_formatacao import config_receitas, config_despesas
-from utils.estilo import aplicar_estilo_pagina,inserir_logo,linha_divisoria
+from utils.estilo import aplicar_estilo_pagina,linha_divisoria
 # Filtrar Dados
 from processamento.filtrar import filtrar_por_filial, processar_filial
 #Exibir Sidebar:
@@ -20,9 +20,6 @@ from view.insights import insight_receitas,insight_despesas
 # Configuração da Página
 st.set_page_config(layout="wide")
 aplicar_estilo_pagina()
-
-# Logo Fixa
-# inserir_logo("https://raw.githubusercontent.com/Caua1705/fuji_analytics/main/assets/novinha.png", 100)
 
 # Título
 st.markdown("## 🍣 **Visão Estratégica | Fuji Analytics**")

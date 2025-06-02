@@ -14,13 +14,10 @@ def aplicar_estilo_pagina():
             position: fixed; /* Fixa a logo na tela */
             top: 10px;       /* Distância do topo */
             right: 20px;     /* Distância da direita */
-            height: 40px;    /* Altura da logo (ajuste conforme necessário) */
+            height: 100px;    /* Altura da logo (ajuste conforme necessário) */
             z-index: 10000;  /* Garante que a logo fique acima de tudo */
         }
 
-        /* 🔥 Logo fixa no topo direito (do seu código original) */
-        /* Eu comentei esta regra, pois .fuji-logo-top-right faz o mesmo,
-           mas com z-index maior para garantir a visibilidade */
         /* .logo-fixed {
             position: fixed;
             top: 20px;
@@ -57,16 +54,6 @@ def aplicar_estilo_pagina():
     """,
     unsafe_allow_html=True
 )
-
-def inserir_logo(url_logo,tamanho):
-    st.markdown(
-        f"""
-        <div class="logo-fixed">
-            <img src="{url_logo}" width="{tamanho}">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
 
 def linha_divisoria():
     st.markdown(
