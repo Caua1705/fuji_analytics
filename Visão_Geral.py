@@ -30,8 +30,8 @@ title_html_css = """
         font-weight: 700; 
         color: #333333; 
         text-align: left;
-        margin-top: 20px; 
-        margin-bottom: 60px; 
+        margin-top: 40px; 
+        margin-bottom: 25px; 
         padding-left: 20px; 
     }
 </style>
