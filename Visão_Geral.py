@@ -53,18 +53,19 @@ if df_receitas_filtrado.empty or df_despesas_filtrado.empty:
 #Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
-modo_percentual = st.toggle("📊 Mostrar em proporção (%)", value=False)
-if modo_percentual:
-    agrupar_outros=True
-else:
-    agrupar_outros=False
 
-modo_percentual, col_space = st.columns([0.2,
+
+col_v, col_space = st.columns([0.2,
                                      0.8]) # A primeira coluna é pequena para o toggle
 
-with modo_percentual:
+with col_v:
     # Use o toggle padrão ou o customizado (ver abaixo)
-    proporcao_ativada = st.toggle("Mostrar em proporção (%)", key="toggle_proporcao")
+    modo_percentual = st.toggle("Mostrar em proporção (%)", key="toggle_proporcao")
+    if modo_percentual:
+        modo_percentual=True
+    else:
+        modo_percentual=False
+
 
 with col_space:
     # Você pode deixar esta coluna vazia ou usá-la para algo que se alinha
