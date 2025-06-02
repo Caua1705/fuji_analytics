@@ -91,18 +91,18 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
             suffixes=('_atual', '_anterior'),
             how='inner'  # Apenas centros presentes nos dois períodos
     )
-        df_comparacao["Diferença"]=df_comparacao["Valor_Pago/Recebido_atual"] - df_comparacao["Valor_Pago/Recebido_anterior"]
+        df_comparacao["Diferença"]=df_comparacao["Valor_Pago_atual"] - df_comparacao["Valor_Pago_anterior"]
 
         df_comparacao=df_comparacao.sort_values(by="Diferença",ascending=False)
 
         maior_aumento=df_comparacao.iloc[0]
 
-        percentual_aumento=(maior_aumento["Diferença"] / maior_aumento["Valor_Pago/Recebido_anterior"]) * 100
+        percentual_aumento=(maior_aumento["Diferença"] / maior_aumento["Valor_Pago_anterior"]) * 100
 
         conteudo_html = f'''O centro <strong>{maior_aumento["Centro_Custo"]}</strong> registrou aumento de 
 <strong>{formatar_porcentagem(percentual_aumento)}</strong> 
 ({formatar_moeda(maior_aumento["Diferença"])}), passando de 
-{formatar_moeda(maior_aumento["Valor_Pago/Recebido_anterior"])} para 
-{formatar_moeda(maior_aumento["Valor_Pago/Recebido_atual"])}.'''
+{formatar_moeda(maior_aumento["Valor_Pago_anterior"])} para 
+{formatar_moeda(maior_aumento["Valor_Pago_atual"])}.'''
         
         criar_bloco_insight("Despesas",conteudo_html)

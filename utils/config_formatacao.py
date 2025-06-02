@@ -29,7 +29,8 @@ config_despesas={
         "DESPESAS VARIÁVEIS": "VARIÁVEIS",
         "DESPESA COM PESSOAL": "PESSOAL",
         "LVP SERVIÇOS  ADMINISTRATIVOS LTDA": "LVP",
-        "PUBLICIDADE E PROPAGANDA": "PUBLICIDADE"
+        "PUBLICIDADE E PROPAGANDA": "PUBLICIDADE",
+        "Valor_Pago/Recebido": "Valor_Pago"
         }
 }
     
