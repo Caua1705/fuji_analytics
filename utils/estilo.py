@@ -24,7 +24,7 @@ def aplicar_estilo_pagina():
         top: 10px;
         right: 20px;
         height: 40px;
-        z-index: 10000;
+        z-index: 10000; /* Garante que a logo fique acima de tudo */
     }
 
     /* Estilos para as métricas (st.metric) */
@@ -43,17 +43,20 @@ def aplicar_estilo_pagina():
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    /* 🚨 MUDANÇA AQUI: Estilo para a barra de "espaço" visual no topo 🚨 */
+    /* 🚨 MUDANÇA AQUI: Estilo para a barra de "espaço" visual no topo - AGORA FIXA! 🚨 */
     .top-spacer-bar {
-        height: 100px; /* Ajuste esta altura para o espaço que você quer */
+        height: 120px; /* <--- Ajuste esta altura para o espaço que você quer */
         background-color: #ffffff; /* Mesma cor de fundo da página */
         width: 100%;
-        position: relative;
-        z-index: 999;
-        box-shadow: none; /* <--- MUDANÇA PRINCIPAL AQUI: REMOVIDO A SOMBRA */
+        position: fixed; /* <--- MUDANÇA: AGORA É FIXA! */
+        top: 0;          /* <--- MUDANÇA: Começa no topo da tela */
+        left: 0;         /* <--- MUDANÇA: Começa na esquerda da tela */
+        z-index: 9999;   /* <--- MUDANÇA: Z-index alto para ficar acima do conteúdo, mas abaixo da logo */
+        box-shadow: none; /* Sem sombra para ser imperceptível */
     }
 
-    /* Resetar paddings padrão que podem estar causando espaço extra */
+    /* Precisamos resetar o padding-top das classes do Streamlit para que o conteúdo
+       comece logo abaixo da nossa barra fixa, sem espaço extra. */
     .block-container {
         padding-top: 0 !important;
         padding-bottom: 1.5rem;
@@ -61,6 +64,9 @@ def aplicar_estilo_pagina():
         padding-right: 2rem;
     }
     .st-emotion-cache-1jm6gvw {
+        padding-top: 0 !important;
+    }
+    .main {
         padding-top: 0 !important;
     }
 </style>
@@ -72,6 +78,12 @@ def aplicar_estilo_pagina():
 
 # Injetar o HTML/CSS no Streamlit usando a variável
     st.markdown(html_css_content, unsafe_allow_html=True)
+
+# --- Conteúdo principal do seu Dashboard Streamlit ---
+# Precisamos adicionar um "padding" no primeiro elemento do Streamlit para que ele não fique
+# embaixo da barra fixa. Vamos usar um st.write com altura ou um st.empty.
+# A altura deve ser igual ou maior que a height da .top-spacer-bar
+    st.markdown(f"<div style='height: 120px;'></div>", unsafe_allow_html=True)
     
 def linha_divisoria():
     st.markdown(
