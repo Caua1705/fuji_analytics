@@ -18,7 +18,7 @@ from view.graficos import criar_graficos_barra,criar_graficos_pizza
 from view.insights import insight_receitas,insight_despesas
 
 # Configuração da Página
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",page_icon="🍣")
 aplicar_estilo_pagina()
 
 # Sidebar 
