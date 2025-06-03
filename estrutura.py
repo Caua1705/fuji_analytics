@@ -2,7 +2,7 @@
 
 PÁGINA VISAO GERAL:
 
-ALTERAÇÕES: COLOCAR CONDIÇÃO NA MÉTRICA MARGEM DE LUCRO
+ALTERAÇÕES: COLOCAR CONDIÇÃO NA MÉTRICA MARGEM DE LUCRO, QUESTÃO DO IFOOD SE COLCOO COMO CATEGORIA OU FAÇO UMA PÁGINA SÓ DE DELIVERY
 
 ----------------------------------------------------------------------------------------
 
