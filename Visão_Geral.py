@@ -49,6 +49,7 @@ df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despe
 if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
     st.warning("⚠️ **Aviso:** Nenhum dado disponível para o período selecionado. Verifique os parâmetros e refaça a consulta.")
     st.stop()
+    st.write(df_despesas)
 
 #Métricas Financeiras
 exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
