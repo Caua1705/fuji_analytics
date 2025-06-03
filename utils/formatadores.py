@@ -12,10 +12,16 @@ def formatar_valores_nulos(df,colunas):
         df[coluna]=df[coluna].fillna(0)
     return df
 
-def formatar_colunas_valores(df,colunas_valores):
-    if isinstance(colunas_valores,str):
-        colunas_valores=[colunas_valores]
+def formatar_colunas_valores(df, colunas_valores):
+    if isinstance(colunas_valores, str):
+        colunas_valores = [colunas_valores]
     for coluna in colunas_valores:
+        df[coluna] = (
+            df[coluna]
+            .astype(str)
+            .str.replace(",", ".", regex=False)
+            .str.replace(" ", "", regex=False)  # remove espaços, se tiver
+        )
         df[coluna] = pd.to_numeric(df[coluna], errors="coerce").abs().fillna(0)
     return df
 
