@@ -55,3 +55,6 @@ def formatar_moeda(valor):
 
 def formatar_porcentagem(valor):
     return f"{valor:.2f}%"
+
+def formatar_unidade(valor):
+    return f"{valor:02d}"

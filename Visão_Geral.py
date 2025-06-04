@@ -1,16 +1,14 @@
 import streamlit as st
 # Carregar Dados
-from carregamento.carregar_dados import carregar_dataframes
-# Formatar Dados
-from utils.formatadores import formatar_dataframe,formatar_quantidade
-from utils.config_formatacao import config_receitas, config_despesas
+from carregamento.carregar_dados import carregar_e_preparar_dados
+#Estilizar a Página
 from utils.estilo import aplicar_estilo_pagina,linha_divisoria
 # Filtrar Dados
 from processamento.filtrar import filtrar_por_filial, processar_filial
 #Exibir Sidebar:
 from view.sidebar import exibir_sidebar
 # Exibir Métricas
-from view.metricas import exibir_metricas_financeiras_visao_geral
+from view.metricas import exibir_metricas_visao_geral
 # Agrupar Dados
 from processamento.agrupar import agrupar_receitas_por_categoria,agrupar_despesas_por_categoria
 # Exibir Gráficos
@@ -33,19 +31,13 @@ aplicar_estilo_pagina(
 data_inicio,data_fim,filial=exibir_sidebar()
 
 # Carregar Dados
-df_receitas, df_despesas = carregar_dataframes()
-
-
-# Formatar Dados
-df_receitas = formatar_dataframe(df_receitas, **config_receitas)
-df_receitas = formatar_quantidade(df_receitas,"Quantidade")
-df_despesas = formatar_dataframe(df_despesas, **config_despesas)
+df_receitas, df_despesas = carregar_e_preparar_dados()
 
 # Filtrar por Filial
 dict_receitas = filtrar_por_filial(df_receitas)
 dict_despesas = filtrar_por_filial(df_despesas)
 
-# Filtrar por Data
+# Filtrar Filial por Data
 df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despesas_filtrado_anterior = processar_filial(
     dict_receitas,
     dict_despesas,
@@ -59,7 +51,7 @@ if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
     st.stop()
 
 #Métricas Financeiras
-exibir_metricas_financeiras_visao_geral(df_receitas_filtrado, df_despesas_filtrado)
+exibir_metricas_visao_geral(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
 
 modo_percentual = st.toggle("Mostrar em proporção (%)", value=False)
