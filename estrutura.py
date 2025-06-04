@@ -8,11 +8,14 @@ ALTERAÇÕES: COLOCAR CONDIÇÃO NA MÉTRICA MARGEM DE LUCRO, QUESTÃO DO IFOOD 
 
     PÁGINA DESEMPENHO DE PRODUTOS
 
-# Tab 1 — 📊 Resumo
-st.subheader("🏆 Top Produtos")
 # Métricas
 st.metric("Produto mais vendido", "Produto X (10.000 un)")
 st.metric("Produto com maior faturamento", "Produto Y (R$ 150.000)")
+
+TABS:
+
+# Tab 1 — 📊 Resumo
+st.subheader("🏆 Top Produtos")
 
 # Gráfico barras
 st.plotly_chart(fig_top_quantidade)

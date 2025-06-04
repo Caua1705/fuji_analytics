@@ -45,3 +45,5 @@ def agrupar_despesas_por_categoria(df, coluna_agrupada, coluna_valor, agrupar_ou
         
     return df_final
 
+
+

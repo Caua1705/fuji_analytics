@@ -10,7 +10,7 @@ from processamento.filtrar import filtrar_por_filial, processar_filial
 #Exibir Sidebar:
 from view.sidebar import exibir_sidebar
 # Exibir Métricas
-from view.metricas import exibir_metricas_financeiras
+from view.metricas import exibir_metricas_financeiras_visao_geral
 # Agrupar Dados
 from processamento.agrupar import agrupar_receitas_por_categoria,agrupar_despesas_por_categoria
 # Exibir Gráficos
@@ -59,7 +59,7 @@ if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
     st.stop()
 
 #Métricas Financeiras
-exibir_metricas_financeiras(df_receitas_filtrado, df_despesas_filtrado)
+exibir_metricas_financeiras_visao_geral(df_receitas_filtrado, df_despesas_filtrado)
 linha_divisoria()
 
 modo_percentual = st.toggle("Mostrar em proporção (%)", value=False)

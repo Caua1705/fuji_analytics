@@ -13,7 +13,7 @@ def calcular_resultado(receitas,despesas):
 def calcular_margem_lucro(resultado,receitas):
     return (resultado/receitas) * 100
 
-def exibir_metricas_financeiras(df_receitas,df_despesas):
+def exibir_metricas_financeiras_visao_geral(df_receitas,df_despesas):
     receita_total=calcular_receita_total(df_receitas)
     despesa_total=calcular_despesa_total(df_despesas)
     resultado=calcular_resultado(receita_total,despesa_total)
@@ -27,6 +27,9 @@ def exibir_metricas_financeiras(df_receitas,df_despesas):
         st.metric("Resultado Financeiro",f"{formatar_moeda(resultado)}")
     with col4:
         st.metric("Margem de Lucro",f"{formatar_porcentagem(margem_lucro)}")
+
+def produto_mais_vendido(df_receitas):
+    pass
 
 
         
