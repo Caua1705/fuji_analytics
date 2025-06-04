@@ -15,9 +15,11 @@ from processamento.agrupar import agrupar_receitas_por_categoria,agrupar_despesa
 from view.graficos import criar_graficos_barra,criar_graficos_pizza
 from view.insights import insight_receitas,insight_despesas
 
-
-
 # Configuração da Página
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent))
+
 st.set_page_config(layout="wide",page_icon="🍣")
 aplicar_estilo_pagina(
     titulo="Dashboard de Análise",
