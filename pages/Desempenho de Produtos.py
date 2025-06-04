@@ -9,7 +9,7 @@ else:
     df_receitas=st.session_state.df_receitas
 
 aplicar_estilo_pagina(
-    titulo="📊 Desempenho de Produtos | Fuji Analytics",
+    titulo="Análise de Desempenho de Produtos",
     metricas_config=[
         {"bg_color": "#e8f5e9", "border_color": "#4CAF50"},  
         {"bg_color": "#ffebee", "border_color": "#F44336"},  
