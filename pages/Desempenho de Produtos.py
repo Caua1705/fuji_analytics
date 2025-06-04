@@ -4,6 +4,7 @@ from utils.estilo import aplicar_estilo_pagina
 from view.sidebar import exibir_sidebar
 from processamento.filtrar import filtrar_por_filial,processar_filial
 from view.metricas import exibir_metricas_desempenho_produtos
+from processamento.agrupar import criar_curva_abc
 
 if "df_receitas" not in st.session_state:
     df_receitas,df_despesas=carregar_e_preparar_dados()
@@ -48,3 +49,5 @@ if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
 exibir_metricas_desempenho_produtos(df_receitas_filtrado)
 
 tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","💼 Lucratividade"])
+with tab1:
+    df_receitas_filtrado=criar_curva_abc(df_receitas_filtrado)

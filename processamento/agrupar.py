@@ -45,5 +45,17 @@ def agrupar_despesas_por_categoria(df, coluna_agrupada, coluna_valor, agrupar_ou
         
     return df_final
 
+def criar_curva_abc(df_receitas):
+    df_agrupado=(
+        df_receitas.groupby("Produto").agg(
+        Valor_Total=("Valor","sum"),
+        Quantidade_Total=("Quantidade","sum")
+    )
+    .sort_values(by="Valor_Total",ascending=False)
+    )
+    df_agrupado["Percentual Valor"]= df_agrupado["Valor_Total"] / df_agrupado["Valor_Total"].sum() 
+    df_agrupado["Percentual_Acumulado"]= df_agrupado["Percentual Valor"].cumsum()
+    st.write(df_agrupado)
+
 
 
