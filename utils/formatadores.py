@@ -57,4 +57,7 @@ def formatar_porcentagem(valor):
     return f"{valor:.2f}%"
 
 def formatar_unidade(valor):
-    return f"{valor:02d}"
+    if valor < 100:
+        return f"{valor:02d}"
+    else:
+        return f"{valor:,}".replace(",", ".")
