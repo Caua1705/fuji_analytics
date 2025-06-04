@@ -20,7 +20,7 @@ from view.insights import insight_receitas,insight_despesas
 # Configuração da Página
 st.set_page_config(layout="wide",page_icon="🍣")
 aplicar_estilo_pagina(
-    titulo="Painel de Performace",
+    titulo="Painel de Performance | Fuji Analytics",
     metricas_config=[
         {"bg_color": "#e8f5e9", "border_color": "#4CAF50"},  
         {"bg_color": "#ffebee", "border_color": "#F44336"},  
