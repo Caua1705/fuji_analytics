@@ -45,4 +45,4 @@ if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
     st.warning("⚠️ **Aviso:** Nenhum dado disponível para o período selecionado. Verifique os parâmetros e refaça a consulta.")
     st.stop()
 
-exibir_metricas_desempenho_produtos(df_receitas)
+exibir_metricas_desempenho_produtos(df_receitas_filtrado)
