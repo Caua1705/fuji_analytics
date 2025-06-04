@@ -5,6 +5,11 @@ from view.sidebar import exibir_sidebar
 from processamento.filtrar import filtrar_por_filial,processar_filial
 from view.metricas import exibir_metricas_desempenho_produtos
 
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent))
+
 if "df_receitas" not in st.session_state:
     df_receitas=carregar_e_preparar_dados()
     st.session_state.df_receitas = df_receitas
