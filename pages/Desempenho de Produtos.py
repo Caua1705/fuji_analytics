@@ -6,10 +6,12 @@ from processamento.filtrar import filtrar_por_filial,processar_filial
 from view.metricas import exibir_metricas_desempenho_produtos
 
 if "df_receitas" not in st.session_state:
-    df_receitas=carregar_e_preparar_dados()
+    df_receitas,df_despesas=carregar_e_preparar_dados()
     st.session_state.df_receitas = df_receitas
+    st.session_state.df_despesas = df_despesas
 else:
     df_receitas=st.session_state.df_receitas
+    df_despesas=st.session_state.df_despesas
 
 aplicar_estilo_pagina(
     titulo="Análise de Desempenho de Produtos",
@@ -23,9 +25,6 @@ aplicar_estilo_pagina(
 
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
-
-# Carregar Dados
-df_receitas, df_despesas = carregar_e_preparar_dados()
 
 # Filtrar por Filial
 dict_receitas = filtrar_por_filial(df_receitas)
@@ -45,4 +44,7 @@ if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
     st.warning("⚠️ **Aviso:** Nenhum dado disponível para o período selecionado. Verifique os parâmetros e refaça a consulta.")
     st.stop()
 
+#Métricas
 exibir_metricas_desempenho_produtos(df_receitas_filtrado)
+
+tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","💼 Lucratividade"])

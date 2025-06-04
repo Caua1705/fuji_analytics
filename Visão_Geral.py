@@ -40,7 +40,7 @@ df_receitas, df_despesas = carregar_e_preparar_dados()
 # Filtrar por Filial
 dict_receitas = filtrar_por_filial(df_receitas)
 dict_despesas = filtrar_por_filial(df_despesas)
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 # Filtrar Filial por Data
 df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despesas_filtrado_anterior = processar_filial(
     dict_receitas,

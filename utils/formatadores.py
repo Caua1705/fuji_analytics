@@ -1,4 +1,5 @@
 import pandas as pd
+from utils.config_formatacao import MAPA_BEBIDA,MAPA_COMIDA,MAPA_OUTROS
 
 def formatar_data(df,colunas):
     if isinstance(colunas,str):
@@ -25,16 +26,32 @@ def formatar_colunas_valores(df, colunas_valores):
         df[coluna] = pd.to_numeric(df[coluna], errors="coerce").abs().fillna(0)
     return df
 
-def formatar_quantidade(df,coluna_quantidade):
+def formatar_quantidade(df_receitas,coluna_quantidade):
     coluna_quantidade=[coluna_quantidade]
     for coluna in coluna_quantidade:
-        serie_temporaria = df[coluna].astype(str).str.replace('.', '', regex=False).str.replace(',', '.')
-        df[coluna] = pd.to_numeric(serie_temporaria, errors='coerce').abs().fillna(0).astype(int)
-    return df
+        serie_temporaria = df_receitas[coluna].astype(str).str.replace('.', '', regex=False).str.replace(',', '.')
+        df_receitas[coluna] = pd.to_numeric(serie_temporaria, errors='coerce').abs().fillna(0).astype(int)
+    return df_receitas
 
 def padronizar_valores(df,coluna_alterada,substituicoes):
+    df[coluna_alterada]=df[coluna_alterada].str.strip()
     df[coluna_alterada]=df[coluna_alterada].replace(substituicoes)
     return df
+
+def classificar_produto(df_receitas,coluna_categoria):
+
+    def definir_tipo_produto(valor):
+        if valor in MAPA_BEBIDA:
+            return "Bebidas"
+        elif valor in MAPA_COMIDA:
+            return "Comidas"
+        elif valor in MAPA_OUTROS:
+            return "Outros"
+        else:
+            return "Outros"
+
+    df_receitas["Tipo_produto"]=df_receitas[coluna_categoria].apply(definir_tipo_produto)
+    return df_receitas
 
 def formatar_dataframe(df,substituicoes_colunas,colunas_nulas,colunas_data,colunas_valores,coluna_alterada,substituicoes_valores):
     if substituicoes_colunas:
