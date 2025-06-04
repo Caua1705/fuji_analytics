@@ -24,7 +24,7 @@ aplicar_estilo_pagina(
     metricas_config=[
         {"bg_color": "#e8f5e9", "border_color": "#4CAF50"},  # Mais vendido
         {"bg_color": "#ffebee", "border_color": "#F44336"},  # Maior faturamento
-        {"bg_color": "#fffde7", "border_color": "#FFEB3B"},  # Maior margem (amarelo)
+        {"bg_color": "#e3f2fd", "border_color": "#2196F3"},  # Maior margem (amarelo)
         {"bg_color": "#ede7f6", "border_color": "#9C27B0"},  # Margem média (roxo)
     ]
 )
