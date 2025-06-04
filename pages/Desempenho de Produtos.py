@@ -7,4 +7,5 @@ if "df_receitas" not in st.session_state:
 else:
     df_receitas=st.session_state.df_receitas
 
+
 st.write(df_receitas)

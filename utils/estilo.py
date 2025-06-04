@@ -1,81 +1,76 @@
 import streamlit as st
 
-def aplicar_estilo_pagina():
+def aplicar_estilo_pagina(titulo, metricas_config):
+    # Configuração padrão se não for passada
+    if metricas_config is None:
+        metricas_config = [
+            {"bg_color": "#e8f5e9", "border_color": "#4CAF50"},  # Verde
+            {"bg_color": "#ffebee", "border_color": "#F44336"},  # Vermelho
+            {"bg_color": "#e3f2fd", "border_color": "#2196F3"},  # Azul
+            {"bg_color": "#ede7f6", "border_color": "#9C27B0"},  # Roxo
+        ]
+
+    # Gera o CSS específico para as métricas
+    metricas_css = ""
+    for i, m in enumerate(metricas_config, start=1):
+        metricas_css += f"""
+        [data-testid="stColumn"]:nth-of-type({i}) .stMetric {{
+            background-color: {m['bg_color']};
+            border-left: 5px solid {m['border_color']};
+        }}
+        """
+
+    # CSS geral
     st.markdown(
-    """
+    f"""
     <style>
-        /* 🔥 Logo fixa no topo direito */
-        .logo-fixed {
+        .logo-fixed {{
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 100;
-        }
+        }}
 
-        /* 🔹 Reduzir espaço interno da página */
-        .block-container {
+        .block-container {{
             padding-top: 3rem;
             padding-bottom: 1.5rem;
             padding-left: 2rem;
             padding-right: 2rem;
-        }
+        }}
 
-        .stMetric {
+        .stMetric {{
             background-color: #f9f9f9;
             border-radius: 10px;
             padding: 10px;
             box-shadow: 0 0 5px rgba(0,0,0,0.05);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             color: #111827;
-        }
+        }}
 
-        /* 🌟 Efeito ao passar o mouse */
-        .stMetric:hover {
+        .stMetric:hover {{
             transform: translateY(-3px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+        }}
 
-        /* Estilo para a 1ª Métrica (Receita Total) - VERDE */
-        [data-testid="stColumn"]:nth-of-type(1) .stMetric {
-            background-color: #e8f5e9;
-            border-left: 5px solid #4CAF50;
-        }
+        {metricas_css}
 
-        /* Estilo para a 2ª Métrica (Despesa Total) - VERMELHO */
-        [data-testid="stColumn"]:nth-of-type(2) .stMetric {
-            background-color: #ffebee;
-            border-left: 5px solid #F44336;
-        }
-
-        /* Estilo para a 3ª Métrica (Resultado Financeiro) - AZUL */
-        [data-testid="stColumn"]:nth-of-type(3) .stMetric {
-            background-color: #e3f2fd;
-            border-left: 5px solid #2196F3;
-        }
-
-        /* Estilo para a 4ª Métrica (Margem de Lucro) - ROXO */
-        [data-testid="stColumn"]:nth-of-type(4) .stMetric {
-            background-color: #ede7f6;
-            border-left: 5px solid #9C27B0;
-        }
-
-        /* 🎯 Estilo para o Título Principal do Dashboard */
-        .dashboard-main-title {
-            font-family: 'Arial', sans-serif; 
-            font-size: 2.2em; 
-            font-weight: 700; 
-            color: #333333; 
+        .dashboard-main-title {{
+            font-family: 'Arial', sans-serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #333333;
             text-align: left;
-            margin-top: 20px; 
-            margin-bottom: 25px; 
-            padding-left: 20px; 
-        }
+            margin-top: 20px;
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }}
     </style>
 
-    <h1 class='dashboard-main-title'>🍣 Painel de Performance | Fuji Analytics</h1>
+    <h1 class='dashboard-main-title'>{titulo}</h1>
     """,
     unsafe_allow_html=True
-)
+    )
+
 def inserir_logo(url_logo,tamanho):
     st.markdown(
         f"""

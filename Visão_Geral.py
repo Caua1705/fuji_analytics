@@ -19,7 +19,15 @@ from view.insights import insight_receitas,insight_despesas
 
 # Configuração da Página
 st.set_page_config(layout="wide",page_icon="🍣")
-aplicar_estilo_pagina()
+aplicar_estilo_pagina(
+    titulo="📊 Desempenho de Produtos | Fuji Analytics",
+    metricas_config=[
+        {"bg_color": "#e8f5e9", "border_color": "#4CAF50"},  # Mais vendido
+        {"bg_color": "#ffebee", "border_color": "#F44336"},  # Maior faturamento
+        {"bg_color": "#fffde7", "border_color": "#FFEB3B"},  # Maior margem (amarelo)
+        {"bg_color": "#ede7f6", "border_color": "#9C27B0"},  # Margem média (roxo)
+    ]
+)
 
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
