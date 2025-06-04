@@ -56,7 +56,7 @@ def exibir_metricas_desempenho_produtos(df_receitas):
     with col2:
         st.metric("Produto de Maior Faturamento",f"{top1_faturamento}")
     with col3:
-        st.metric("Total de Unidades Vendidas",f"{formatar_unidade(total_unidades_vendidas)}")
+        st.metric("Total Geral de Unidades Vendidas",f"{formatar_unidade(total_unidades_vendidas)}")
     with col4:
         st.metric("Ticket Médio dos Produtos",f"{formatar_moeda(ticket_medio)}")
 
