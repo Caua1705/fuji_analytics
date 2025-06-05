@@ -5,7 +5,8 @@ def calcular_receita_total(df_receitas):
     return df_receitas["Valor"].sum()
     
 def calcular_despesa_total(df_despesas):
-    return df_despesas["Valor Pago"].sum()
+    total_despesas = df_despesas.loc[df_despesas["Tipo_Lancamento"]=="Despesa","Valor Pago"].sum()
+    return total_despesas
 
 def calcular_resultado(receitas,despesas):
     return receitas-despesas
@@ -18,7 +19,7 @@ def exibir_metricas_visao_geral(df_receitas,df_despesas):
     despesa_total=calcular_despesa_total(df_despesas)
     resultado=calcular_resultado(receita_total,despesa_total)
     margem_lucro=calcular_margem_lucro(resultado,receita_total)
-    st.write(df_despesas["Valor"].sum())
+
     col1,col2,col3,col4=st.columns(4)
     with col1:
         st.metric("Receita Total",f"{formatar_moeda(receita_total)}")
