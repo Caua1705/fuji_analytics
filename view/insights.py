@@ -176,9 +176,8 @@ def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
     percentual_diferenca=top1["Percentual_Diferença"]
 
     conteudo_html = (
-    f'Nos últimos 30 dias, <strong>{top1["Produto"]}</strong> sofreu a maior queda, '
-    f'com redução de <strong>{formatar_porcentagem(percentual_diferenca)}</strong> '
-    f'({formatar_moeda(diferenca)}) nas vendas.'
+    f'<strong>{top1["Produto"]}</strong> caiu {formatar_porcentagem(percentual_diferenca)} '
+    f'({formatar_moeda(diferenca)}) nas últimas 4 semanas.'
 )
     criar_bloco_insight("Despesas", conteudo_html)
 
