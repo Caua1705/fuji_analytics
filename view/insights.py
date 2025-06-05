@@ -166,7 +166,7 @@ def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
     df_concatenado=df_concatenado.sort_values(by="Diferença",ascending=True)
     top1 = df_concatenado.iloc[0]
     percentual_diferenca=(top1["Valor_anterior"]-top1["Valor_atual"]) / top1["Valor_anterior"] * 100
-    diferenca=top1["Diferença"]
+    diferenca=abs(top1["Diferença"])
 
     conteudo_html = (
     f'Nos últimos 30 dias, <strong>{top1["Produto"]}</strong> sofreu a maior queda, '
