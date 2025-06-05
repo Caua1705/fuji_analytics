@@ -141,9 +141,9 @@ def insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo_produtos,d
     produtos_sem_venda=df_concatenado=df_concatenado.loc[df_concatenado["_merge"]=="left_only","Produto"]
 
     
-    conteudo_html = (
-        f"Entre <strong>{data_inicio_formatada}</strong> e <strong>{data_fim_formatada}</strong>, "
-        f"<strong>{len(produtos_sem_venda)} produtos</strong> do catálogo não registraram nenhuma venda."
+    conteudo_html = (f'''
+        Entre <strong>{data_inicio_formatada}</strong> e <strong>{data_fim_formatada}</strong>, 
+        <strong>{len(produtos_sem_venda)} produtos</strong> do catálogo não registraram nenhuma venda.'''
     )
         
     criar_bloco_insight("Despesas",conteudo_html)
@@ -151,10 +151,7 @@ def insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo_produtos,d
         for produto in produtos_sem_venda:
             st.markdown(f"- {produto}")
 
-def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto,data_inicio,data_fim):
-
-    data_inicio_formatada = data_inicio.strftime("%d-%m")
-    data_fim_formatada = data_fim.strftime("%d-%m")
+def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
 
     if df_30_dias_por_produto.empty:
         st.write("Sem dados")
@@ -167,13 +164,14 @@ def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto,data_i
     )
     df_concatenado["Diferença"]=df_concatenado["Valor_atual"] - df_concatenado["Valor_anterior"]
     df_concatenado=df_concatenado.sort_values(by="Diferença",ascending=True)
-
     top1 = df_concatenado.iloc[0]
+    percentual_diferenca=(top1["Valor_anterior"]-top1["Valor_atual"]) / top1["Valor_anterior"] * 100
+    diferenca=top1["Diferença"]
 
-    conteudo_html = f'''
-    Top 5 produtos com maior queda entre <strong>{data_inicio_formatada}</strong> e 
-    <strong>{data_fim_formatada}</strong>, comparado aos 30 dias anteriores.'''
+    conteudo_html = (
+    f'<strong>{top1["Produto"]}</strong>: queda de '
+    f'<strong>{formatar_porcentagem(percentual_diferenca)}</strong> '
+    f'({formatar_moeda(diferenca)}).'
+)
 
-
-    criar_bloco_insight("Despesas",conteudo_html)
-            
+    criar_bloco_insight("Despesas", conteudo_html)

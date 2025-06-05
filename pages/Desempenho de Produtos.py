@@ -57,7 +57,7 @@ with tab1:
         df_receitas_por_produto=agrupar_por_produto(df_receitas_filtrado,"Produto","Quantidade","Valor")
         df_30_dias_por_produto=agrupar_por_produto(df_filtrado_30_dias,"Produto","Quantidade","Valor")
 
-        produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto,data_inicio,data_fim)
+        produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto)
     with col3:
         pass
     df_receitas_curva_abc=criar_curva_abc(df_receitas_filtrado)
