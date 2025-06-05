@@ -18,7 +18,7 @@ def exibir_metricas_visao_geral(df_receitas,df_despesas):
     despesa_total=calcular_despesa_total(df_despesas)
     resultado=calcular_resultado(receita_total,despesa_total)
     margem_lucro=calcular_margem_lucro(resultado,receita_total)
-    st.write(df_despesas)
+    st.write(df_despesas["Valor"].sum())
     col1,col2,col3,col4=st.columns(4)
     with col1:
         st.metric("Receita Total",f"{formatar_moeda(receita_total)}")
