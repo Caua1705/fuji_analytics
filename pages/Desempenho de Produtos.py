@@ -49,4 +49,4 @@ exibir_metricas_desempenho_produtos(df_receitas_filtrado)
 tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","💼 Lucratividade"])
 with tab1:
     df_receitas_agrupado=criar_curva_abc(df_receitas_filtrado)
-    insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo,data_fim)
+    insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo,data_inicio,data_fim)
