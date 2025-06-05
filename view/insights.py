@@ -163,16 +163,31 @@ def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
         suffixes=("_atual", "_anterior")  
     )
     df_concatenado["Diferença"]=df_concatenado["Valor_atual"] - df_concatenado["Valor_anterior"]
-    df_concatenado=df_concatenado.sort_values(by="Diferença",ascending=True)
-    top1 = df_concatenado.iloc[0]
-    percentual_diferenca=(top1["Valor_anterior"]-top1["Valor_atual"]) / top1["Valor_anterior"] * 100
-    diferenca=abs(top1["Diferença"])
+    df_concatenado["Percentual_Diferença"]=df_concatenado["Diferença"] / df_concatenado["Valor_anterior"] * 100
+    df_decadentes = df_concatenado[df_concatenado["Diferença"] < 0]
+
+    df_decadentes["Diferença"] = df_decadentes["Diferença"].abs()
+    df_decadentes["Percentual_Diferença"] = df_decadentes["Percentual_Diferença"].abs()
+
+    df_concatenado=df_concatenado.sort_values(by="Diferença",ascending=False)
+
+    top1 = df_decadentes.iloc[0]
+    diferenca=top1["Diferença"]
+    percentual_diferenca=top1["Percentual_Diferença"]
 
     conteudo_html = (
     f'Nos últimos 30 dias, <strong>{top1["Produto"]}</strong> sofreu a maior queda, '
     f'com redução de <strong>{formatar_porcentagem(percentual_diferenca)}</strong> '
     f'({formatar_moeda(diferenca)}) nas vendas.'
 )
-
-
     criar_bloco_insight("Despesas", conteudo_html)
+
+    with st.expander("🔍 Ver mais produtos em decadência"):
+        produtos_decadencia = df_decadentes.iloc[1:11][["Produto", "Diferença", "Percentual_Diferença"]]
+
+        for _, linha in produtos_decadencia.iterrows():
+            produto = linha["Produto"]
+            valor = formatar_moeda(linha["Diferença"])
+            perc = formatar_porcentagem(linha["Percentual_Diferença"])
+
+            st.markdown(f"- <strong>{produto}</strong>: queda de {perc} ({valor})", unsafe_allow_html=True)
