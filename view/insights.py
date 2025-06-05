@@ -127,19 +127,21 @@ passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para
         
         criar_bloco_insight("Despesas",conteudo_html)
 
-def insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo_produtos,data_inicio,data_fim):
+def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_inicio,data_fim):
 
     data_inicio_formatada = data_inicio.strftime("%d-%m")
     data_fim_formatada = data_fim.strftime("%d-%m")
 
     df_concatenado=df_catalogo_produtos.merge(
-        df_receitas_ultimos_meses,
+        df_receitas_filtrado,
         on="Produto",
         how="left",
         indicator=True
     )
-    produtos_sem_venda=df_concatenado=df_concatenado.loc[df_concatenado["_merge"]=="left_only","Produto"]
 
+    produtos_sem_venda=df_concatenado.loc[df_concatenado["_merge"]=="left_only","Produto"]
+    st.write(df_receitas_filtrado)
+    st.write(produtos_sem_venda)
     
     conteudo_html = (f'''
         Entre <strong>{data_inicio_formatada}</strong> e <strong>{data_fim_formatada}</strong>, 
