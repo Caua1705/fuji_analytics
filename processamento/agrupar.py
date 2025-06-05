@@ -55,7 +55,8 @@ def criar_curva_abc(df_receitas):
     )
     df_agrupado["Percentual Valor"]= df_agrupado["Valor_Total"] / df_agrupado["Valor_Total"].sum() 
     df_agrupado["Percentual_Acumulado"]= df_agrupado["Percentual Valor"].cumsum()
-    st.write(df_agrupado)
+    df_agrupado=df_agrupado.reset_index()
+    return df_agrupado
 
 
 

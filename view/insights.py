@@ -1,6 +1,7 @@
 import pandas as pd
 from utils.estilo import criar_bloco_insight
 from utils.formatadores import formatar_moeda,formatar_porcentagem
+import streamlit as st
 
 def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
 
@@ -125,3 +126,6 @@ passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para
 {formatar_moeda(maior_aumento["Valor Pago_atual"])}.'''
         
         criar_bloco_insight("Despesas",conteudo_html)
+
+def insight_produtos_sem_vendas(df_receitas_agrupado):
+    st.write(df_receitas_agrupado)

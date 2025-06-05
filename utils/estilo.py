@@ -101,18 +101,18 @@ def criar_bloco_insight(tipo, conteudo_html): # Removido o parâmetro 'icone'
     cor_texto = "#333333"
 
     if tipo == "Info":
-        bg = "#f0f8ff"
-        borda = "#a9d9f5"
+        bg = "#e0f2f7"
+        borda = "#64b5f6"
         icone = "ℹ️" 
         estilo_borda_extra = "border: 1px solid;"
     elif tipo == "Receitas":
-        bg = "#f0fff4"
-        borda = "#a7e9b4"
+        bg = "#e0ffe6"
+        borda = "#66bb6a"
         icone = "📈" 
         estilo_borda_extra = "border: 1px solid;"
     elif tipo == "Despesas":
-        bg = "#fff0f0"
-        borda = "#f5c6cb"
+        bg = "#ffebe6"
+        borda = "#ef5350" 
         icone = "⚠️" 
         estilo_borda_extra = "border: 1px solid;"
 
