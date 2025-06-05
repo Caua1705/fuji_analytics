@@ -11,8 +11,9 @@ dir_raiz=Path(__file__).parents[1]
 def carregar_e_preparar_dados():
     df_receitas=pd.read_excel(dir_raiz / "data" / "receitas.xlsx")
     df_despesas = pd.read_excel(dir_raiz / "data" / "despesas.xlsx")
+    df_catalogo = pd.read_excel(dir_raiz / "data" / "catalogo_produtos.xlsx")
     df_receitas = formatar_dataframe(df_receitas, **config_receitas)
     df_receitas = formatar_quantidade(df_receitas,"Quantidade")
     df_receitas = classificar_produto(df_receitas,"Grupo")
     df_despesas = formatar_dataframe(df_despesas, **config_despesas)
-    return df_receitas,df_despesas
+    return df_receitas,df_despesas,df_catalogo

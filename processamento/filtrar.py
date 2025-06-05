@@ -1,4 +1,5 @@
 from datetime import timedelta
+from datetime import date
 
 def filtrar_por_filial(df):
     df_aldeota=df.loc[df["Filial"]=="Aldeota"]
@@ -28,3 +29,9 @@ def processar_filial(dict_receitas, dict_despesas, filial, data_inicial, data_fi
         dict_despesas[filial], "Data_Pagamento", data_inicial, data_final
     )
     return df_receitas_filtrado, df_despesas_filtrado, df_receitas_filtrado_anterior, df_despesas_filtrado_anterior
+
+def filtrar_ultimos_meses(df,coluna_data,data_fim):
+    data_inicio = date(2025, 4, 1)
+    df_filtrado=df.loc[(df[coluna_data]>=data_inicio) & 
+                       (df[coluna_data]<=data_fim)]
+    return df_filtrado 

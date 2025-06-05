@@ -1,6 +1,6 @@
 import streamlit as st
 # Carregar Dados
-from carregamento.carregar_dados import carregar_e_preparar_dados
+from utils.dados_em_sessao import obter_dados
 #Estilizar a Página
 from utils.estilo import aplicar_estilo_pagina,linha_divisoria
 # Filtrar Dados
@@ -31,11 +31,11 @@ aplicar_estilo_pagina(
     ]
 )
 
+# Carregar Dados
+df_receitas,df_despesas,_= obter_dados()
+
 # Sidebar 
 data_inicio,data_fim,filial=exibir_sidebar()
-
-# Carregar Dados
-df_receitas, df_despesas = carregar_e_preparar_dados()
 
 # Filtrar por Filial
 dict_receitas = filtrar_por_filial(df_receitas)

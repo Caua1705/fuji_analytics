@@ -94,7 +94,7 @@ def linha_divisoria():
         unsafe_allow_html=True
     )
 
-def criar_bloco_insight(tipo, conteudo_html): # Removido o parâmetro 'icone'
+def criar_bloco_insight(tipo, conteudo_html): 
     bg = ""
     borda = ""
     icone = "" 

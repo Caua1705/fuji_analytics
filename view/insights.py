@@ -127,5 +127,21 @@ passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para
         
         criar_bloco_insight("Despesas",conteudo_html)
 
-def insight_produtos_sem_vendas(df_receitas_agrupado):
-    st.write(df_receitas_agrupado)
+def insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo_produtos,data_fim):
+    data_fim_formatada = data_fim.strftime("%d-%m")
+
+    df_concatenado=df_catalogo_produtos.merge(
+        df_receitas_ultimos_meses,
+        on="Produto",
+        how="left",
+        indicator=True
+    )
+    produtos_sem_venda=df_concatenado=df_concatenado.loc[df_concatenado["_merge"]=="left_only","Produto"]
+
+    conteudo_html = f"<strong>{len(produtos_sem_venda)} produtos</strong> sem vendas nos últimos 3 meses (até <strong>{data_fim_formatada}</strong>):"
+        
+    criar_bloco_insight("Despesas",conteudo_html)
+    with st.expander("🔍 Ver produtos sem vendas"):
+        for produto in produtos_sem_venda:
+            st.markdown(f"- {produto}")
+    # st.write(produtos_sem_venda)
