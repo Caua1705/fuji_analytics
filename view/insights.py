@@ -150,3 +150,30 @@ def insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo_produtos,d
     with st.expander("🔍 Ver produtos sem vendas"):
         for produto in produtos_sem_venda:
             st.markdown(f"- {produto}")
+
+def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto,data_inicio,data_fim):
+
+    data_inicio_formatada = data_inicio.strftime("%d-%m")
+    data_fim_formatada = data_fim.strftime("%d-%m")
+
+    if df_30_dias_por_produto.empty:
+        st.write("Sem dados")
+    else:
+        df_concatenado = df_receitas_por_produto[["Produto","Valor"]].merge(
+        df_30_dias_por_produto[["Produto","Valor"]],
+        on="Produto",
+        how="inner", 
+        suffixes=("_atual", "_anterior")  
+    )
+    df_concatenado["Diferença"]=df_concatenado["Valor_atual"] - df_concatenado["Valor_anterior"]
+    df_concatenado=df_concatenado.sort_values(by="Diferença",ascending=True)
+
+    top1 = df_concatenado.iloc[0]
+
+    conteudo_html = f'''
+    Top 5 produtos com maior queda entre <strong>{data_inicio_formatada}</strong> e 
+    <strong>{data_fim_formatada}</strong>, comparado aos 30 dias anteriores.'''
+
+
+    criar_bloco_insight("Despesas",conteudo_html)
+            

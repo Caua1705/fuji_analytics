@@ -3,10 +3,10 @@ import streamlit as st
 from utils.dados_em_sessao import obter_dados
 from utils.estilo import aplicar_estilo_pagina
 from view.sidebar import exibir_sidebar
-from processamento.filtrar import filtrar_por_filial,processar_filial,filtrar_por_periodo
+from processamento.filtrar import filtrar_por_filial,processar_filial,filtrar_por_periodo,pegar_30_dias_anteriores
 from view.metricas import exibir_metricas_desempenho_produtos
-from processamento.agrupar import criar_curva_abc
-from view.insights import insight_produtos_sem_vendas
+from processamento.agrupar import criar_curva_abc,agrupar_por_produto
+from view.insights import insight_produtos_sem_vendas,produtos_em_decadencia
 
 aplicar_estilo_pagina(
     titulo="Análise de Desempenho de Produtos",
@@ -36,7 +36,6 @@ df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despe
     data_inicio,
     data_fim
 )
-df_receitas_ultimos_meses=filtrar_por_periodo(dict_receitas[filial],"Data",data_inicio,data_fim)
 
 #Verifica se há Dados
 if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
@@ -50,10 +49,16 @@ tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","�
 with tab1:
     col1,col2,col3=st.columns(3)
     with col1:
+        df_receitas_ultimos_meses=filtrar_por_periodo(dict_receitas[filial],"Data",data_inicio,data_fim)
         insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo,data_inicio,data_fim)
     with col2:
-        pass
+        df_filtrado_30_dias=pegar_30_dias_anteriores(df_receitas,"Data",data_inicio)
+
+        df_receitas_por_produto=agrupar_por_produto(df_receitas_filtrado,"Produto","Quantidade","Valor")
+        df_30_dias_por_produto=agrupar_por_produto(df_filtrado_30_dias,"Produto","Quantidade","Valor")
+
+        produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto,data_inicio,data_fim)
     with col3:
         pass
-    df_receitas_agrupado=criar_curva_abc(df_receitas_filtrado)
-    st.write(df_receitas_agrupado)
+    df_receitas_curva_abc=criar_curva_abc(df_receitas_filtrado)
+    st.write(df_receitas_curva_abc)

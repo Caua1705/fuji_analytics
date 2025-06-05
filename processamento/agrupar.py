@@ -58,5 +58,13 @@ def criar_curva_abc(df_receitas):
     df_agrupado=df_agrupado.reset_index()
     return df_agrupado
 
-
-
+def agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor):
+    df_agrupado = (
+        df.groupby(coluna_produto).agg(
+        Quantidade=(coluna_quantidade,"sum"),
+        Valor=(coluna_valor,"sum")
+        )
+        .reset_index()
+        .sort_values(by='Valor', ascending=False)
+    )
+    return df_agrupado

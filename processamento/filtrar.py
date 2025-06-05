@@ -33,3 +33,12 @@ def filtrar_por_periodo(df,coluna_data,data_inicio,data_fim):
     df_filtrado=df.loc[(df[coluna_data]>=data_inicio) & 
                        (df[coluna_data]<=data_fim)]
     return df_filtrado 
+
+def pegar_30_dias_anteriores(df, coluna_data, data_inicial):
+    data_inicio_anterior = data_inicial - timedelta(days=30)
+    data_fim_anterior = data_inicial - timedelta(days=1)
+    
+    df_anterior = df.loc[(df[coluna_data] >= data_inicio_anterior) &
+                         (df[coluna_data] <= data_fim_anterior)]
+    
+    return df_anterior
