@@ -3,7 +3,7 @@ import streamlit as st
 from utils.dados_em_sessao import obter_dados
 from utils.estilo import aplicar_estilo_pagina
 from view.sidebar import exibir_sidebar
-from processamento.filtrar import filtrar_por_filial,processar_filial,filtrar_ultimos_meses
+from processamento.filtrar import filtrar_por_filial,processar_filial,filtrar_por_periodo
 from view.metricas import exibir_metricas_desempenho_produtos
 from processamento.agrupar import criar_curva_abc
 from view.insights import insight_produtos_sem_vendas
@@ -36,7 +36,7 @@ df_receitas_filtrado,df_despesas_filtrado,df_receitas_filtrado_anterior,df_despe
     data_inicio,
     data_fim
 )
-df_receitas_ultimos_meses=filtrar_ultimos_meses(dict_receitas[filial],"Data",data_fim)
+df_receitas_ultimos_meses=filtrar_por_periodo(dict_receitas[filial],"Data",data_inicio,data_fim)
 
 #Verifica se há Dados
 if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
