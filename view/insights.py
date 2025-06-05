@@ -150,4 +150,3 @@ def insight_produtos_sem_vendas(df_receitas_ultimos_meses,df_catalogo_produtos,d
     with st.expander("🔍 Ver produtos sem vendas"):
         for produto in produtos_sem_venda:
             st.markdown(f"- {produto}")
-    # st.write(produtos_sem_venda)
