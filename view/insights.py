@@ -169,7 +169,7 @@ def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
     df_decadentes["Diferença"] = df_decadentes["Diferença"].abs()
     df_decadentes["Percentual_Diferença"] = df_decadentes["Percentual_Diferença"].abs()
 
-    df_concatenado=df_concatenado.sort_values(by="Diferença",ascending=False)
+    df_decadentes=df_decadentes.sort_values(by="Diferença",ascending=False)
 
     top1 = df_decadentes.iloc[0]
     diferenca=top1["Diferença"]
