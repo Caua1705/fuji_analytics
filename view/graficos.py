@@ -61,7 +61,7 @@ def criar_graficos_pizza(df_agrupado, tipo_df, x, y, filial):
 def criar_grafico_curva_abc(df_receitas_curva_abc):
     fig=px.bar(df_receitas_curva_abc,"Produto","Valor_Total","Produto",title="Curva ABC")
     fig.add_trace(px.line(df_receitas_curva_abc,
-                      x='Produto_Rank',
+                      x='Produto',
                       y='Percentual_Acumulado',
                       line_shape='spline', # Ou 'linear'
                       markers=False
