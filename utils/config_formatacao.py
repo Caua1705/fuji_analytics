@@ -10,10 +10,9 @@ config_receitas = {
 }
 
 config_despesas={
-    "substituicoes_valores": {
-        "COUVERT ARTISTICO": "COUVERT"
-    }
-    ,
+    "substituicoes_colunas": {
+        "Valor_Pago/Recebido": "Valor Pago"
+    },
     "colunas_nulas": [
         "Filial","Tipo_Lancamento",
         "Sintetica","Analitica",

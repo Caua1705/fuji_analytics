@@ -5,8 +5,9 @@ from utils.estilo import aplicar_estilo_pagina
 from view.sidebar import exibir_sidebar
 from processamento.filtrar import filtrar_por_filial,processar_filial
 from view.metricas import exibir_metricas_desempenho_produtos
-from processamento.agrupar import criar_curva_abc,agrupar_por_produto
+from processamento.agrupar import agrupar_curva_abc
 from view.insights import insight_produtos_sem_vendas,produtos_em_decadencia,produtos_em_ascensao
+from view.graficos import criar_grafico_curva_abc
 
 aplicar_estilo_pagina(
     titulo="Análise de Desempenho de Produtos",
@@ -55,5 +56,6 @@ with tab1:
     with col3:
         produtos_em_decadencia(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
         
-    # df_receitas_curva_abc=criar_curva_abc(df_receitas_filtrado)
-    # st.write(df_receitas_curva_abc)
+    df_receitas_curva_abc=agrupar_curva_abc(df_receitas_filtrado)
+    criar_grafico_curva_abc(df_receitas_curva_abc)
+    st.write(df_receitas_curva_abc)

@@ -45,7 +45,7 @@ def agrupar_despesas_por_categoria(df, coluna_agrupada, coluna_valor, agrupar_ou
         
     return df_final
 
-def criar_curva_abc(df_receitas):
+def agrupar_curva_abc(df_receitas):
     df_agrupado=(
         df_receitas.groupby("Produto").agg(
         Valor_Total=("Valor","sum"),
@@ -56,6 +56,9 @@ def criar_curva_abc(df_receitas):
     df_agrupado["Percentual Valor"]= df_agrupado["Valor_Total"] / df_agrupado["Valor_Total"].sum() 
     df_agrupado["Percentual_Acumulado"]= df_agrupado["Percentual Valor"].cumsum()
     df_agrupado=df_agrupado.reset_index()
+    df_agrupado["Categoria"]=pd.cut(df_agrupado["Percentual_Acumulado"],
+                                    bins=[0,0.8,0.95,1],
+                                    labels=["A","B","C"])
     return df_agrupado
 
 def agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df):
@@ -106,7 +109,6 @@ def produto_com_maior_variacao(df_receitas_por_produto,df_receitas_por_produto_a
         filtro = df_concatenado["Diferença"] < 0
     else:
         filtro = df_concatenado["Diferença"] > 0
-
     df_filtrado = df_concatenado[filtro].copy()
     df_filtrado[["Diferença", "Percentual_Diferença"]] = df_filtrado[["Diferença", "Percentual_Diferença"]].abs()
     df_filtrado = df_filtrado.sort_values(by="Diferença", ascending=False)
