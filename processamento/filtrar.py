@@ -28,12 +28,3 @@ def processar_filial(dict_receitas, dict_despesas, filial, data_inicial, data_fi
         dict_despesas[filial], "Data_Pagamento", data_inicial, data_final
     )
     return df_receitas_filtrado, df_despesas_filtrado, df_receitas_filtrado_anterior, df_despesas_filtrado_anterior
-
-def pegar_30_dias_anteriores(df, coluna_data, data_inicial):
-    data_inicio_anterior = data_inicial - timedelta(days=30)
-    data_fim_anterior = data_inicial - timedelta(days=1)
-    
-    df_anterior = df.loc[(df[coluna_data] >= data_inicio_anterior) &
-                         (df[coluna_data] <= data_fim_anterior)]
-    
-    return df_anterior

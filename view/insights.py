@@ -24,22 +24,17 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
     top_categorias=df_insight_receitas["Grupo"].head(3).tolist()
 
     if diferenca_dias==1:
-
         categoria_dia = df_insight_receitas["Grupo"].iloc[0]
-
         conteudo_html = f'''<strong>Receita líder</strong> do dia {data_inicio_formatada}: 
                 🥇 <strong>{categoria_dia}</strong>'''
-        
         criar_bloco_insight("Receitas",conteudo_html)
-
+        return 
     elif 1 < diferenca_dias < 28:
-
         top_categorias=df_insight_receitas["Grupo"].head(3).tolist()
-
         conteudo_html = f'''<strong>Top 3 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
                 🥇 <strong>{top_categorias[0]}</strong>, 🥈 {top_categorias[1]} e 🥉 {top_categorias[2]}'''
-        
         criar_bloco_insight("Receitas",conteudo_html)
+        return
 
     elif diferenca_dias in (28, 29, 30, 31):
     
@@ -155,18 +150,35 @@ def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_i
         for produto in produtos_sem_venda:
             st.markdown(f"- {produto}")
 
-def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
+def produtos_em_decadencia(df_receitas_por_produto,df_receitas_por_produto_anterior,data_inicio,data_fim):
 
-    if df_30_dias_por_produto.empty:
-        conteudo_html = (f'''
-        <strong>Sem dados recentes</strong> — não foi possível avaliar a queda nas vendas 
-        por falta de registros nas últimas <strong>4 semanas</strong>.'''
-    )
+    data_inicio_formatada = data_inicio.strftime("%d-%m")
+    data_fim_formatada = data_fim.strftime("%d-%m")
+
+    diferenca_dias=(data_fim-data_inicio).days+1
+
+    if df_receitas_por_produto_anterior.empty:
+        conteudo_html = f'''<strong>Sem dados disponíveis</strong> — não há registros suficientes para realizar a análise.'''
         criar_bloco_insight("Decadencia", conteudo_html)
-        return 
-    else:
+        return
+    
+    elif diferenca_dias==1:
+        produto_mais_vendido=df_receitas_por_produto["Produto"].iloc[0]
+        conteudo_html = f'''<strong>Produto mais vendido</strong> do dia {data_inicio_formatada}: 
+                🛒 <strong>{produto_mais_vendido}</strong>'''
+        criar_bloco_insight("Decadencia", conteudo_html)
+        return
+
+    elif 1 < diferenca_dias < 7:
+        top_produtos=df_receitas_por_produto["Produto"].head(3).tolist()
+        conteudo_html = f'''<strong>Top 3 Produto</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+                🥇 <strong>{top_produtos[0]}</strong>, 🥈 {top_produtos[1]} e 🥉 {top_produtos[2]}'''
+        criar_bloco_insight("Decadencia", conteudo_html)
+        return
+
+    elif diferenca_dias >= 7:
         df_concatenado = df_receitas_por_produto[["Produto","Valor"]].merge(
-        df_30_dias_por_produto[["Produto","Valor"]],
+        df_receitas_por_produto_anterior[["Produto","Valor"]],
         on="Produto",
         how="inner", 
         suffixes=("_atual", "_anterior")  
@@ -175,9 +187,9 @@ def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
     df_concatenado["Percentual_Diferença"]=df_concatenado["Diferença"] / df_concatenado["Valor_anterior"] * 100
     df_decadentes = df_concatenado[df_concatenado["Diferença"] < 0]
 
+    df_decadentes = df_decadentes.copy()
     df_decadentes["Diferença"] = df_decadentes["Diferença"].abs()
     df_decadentes["Percentual_Diferença"] = df_decadentes["Percentual_Diferença"].abs()
-
     df_decadentes=df_decadentes.sort_values(by="Diferença",ascending=False)
 
     top1 = df_decadentes.iloc[0]
@@ -186,7 +198,7 @@ def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
 
     conteudo_html = (
     f'<strong>{top1["Produto"]}</strong> caiu {formatar_porcentagem(percentual_diferenca)} '
-    f'({formatar_moeda(diferenca)}) nas últimas 4 semanas.'
+    f'({formatar_moeda(diferenca)}) nos últimos {diferenca_dias} dias.'
 )
     criar_bloco_insight("Decadencia", conteudo_html)
 
