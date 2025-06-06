@@ -115,6 +115,16 @@ def criar_bloco_insight(tipo, conteudo_html):
         borda = "#ef5350" 
         icone = "⚠️" 
         estilo_borda_extra = "border: 1px solid;"
+    elif tipo == "Estoque":
+        bg = "#fff8e1"
+        borda = "#ffb300"
+        icone = "🔍"
+        estilo_borda_extra = "border: 1px solid;"
+    elif tipo == "Decadencia":
+        bg = "#fff3e0"
+        borda = "#fb8c00"
+        icone = "📉"
+        estilo_borda_extra = "border: 1px solid;"
 
     icone_html = f'<span style="margin-right: 8px; font-size: 1.2em;">{icone}</span>'
 

@@ -150,7 +150,7 @@ def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_i
         <strong>{len(produtos_sem_venda)} produtos</strong> do catálogo não registraram nenhuma venda.'''
     )
         
-    criar_bloco_insight("Despesas",conteudo_html)
+    criar_bloco_insight("Estoque",conteudo_html)
     with st.expander("🔍 Ver produtos sem vendas"):
         for produto in produtos_sem_venda:
             st.markdown(f"- {produto}")
@@ -158,7 +158,12 @@ def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_i
 def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
 
     if df_30_dias_por_produto.empty:
-        st.write("Sem dados")
+        conteudo_html = (f'''
+        <strong>Sem dados recentes</strong> — não foi possível avaliar a queda nas vendas 
+        por falta de registros nas últimas <strong>4 semanas</strong>.'''
+    )
+        criar_bloco_insight("Decadencia", conteudo_html)
+        return 
     else:
         df_concatenado = df_receitas_por_produto[["Produto","Valor"]].merge(
         df_30_dias_por_produto[["Produto","Valor"]],
@@ -183,7 +188,7 @@ def produtos_em_decadencia(df_receitas_por_produto,df_30_dias_por_produto):
     f'<strong>{top1["Produto"]}</strong> caiu {formatar_porcentagem(percentual_diferenca)} '
     f'({formatar_moeda(diferenca)}) nas últimas 4 semanas.'
 )
-    criar_bloco_insight("Despesas", conteudo_html)
+    criar_bloco_insight("Decadencia", conteudo_html)
 
     with st.expander("🔍 Ver mais produtos em decadência"):
         produtos_decadencia = df_decadentes.iloc[1:11][["Produto", "Diferença", "Percentual_Diferença"]]
