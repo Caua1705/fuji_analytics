@@ -5,14 +5,15 @@ config_receitas = {
     "colunas_valores": "Valor",
     "coluna_alterada": "Grupo",
     "substituicoes_valores": {
-        "COUVERT ARTISTICO": "COUVERT"
-    },
+    "couver artisitico": "COUVERT"
+}
 }
 
 config_despesas={
-    "substituicoes_colunas": {
-        "Valor_Pago/Recebido": "Valor Pago"
-    },
+    "substituicoes_valores": {
+        "COUVERT ARTISTICO": "COUVERT"
+    }
+    ,
     "colunas_nulas": [
         "Filial","Tipo_Lancamento",
         "Sintetica","Analitica",
@@ -37,7 +38,7 @@ config_despesas={
         "LVP SERVIÃ‡OS  ADMINISTRATIVOS LTDA": "LVP",
         "LVP SERVIÇOS  ADMINISTRATIVOS LTDA": "LVP",
         "PUBLICIDADE E PROPAGANDA": "PUBLICIDADE"
-        }
+    }
 }
     
 

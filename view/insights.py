@@ -1,6 +1,7 @@
 import pandas as pd
 from utils.estilo import criar_bloco_insight
-from utils.formatadores import formatar_moeda,formatar_porcentagem
+from utils.formatadores import formatar_moeda,formatar_porcentagem,formatar_unidade,formatar_datas_sidebar
+from processamento.agrupar import agrupar_por_produto,produtos_sem_vendas,produto_com_maior_variacao
 import streamlit as st
 
 def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
@@ -52,7 +53,7 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
         )
 
         conteudo_html = f'''A categoria <strong>{categoria_selecionada["Grupo"]}</strong> vendeu só 
-<strong>{categoria_selecionada["Quantidade"]}</strong> unidades, mas teve ticket médio alto de 
+<strong>{formatar_unidade(categoria_selecionada["Quantidade"])}</strong> unidades, mas teve ticket médio alto de 
 <strong>{formatar_moeda(categoria_selecionada["Valor por Item"])}</strong> — indica boa margem.'''
         
         criar_bloco_insight("Receitas",conteudo_html)
@@ -124,90 +125,98 @@ passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para
 
 def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_inicio,data_fim):
 
-    data_inicio_formatada = data_inicio.strftime("%d-%m")
-    data_fim_formatada = data_fim.strftime("%d-%m")
+    data_inicio_formatada,data_fim_formatada=formatar_datas_sidebar(data_inicio,data_fim)
+    produtos_sem_venda=produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos)
 
-    df_receitas_filtrado["Produto"] = df_receitas_filtrado["Produto"].str.strip().str.lower()
-    df_catalogo_produtos = df_catalogo_produtos.loc[df_catalogo_produtos["Produto"]!="Produto"]
-    df_catalogo_produtos["Produto"] = df_catalogo_produtos["Produto"].str.strip().str.lower()
-
-    df_concatenado=df_catalogo_produtos.merge(
-        df_receitas_filtrado,
-        on="Produto",
-        how="left",
-        indicator=True
-    )
-
-    produtos_sem_venda=df_concatenado.loc[df_concatenado["_merge"]=="left_only","Produto"]
-    
     conteudo_html = (f'''
         Entre <strong>{data_inicio_formatada}</strong> e <strong>{data_fim_formatada}</strong>, 
         <strong>{len(produtos_sem_venda)} produtos</strong> do catálogo não registraram nenhuma venda.'''
     )
         
-    criar_bloco_insight("Estoque",conteudo_html)
+    criar_bloco_insight("Alerta",conteudo_html)
     with st.expander("🔍 Ver produtos sem vendas"):
         for produto in produtos_sem_venda:
             st.markdown(f"- {produto}")
 
-def produtos_em_decadencia(df_receitas_por_produto,df_receitas_por_produto_anterior,data_inicio,data_fim):
+def produtos_em_ascensao(df_receitas, df_receitas_anterior, data_inicio, data_fim):
 
-    data_inicio_formatada = data_inicio.strftime("%d-%m")
-    data_fim_formatada = data_fim.strftime("%d-%m")
+    data_inicio_formatada, data_fim_formatada = formatar_datas_sidebar(data_inicio, data_fim)
+    diferenca_dias = (data_fim - data_inicio).days + 1
 
-    diferenca_dias=(data_fim-data_inicio).days+1
-
-    if df_receitas_por_produto_anterior.empty:
-        conteudo_html = f'''<strong>Sem dados disponíveis</strong> — não há registros suficientes para realizar a análise.'''
-        criar_bloco_insight("Decadencia", conteudo_html)
+    if df_receitas_anterior.empty:
+        conteudo_html = '''<strong>Sem dados disponíveis</strong> — não há registros suficientes para realizar a análise.'''
+        criar_bloco_insight("Info", conteudo_html)
         return
     
-    elif diferenca_dias==1:
-        produto_mais_vendido=df_receitas_por_produto["Produto"].iloc[0]
+    df_receitas_agrupado,top1,top3 = agrupar_por_produto(df_receitas, "Produto", "Quantidade", "Valor", "Ascendência")
+
+    if diferenca_dias == 1:
         conteudo_html = f'''<strong>Produto mais vendido</strong> do dia {data_inicio_formatada}: 
-                🛒 <strong>{produto_mais_vendido}</strong>'''
-        criar_bloco_insight("Decadencia", conteudo_html)
+                🛒 <strong>{top1}</strong>'''
+        criar_bloco_insight("Receitas", conteudo_html)
         return
 
     elif 1 < diferenca_dias < 7:
-        top_produtos=df_receitas_por_produto["Produto"].head(3).tolist()
-        conteudo_html = f'''<strong>Top 3 Produto</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
-                🥇 <strong>{top_produtos[0]}</strong>, 🥈 {top_produtos[1]} e 🥉 {top_produtos[2]}'''
-        criar_bloco_insight("Decadencia", conteudo_html)
+        conteudo_html = f'''<strong>Top 3 Produtos mais vendidos</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+                🥇 <strong>{top3[0]}</strong>, 🥈 {top3[1]} e 🥉 {top3[2]}'''
+        criar_bloco_insight("Receitas", conteudo_html)
         return
 
     elif diferenca_dias >= 7:
-        df_concatenado = df_receitas_por_produto[["Produto","Valor"]].merge(
-        df_receitas_por_produto_anterior[["Produto","Valor"]],
-        on="Produto",
-        how="inner", 
-        suffixes=("_atual", "_anterior")  
-    )
-    df_concatenado["Diferença"]=df_concatenado["Valor_atual"] - df_concatenado["Valor_anterior"]
-    df_concatenado["Percentual_Diferença"]=df_concatenado["Diferença"] / df_concatenado["Valor_anterior"] * 100
-    df_decadentes = df_concatenado[df_concatenado["Diferença"] < 0]
+        df_anterior_agrupado, _, _= agrupar_por_produto(df_receitas_anterior, "Produto", "Quantidade", "Valor", "Ascendência")
+        top1_variacao, diferenca, percentual_diferenca, demais_produtos = produto_com_maior_variacao(
+            df_receitas_agrupado, df_anterior_agrupado, "Ascendência"
+        )
+        conteudo_html = f'''
+        <strong>{top1_variacao["Produto"]}</strong> subiu {formatar_porcentagem(percentual_diferenca)} 
+        ({formatar_moeda(diferenca)}) nos últimos {diferenca_dias} dias.'''
+        criar_bloco_insight("Receitas", conteudo_html)
 
-    df_decadentes = df_decadentes.copy()
-    df_decadentes["Diferença"] = df_decadentes["Diferença"].abs()
-    df_decadentes["Percentual_Diferença"] = df_decadentes["Percentual_Diferença"].abs()
-    df_decadentes=df_decadentes.sort_values(by="Diferença",ascending=False)
+        with st.expander("🔍 Ver mais produtos em ascensão"):
+            for _, linha in demais_produtos.iterrows():
+                produto = linha["Produto"]
+                valor = formatar_moeda(linha["Diferença"])
+                perc = formatar_porcentagem(linha["Percentual_Diferença"])
+                st.markdown(f"- <strong>{produto}</strong>: aumento de {perc} ({valor})", unsafe_allow_html=True)
 
-    top1 = df_decadentes.iloc[0]
-    diferenca=top1["Diferença"]
-    percentual_diferenca=top1["Percentual_Diferença"]
+def produtos_em_decadencia(df_receitas, df_receitas_anterior, data_inicio, data_fim):
 
-    conteudo_html = (
-    f'<strong>{top1["Produto"]}</strong> caiu {formatar_porcentagem(percentual_diferenca)} '
-    f'({formatar_moeda(diferenca)}) nos últimos {diferenca_dias} dias.'
-)
-    criar_bloco_insight("Decadencia", conteudo_html)
+    data_inicio_formatada, data_fim_formatada = formatar_datas_sidebar(data_inicio, data_fim)
+    diferenca_dias = (data_fim - data_inicio).days + 1
 
-    with st.expander("🔍 Ver mais produtos em decadência"):
-        produtos_decadencia = df_decadentes.iloc[1:11][["Produto", "Diferença", "Percentual_Diferença"]]
+    if df_receitas_anterior.empty:
+        conteudo_html = '''<strong>Sem dados disponíveis</strong> — não há registros suficientes para realizar a análise.'''
+        criar_bloco_insight("Info", conteudo_html)
+        return
+    
+    df_receitas_agrupado,top1,top3 = agrupar_por_produto(df_receitas, "Produto", "Quantidade", "Valor", "Decadência")
 
-        for _, linha in produtos_decadencia.iterrows():
-            produto = linha["Produto"]
-            valor = formatar_moeda(linha["Diferença"])
-            perc = formatar_porcentagem(linha["Percentual_Diferença"])
+    if diferenca_dias == 1:
+        conteudo_html = f'''<strong>Produto menos vendido</strong> do dia {data_inicio_formatada}: 
+                🛒 <strong>{top1}</strong>'''
+        criar_bloco_insight("Despesas", conteudo_html)
+        return
 
-            st.markdown(f"- <strong>{produto}</strong>: queda de {perc} ({valor})", unsafe_allow_html=True)
+    elif 1 < diferenca_dias < 7:
+        conteudo_html = f'''<strong>Top 3 Produtos menos vendidos</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+                🥇 <strong>{top3[0]}</strong>, 🥈 {top3[1]} e 🥉 {top3[2]}'''
+        criar_bloco_insight("Despesas", conteudo_html)
+        return
+
+    elif diferenca_dias >= 7:
+        df_anterior_agrupado, _, _= agrupar_por_produto(df_receitas_anterior, "Produto", "Quantidade", "Valor", "Decadência")
+        top1_variacao, diferenca, percentual_diferenca, demais_produtos = produto_com_maior_variacao(
+            df_receitas_agrupado, df_anterior_agrupado, "Decadência"
+        )
+        conteudo_html = f'''
+        <strong>{top1_variacao["Produto"]}</strong> caiu {formatar_porcentagem(percentual_diferenca)} 
+        ({formatar_moeda(diferenca)}) nos últimos {diferenca_dias} dias.'''
+        criar_bloco_insight("Despesas", conteudo_html)
+
+        with st.expander("🔍 Ver mais produtos em decadência"):
+            for _, linha in demais_produtos.iterrows():
+                produto = linha["Produto"]
+                valor = formatar_moeda(linha["Diferença"])
+                perc = formatar_porcentagem(linha["Percentual_Diferença"])
+                st.markdown(f"- <strong>{produto}</strong>: diminuição de {perc} ({valor})", unsafe_allow_html=True)
+

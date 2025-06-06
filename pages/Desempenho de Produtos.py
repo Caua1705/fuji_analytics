@@ -6,7 +6,7 @@ from view.sidebar import exibir_sidebar
 from processamento.filtrar import filtrar_por_filial,processar_filial
 from view.metricas import exibir_metricas_desempenho_produtos
 from processamento.agrupar import criar_curva_abc,agrupar_por_produto
-from view.insights import insight_produtos_sem_vendas,produtos_em_decadencia
+from view.insights import insight_produtos_sem_vendas,produtos_em_decadencia,produtos_em_ascensao
 
 aplicar_estilo_pagina(
     titulo="Análise de Desempenho de Produtos",
@@ -49,15 +49,11 @@ tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","�
 with tab1:
     col1,col2,col3=st.columns(3)
     with col1:
-        df_receitas_por_produto=agrupar_por_produto(df_receitas_filtrado,"Produto","Quantidade","Valor")
-        insight_produtos_sem_vendas(df_receitas_por_produto,df_catalogo,data_inicio,data_fim)
+        insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo,data_inicio,data_fim)
     with col2:
-
-        df_receitas_por_produto=agrupar_por_produto(df_receitas_filtrado,"Produto","Quantidade","Valor")
-        df_receitas_por_produto_anterior=agrupar_por_produto(df_receitas_anterior,"Produto","Quantidade","Valor")
-
-        produtos_em_decadencia(df_receitas_por_produto,df_receitas_por_produto_anterior,data_inicio,data_fim)
+        produtos_em_ascensao(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
     with col3:
-        pass
-    df_receitas_curva_abc=criar_curva_abc(df_receitas_filtrado)
+        produtos_em_decadencia(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
+        
+    # df_receitas_curva_abc=criar_curva_abc(df_receitas_filtrado)
     # st.write(df_receitas_curva_abc)

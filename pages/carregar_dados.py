@@ -33,9 +33,9 @@ def formatar_quantidade(df_receitas,coluna_quantidade):
         df_receitas[coluna] = pd.to_numeric(serie_temporaria, errors='coerce').abs().fillna(0).astype(int)
     return df_receitas
 
-def padronizar_valores(df, coluna_alterada, substituicoes):
-    df[coluna_alterada] = df[coluna_alterada].str.strip()
-    df[coluna_alterada] = df[coluna_alterada].replace(substituicoes)
+def padronizar_valores(df,coluna_alterada,substituicoes):
+    df[coluna_alterada]=df[coluna_alterada].str.strip()
+    df[coluna_alterada]=df[coluna_alterada].replace(substituicoes)
     return df
 
 def classificar_produto(df_receitas,coluna_categoria):
@@ -83,3 +83,24 @@ def formatar_datas_sidebar(data_incial,data_final):
     data_inicio_formatada = data_incial.strftime("%d-%m")
     data_fim_formatada = data_final.strftime("%d-%m")
     return data_inicio_formatada,data_fim_formatada
+
+import pandas as pd
+import streamlit as st
+from pathlib import Path
+from utils.config_formatacao import config_receitas, config_despesas
+from utils.formatadores import formatar_dataframe,formatar_quantidade,classificar_produto
+
+dir_raiz=Path(__file__).parents[1]
+
+@st.cache_data
+
+def carregar_e_preparar_dados():
+    df_receitas=pd.read_excel(dir_raiz / "data" / "receitas.xlsx")
+    df_despesas = pd.read_excel(dir_raiz / "data" / "despesas.xlsx")
+    df_catalogo = pd.read_excel(dir_raiz / "data" / "catalogo_produtos.xlsx")
+    df_receitas = formatar_dataframe(df_receitas, **config_receitas)
+    df_receitas = formatar_quantidade(df_receitas,"Quantidade")
+    df_receitas = classificar_produto(df_receitas,"Grupo")
+    df_despesas = formatar_dataframe(df_despesas, **config_despesas)
+    
+    return df_receitas,df_despesas,df_catalogo
