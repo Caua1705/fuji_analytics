@@ -47,12 +47,10 @@ exibir_metricas_desempenho_produtos(df_receitas_filtrado)
 
 tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","💼 Lucratividade"])
 with tab1:
-    df_receitas_por_produto=agrupar_por_produto(df_receitas_filtrado,"Produto","Quantidade","Valor")
-    insight_produtos_sem_vendas(df_receitas_por_produto,df_catalogo,data_inicio,data_fim)
-
     col1,col2,col3=st.columns(3)
     with col1:
-        pass
+        df_receitas_por_produto=agrupar_por_produto(df_receitas_filtrado,"Produto","Quantidade","Valor")
+        insight_produtos_sem_vendas(df_receitas_por_produto,df_catalogo,data_inicio,data_fim)
     with col2:
         df_filtrado_30_dias=pegar_30_dias_anteriores(df_receitas,"Data",data_inicio)
 

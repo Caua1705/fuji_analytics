@@ -131,10 +131,11 @@ def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_i
 
     data_inicio_formatada = data_inicio.strftime("%d-%m")
     data_fim_formatada = data_fim.strftime("%d-%m")
-    df_receitas_filtrado=df_receitas_filtrado.sort_values(by="Produto")
-    df_catalogo_produtos=df_catalogo_produtos.sort_values(by="Produto")
-    st.write(df_receitas_filtrado)
-    st.write(df_catalogo_produtos)
+
+    df_receitas_filtrado["Produto"] = df_receitas_filtrado["Produto"].str.strip().str.lower()
+    df_catalogo_produtos = df_catalogo_produtos.loc[df_catalogo_produtos["Produto"]!="Produto"]
+    df_catalogo_produtos["Produto"] = df_catalogo_produtos["Produto"].str.strip().str.lower()
+
     df_concatenado=df_catalogo_produtos.merge(
         df_receitas_filtrado,
         on="Produto",
@@ -143,8 +144,6 @@ def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_i
     )
 
     produtos_sem_venda=df_concatenado.loc[df_concatenado["_merge"]=="left_only","Produto"]
-    st.write(df_receitas_filtrado)
-    st.write(produtos_sem_venda)
     
     conteudo_html = (f'''
         Entre <strong>{data_inicio_formatada}</strong> e <strong>{data_fim_formatada}</strong>, 
