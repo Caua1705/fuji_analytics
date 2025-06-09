@@ -72,8 +72,8 @@ df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado,
 # Gráficos
 col1, col2 = st.columns(2)
 if df_despesas_por_categoria.empty:
-    st.subheader(f"Receitas por Categoria")
     insight_receitas(df_receitas_por_categoria,data_inicio,data_fim)    
+    st.subheader(f"Receitas por Categoria")
     if agrupar_outros:
         criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
     else:
