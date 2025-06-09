@@ -1,7 +1,7 @@
 import streamlit as st
 # Carregar Dados
 from utils.dados_em_sessao import obter_dados
-from utils.estilo import aplicar_estilo_pagina,linha_divisoria
+from utils.estilo import aplicar_estilo_pagina
 from view.sidebar import exibir_sidebar
 from processamento.filtrar import filtrar_por_filial,processar_filial
 from view.metricas import exibir_metricas_desempenho_produtos
@@ -44,15 +44,15 @@ if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
 
 #Métricas
 exibir_metricas_desempenho_produtos(df_receitas_filtrado)
-linha_divisoria()
-# tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","💼 Lucratividade"])
-# with tab1:
-col1,col2,col3=st.columns(3)
-with col1:
-    insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo,data_inicio,data_fim)
-with col2:
-    produtos_em_ascensao(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
-with col3:
-    produtos_em_decadencia(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
-    
-criar_grafico_produtos(df_receitas, "Produto", "Quantidade", "Valor",filial)
+
+tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","💼 Lucratividade"])
+with tab1:
+    col1,col2,col3=st.columns(3)
+    with col1:
+        insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo,data_inicio,data_fim)
+    with col2:
+        produtos_em_ascensao(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
+    with col3:
+        produtos_em_decadencia(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
+        
+    criar_grafico_produtos(df_receitas, "Produto", "Quantidade", "Valor",filial)
