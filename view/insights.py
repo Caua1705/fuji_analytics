@@ -100,12 +100,6 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
             suffixes=('_atual', '_anterior'),
             how='inner'  # Apenas centros presentes nos dois períodos
     )
-        if df_comparacao.empty:
-            criar_bloco_insight(
-                "Despesas", 
-                "Não foi possível gerar comparação de despesas, pois não há dados suficientes do mês anterior."
-            )
-            return
     
         df_comparacao["Diferença"]=df_comparacao["Valor Pago_atual"] - df_comparacao["Valor Pago_anterior"]
 
