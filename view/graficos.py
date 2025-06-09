@@ -29,7 +29,7 @@ def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
         title={
             'text': titulo,
             'x': 0.0,
-            'xanchor': 'left'
+            'xanchor': 'center'
         }
     )
 
