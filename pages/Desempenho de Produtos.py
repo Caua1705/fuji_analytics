@@ -44,6 +44,7 @@ if df_receitas_filtrado.empty and df_despesas_filtrado.empty:
 
 #Métricas
 exibir_metricas_desempenho_produtos(df_receitas_filtrado)
+linha_divisoria()
 # tab1,tab2,tab3,tab4=st.tabs(["📈 Resumo","🍽️ Comidas","🍷 Bebidas","💼 Lucratividade"])
 # with tab1:
 col1,col2,col3=st.columns(3)
@@ -53,6 +54,5 @@ with col2:
     produtos_em_ascensao(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
 with col3:
     produtos_em_decadencia(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
-linha_divisoria()
     
 criar_grafico_produtos(df_receitas, "Produto", "Quantidade", "Valor",filial)
