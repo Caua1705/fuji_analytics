@@ -53,6 +53,8 @@ def agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df
         .reset_index()
         .sort_values(by='Valor', ascending=False)
     )
+    if tipo_df is None:
+        return df_agrupado
     if tipo_df == "Decadência":
         top1=df_agrupado["Produto"].iloc[-1]
         top3=df_agrupado["Produto"].iloc[::-1].head(3).tolist()

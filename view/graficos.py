@@ -21,15 +21,16 @@ def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
         width=300,
         color_discrete_sequence=cores,
     )
+
     fig.update_layout(
         xaxis_title=x,
         yaxis_title=y,
-        showlegend=False,
+        showlegend=True,
         xaxis_tickangle=0,
         title={
             'text': titulo,
             'x': 0.0,
-            'xanchor': 'left'
+            'xanchor': 'center'
         }
     )
 
@@ -60,8 +61,10 @@ def criar_graficos_pizza(df_agrupado, tipo_df, x, y, filial):
 
     st.plotly_chart(fig, use_container_width=True)
 
-def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df):
-    df_agrupado,_,_=agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df)
-    df_agrupado_novo=df_agrupado.iloc[:9]
-    fig=px.bar(df_agrupado_novo,"Produto","Valor")
-    st.plotly_chart(fig)
+def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,filial):
+    df_agrupado=agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df=None)
+    top_10_produtos=df_agrupado.iloc[:9]
+    cores =['#D66BA0', '#8B5E3C', '#6BCBDB', '#F5CBA7', '#A9CCE3']
+    titulo = f"Distribuição da Receita por Categoria - {filial}"
+    fig=px.bar(top_10_produtos,"Produto","Valor",title=titulo,color="Produto",width=300,color_discrete_sequence=cores)
+    st.plotly_chart(fig,use_container_width=True)

@@ -55,4 +55,4 @@ with tab1:
     with col3:
         produtos_em_decadencia(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
         
-    criar_grafico_produtos(df_receitas, "Produto", "Quantidade", "Valor", "Decadência")
+    criar_grafico_produtos(df_receitas, "Produto", "Quantidade", "Valor",filial)
