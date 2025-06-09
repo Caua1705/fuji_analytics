@@ -71,6 +71,7 @@ def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,fili
                title=titulo,
                color="Produto",
                width=300,
+               orientation="h"
                color_discrete_sequence=cores)
     
     fig.update_layout(
