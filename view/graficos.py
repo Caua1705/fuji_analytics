@@ -76,7 +76,7 @@ def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,fili
     fig.update_layout(
         xaxis_title="Produto",
         yaxis_title="Valor",
-        showlegend=True,
+        showlegend=False,
         xaxis_tickangle=0,
         title={
             'text': titulo,
