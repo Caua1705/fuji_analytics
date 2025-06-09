@@ -152,7 +152,7 @@ def produtos_em_ascensao(df_receitas, df_receitas_anterior, data_inicio, data_fi
 
     if diferenca_dias == 1:
         conteudo_html = f'''<strong>Produto mais vendido</strong> do dia {data_inicio_formatada}: 
-                🛒 <strong>{top1}</strong>'''
+                <strong>{top1}</strong>'''
         criar_bloco_insight("Receitas", conteudo_html)
         return
 
@@ -193,7 +193,7 @@ def produtos_em_decadencia(df_receitas, df_receitas_anterior, data_inicio, data_
 
     if diferenca_dias == 1:
         conteudo_html = f'''<strong>Produto menos vendido</strong> do dia {data_inicio_formatada}: 
-                🛒 <strong>{top1}</strong>'''
+                 <strong>{top1}</strong>'''
         criar_bloco_insight("Despesas", conteudo_html)
         return
 
