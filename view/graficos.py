@@ -30,7 +30,7 @@ def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
         title={
             'text': titulo,
             'x': 0.0,
-            'xanchor': 'center'
+            'xanchor': 'left'
         }
     )
 
@@ -65,6 +65,6 @@ def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,fili
     df_agrupado=agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df=None)
     top_10_produtos=df_agrupado.iloc[:9]
     cores =['#D66BA0', '#8B5E3C', '#6BCBDB', '#F5CBA7', '#A9CCE3']
-    titulo = f"Distribuição da Receita por Categoria - {filial}"
+    titulo = f"Distribuição da Receita por Produto - {filial}"
     fig=px.bar(top_10_produtos,"Produto","Valor",title=titulo,color="Produto",width=300,color_discrete_sequence=cores)
     st.plotly_chart(fig,use_container_width=True)
