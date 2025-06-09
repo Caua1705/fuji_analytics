@@ -62,7 +62,7 @@ def criar_graficos_pizza(df_agrupado, tipo_df, x, y, filial):
 
 def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df):
     df_agrupado,_,_=agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df)
-    # st.write(df_agrupado)
-    df_agrupado=df_agrupado.loc[:9]
+    df_agrupado_novo=df_agrupado.iloc[:9]
+    st.write(df_agrupado_novo)
     fig=px.bar(df_agrupado,"Produto","Valor")
     st.plotly_chart(fig)
