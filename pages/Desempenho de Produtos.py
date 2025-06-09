@@ -50,11 +50,11 @@ with tab1:
     col1, col2 = st.columns(2)
 
     # Coluna da ESQUERDA: insights em uma pilha vertical
-    with col1:
+    with col2:
         insight_produtos_sem_vendas(df_receitas_filtrado, df_catalogo, data_inicio, data_fim)
         produtos_em_ascensao(df_receitas_filtrado, df_receitas_anterior, data_inicio, data_fim)
         produtos_em_decadencia(df_receitas_filtrado, df_receitas_anterior, data_inicio, data_fim)
 
     # Coluna da DIREITA: gráfico
-    with col2:
+    with col1:
         criar_grafico_produtos(df_receitas, "Produto", "Quantidade", "Valor", filial)
