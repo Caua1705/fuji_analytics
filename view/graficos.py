@@ -21,7 +21,6 @@ def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
         width=300,
         color_discrete_sequence=cores,
     )
-
     fig.update_layout(
         xaxis_title=x,
         yaxis_title=y,
