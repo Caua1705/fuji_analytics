@@ -63,7 +63,6 @@ def criar_graficos_pizza(df_agrupado, tipo_df, x, y, filial):
 def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,filial):
     df_agrupado=agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df=None)
     top_10_produtos=df_agrupado.iloc[:9]
-    st.write(top_10_produtos)
     cores =['#D66BA0', '#8B5E3C', '#6BCBDB', '#F5CBA7', '#A9CCE3']
     titulo = f"Distribuição da Receita por Produto - {filial}"
     fig=px.bar(top_10_produtos,
