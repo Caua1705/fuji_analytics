@@ -85,7 +85,7 @@ if df_despesas_por_categoria.empty:
 else:
     with col1:
         insight_receitas(df_receitas_por_categoria,data_inicio,data_fim)    
-        st.subheader(f"Receitas por Categoria")
+        st.subheader("Receitas por Categoria")
         if agrupar_outros:
             criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
         else:

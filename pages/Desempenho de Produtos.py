@@ -56,4 +56,4 @@ with col3:
     produtos_em_decadencia(df_receitas_filtrado,df_receitas_anterior,data_inicio,data_fim)
     
 st.subheader("Receitas por Produto")
-criar_grafico_produtos(df_receitas, "Produto", "Quantidade", "Valor",filial)
+criar_grafico_produtos(df_receitas_filtrado, "Produto", "Quantidade", "Valor",filial)
