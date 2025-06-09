@@ -66,17 +66,17 @@ def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,fili
     cores =['#D66BA0', '#8B5E3C', '#6BCBDB', '#F5CBA7', '#A9CCE3']
     titulo = f"Distribuição da Receita por Produto - {filial}"
     fig=px.bar(top_10_produtos,
+               "Valor (R$)",
                "Produto",
-               "Valor",
                title=titulo,
                color="Produto",
                width=300,
-               orientation="h"
+               orientation="h",
                color_discrete_sequence=cores)
     
     fig.update_layout(
-        xaxis_title="Produto",
-        yaxis_title="Valor",
+        xaxis_title="Valor",
+        yaxis_title="Produto",
         showlegend=False,
         xaxis_tickangle=0,
         title={
