@@ -30,8 +30,10 @@ def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
             'text': titulo,
             'x': 0.5,
             'xanchor': 'center'
-        }
+        },
+        title_font=dict(size=18, family='Arial', color='black')
     )
+    
 
     fig.update_traces(textposition='outside')
 
@@ -53,7 +55,12 @@ def criar_graficos_pizza(df_agrupado, tipo_df, x, y, filial):
     )
     fig.update_layout(
         showlegend=True,
-        legend=dict(orientation="v", x=1, y=0.5)
+        legend=dict(orientation="v", x=1, y=0.5),
+         title={
+        'text': titulo,
+        'x': 0.5,
+        'xanchor': 'center'
+    }
     )
 
     fig.update_traces(textinfo="percent+label")
