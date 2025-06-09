@@ -59,6 +59,7 @@ def agrupar_curva_abc(df_receitas):
     df_agrupado["Categoria"]=pd.cut(df_agrupado["Percentual_Acumulado"],
                                     bins=[0,0.8,0.95,1],
                                     labels=["A","B","C"])
+    df_agrupado=df_agrupado.loc[:9]
     return df_agrupado
 
 def agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df):
