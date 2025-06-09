@@ -25,7 +25,7 @@ def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
     fig.update_layout(
         xaxis_title=x,
         yaxis_title=y,
-        showlegend=True,
+        showlegend=False,
         xaxis_tickangle=0,
         title={
             'text': titulo,
