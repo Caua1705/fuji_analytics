@@ -75,7 +75,7 @@ def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,fili
                color_discrete_sequence=cores)
     
     fig.update_layout(
-        xaxis_title="Valor",
+        xaxis_title="Valor (R$)",
         yaxis_title="Produto",
         showlegend=False,
         xaxis_tickangle=0,
