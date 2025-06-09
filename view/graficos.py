@@ -81,7 +81,7 @@ def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,fili
         title={
             'text': titulo,
             'x': 0.0,
-            'xanchor': 'center'
+            'xanchor': 'left'
         }
     )
 
