@@ -79,7 +79,7 @@ if df_despesas_por_categoria.empty:
     else:
         criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
     criar_bloco_insight(
-                "Despesas", 
+                "Info", 
                 "Não foi possível gerar comparação de despesas, pois não há dados suficientes."
             )
 else:

@@ -6,11 +6,6 @@ import streamlit as st
 
 def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
 
-    if data_inicio.month != data_fim.month or data_inicio.year != data_fim.year:
-        conteudo_html = "📘 <strong>Selecione datas dentro do mesmo mês</strong> para exibir os insights"
-        criar_bloco_insight("Info",conteudo_html)
-        return
-    
     df_insight_receitas=df_receitas_por_categoria.copy()
     
     if df_insight_receitas.empty:
@@ -37,7 +32,7 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
         criar_bloco_insight("Receitas",conteudo_html)
         return
 
-    elif diferenca_dias in (28, 29, 30, 31):
+    elif diferenca_dias >=28:
     
         df_insight_receitas["Valor por Item"]=df_insight_receitas["Valor"] / df_insight_receitas["Quantidade"]
         media_valor_por_item=df_insight_receitas["Valor por Item"].mean()
@@ -60,11 +55,6 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
 
 def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categoria,data_inicio,data_fim):
 
-    if data_inicio.month != data_fim.month or data_inicio.year != data_fim.year:
-        conteudo_html = "📘 <strong>Selecione datas dentro do mesmo mês</strong> para exibir os insights"
-        criar_bloco_insight("Info",conteudo_html)
-        return
-    
     if df_despesas_por_categoria.empty:
         criar_bloco_insight("Despesas", "Nenhuma despesa encontrada no período.")
         return
@@ -91,7 +81,7 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
         criar_bloco_insight("Despesas",conteudo_html)
 
 
-    elif diferenca_dias in (28, 29, 30, 31):
+    elif diferenca_dias >=28:
         
         df_comparacao = pd.merge(
             df_despesas_por_categoria,
