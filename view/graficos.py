@@ -1,6 +1,8 @@
 import plotly.express as px
 from plotly.colors import qualitative
 import streamlit as st
+from processamento.agrupar import agrupar_por_produto
+
                             
 def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
     if tipo_df == "Receitas":
@@ -58,32 +60,9 @@ def criar_graficos_pizza(df_agrupado, tipo_df, x, y, filial):
 
     st.plotly_chart(fig, use_container_width=True)
 
-def criar_grafico_curva_abc(df_receitas_curva_abc):
-    fig=px.bar(df_receitas_curva_abc,"Produto","Valor_Total","Produto",title="Curva ABC")
-    fig.add_trace(px.line(df_receitas_curva_abc,
-                      x='Produto',
-                      y='Percentual_Acumulado',
-                      line_shape='spline', # Ou 'linear'
-                      markers=False
-                     ).update_traces(yaxis="y2",
-                                     line_color='black', # Cor para a linha acumulada
-                                     line_width=2,
-                                     name='Percentual Acumulado'
-                                     ).data[0])
-
-# Configurar o segundo eixo Y para o percentual acumulado
-    fig.update_layout(yaxis=dict(title='Valor Total', side='left', showgrid=False),
-                    yaxis2=dict(title='Percentual Acumulado', side='right', overlaying='y', showgrid=False, range=[0,1], tickformat=".0%"),
-                    xaxis_title="Produtos (Ordenados por Faturamento)",
-                    title_x=0.5,
-                    hovermode="x unified",
-                    legend_title_text="Categoria ABC"
-                    )
-
-    # Adicionar linhas de referência para 80% e 95% no eixo Y secundário
-    fig.add_hline(y=0.8, line_dash="dash", line_color="grey", annotation_text="80% (Limite A)", annotation_position="top right", yref="y2")
-    fig.add_hline(y=0.95, line_dash="dot", line_color="grey", annotation_text="95% (Limite B)", annotation_position="top right", yref="y2")
-
-    fig.show()
-
+def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df):
+    df_agrupado,_,_=agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df)
+    # st.write(df_agrupado)
+    df_agrupado=df_agrupado.loc[:9]
+    fig=px.bar(df_agrupado,"Produto","Valor")
     st.plotly_chart(fig)

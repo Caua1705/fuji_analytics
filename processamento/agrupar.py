@@ -1,5 +1,4 @@
 import pandas as pd
-import streamlit as st
 
 def agrupar_receitas_por_categoria(df,coluna_agrupada,coluna_valor,coluna_quantidade,agrupar_outros):
     df_agrupado = (
@@ -44,23 +43,6 @@ def agrupar_despesas_por_categoria(df, coluna_agrupada, coluna_valor, agrupar_ou
         df_final = df_agrupado
         
     return df_final
-
-def agrupar_curva_abc(df_receitas):
-    df_agrupado=(
-        df_receitas.groupby("Produto").agg(
-        Valor_Total=("Valor","sum"),
-        Quantidade_Total=("Quantidade","sum")
-    )
-    .sort_values(by="Valor_Total",ascending=False)
-    )
-    df_agrupado["Percentual Valor"]= df_agrupado["Valor_Total"] / df_agrupado["Valor_Total"].sum() 
-    df_agrupado["Percentual_Acumulado"]= df_agrupado["Percentual Valor"].cumsum()
-    df_agrupado=df_agrupado.reset_index()
-    df_agrupado["Categoria"]=pd.cut(df_agrupado["Percentual_Acumulado"],
-                                    bins=[0,0.8,0.95,1],
-                                    labels=["A","B","C"])
-    df_agrupado=df_agrupado.loc[:9]
-    return df_agrupado
 
 def agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df):
     df_agrupado = (
