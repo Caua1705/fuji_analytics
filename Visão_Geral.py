@@ -13,7 +13,7 @@ from view.metricas import exibir_metricas_visao_geral
 from processamento.agrupar import agrupar_receitas_por_categoria,agrupar_despesas_por_categoria
 # Exibir Gráficos
 from view.graficos import criar_graficos_barra,criar_graficos_pizza
-from view.insights import insight_receitas,insight_despesas
+from view.insights import insight_receitas,insight_despesas,criar_bloco_insight
 
 # Configuração da Página
 import sys
@@ -78,6 +78,10 @@ if df_despesas_por_categoria.empty:
         criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
     else:
         criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
+    criar_bloco_insight(
+                "Despesas", 
+                "Não foi possível gerar comparação de despesas, pois não há dados suficientes do mês anterior."
+            )
 else:
     with col1:
         insight_receitas(df_receitas_por_categoria,data_inicio,data_fim)    
