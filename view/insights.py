@@ -90,11 +90,15 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
             suffixes=('_atual', '_anterior'),
             how='inner'  # Apenas centros presentes nos dois períodos
     )
+        
+        if df_comparacao.empty:
+            criar_bloco_insight("Despesas", "Não foi possível comparar despesas: os centros de custo não coincidem entre os períodos selecionados.")
+            return
+
     
         df_comparacao["Diferença"]=df_comparacao["Valor Pago_atual"] - df_comparacao["Valor Pago_anterior"]
 
         df_comparacao=df_comparacao.sort_values(by="Diferença",ascending=False)
-
         maior_aumento=df_comparacao.iloc[0]
 
         percentual_aumento=(maior_aumento["Diferença"] / maior_aumento["Valor Pago_anterior"]) * 100

@@ -78,10 +78,11 @@ if df_despesas_por_categoria.empty:
         criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
     else:
         criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
-    criar_bloco_insight(
+        criar_bloco_insight(
                 "Info", 
                 "Não foi possível gerar comparação de despesas, pois não há dados suficientes."
             )
+    
 else:
     with col1:
         insight_receitas(df_receitas_por_categoria,data_inicio,data_fim)    

@@ -2,7 +2,6 @@ import plotly.express as px
 from plotly.colors import qualitative
 import streamlit as st
 from processamento.agrupar import agrupar_por_produto
-
                             
 def criar_graficos_barra(df_agrupado, tipo_df, x, y, filial):
     if tipo_df == "Receitas":
