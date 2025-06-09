@@ -64,5 +64,5 @@ def criar_grafico_produtos(df,coluna_produto,coluna_quantidade,coluna_valor,tipo
     df_agrupado,_,_=agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df)
     df_agrupado_novo=df_agrupado.iloc[:9]
     st.write(df_agrupado_novo)
-    fig=px.bar(df_agrupado,"Produto","Valor")
+    fig=px.bar(df_agrupado_novo,"Produto","Valor")
     st.plotly_chart(fig)
