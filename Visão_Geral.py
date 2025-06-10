@@ -66,9 +66,9 @@ else:
 
 # Agrupar por Categoria
 df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Quantidade","Valor",agrupar_outros)
-df_receitas_anteriores_por_categoria = agrupar_por_categoria(df_receitas_filtrado_anterior, "Grupo","Quantidade","Valor Pago",agrupar_outros)
-df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo",None,"Valor Pago",agrupar_outros)
-df_despesas_anteriores_por_categoria = agrupar_por_categoria(df_despesas_anterior, "Centro_Custo",None,"Valor Pago",agrupar_outros)
+df_receitas_anteriores_por_categoria = agrupar_por_categoria(df_receitas_filtrado_anterior, "Grupo","Quantidade","Valor",agrupar_outros)
+df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo",None,"Valor_Pago",agrupar_outros)
+df_despesas_anteriores_por_categoria = agrupar_por_categoria(df_despesas_anterior, "Centro_Custo",None,"Valor_Pago",agrupar_outros)
 
 # Gráficos
 col1, col2 = st.columns(2)
@@ -96,8 +96,8 @@ else:
         insight_despesas(df_despesas_por_categoria,df_despesas_anteriores_por_categoria,data_inicio,data_fim)
         st.subheader("Despesas por Centro de Custo")
         if agrupar_outros:
-            criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
+            criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor_Pago", filial)
         else:
-                criar_graficos_barra(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
+            criar_graficos_barra(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor_Pago", filial)
 
         

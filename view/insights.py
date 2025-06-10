@@ -48,8 +48,8 @@ def insight_receitas(df_receitas_por_categoria,df_receitas_anteriores_por_catego
         O centro <strong>{maior_aumento["Grupo"]}</strong> registrou aumento de 
         <strong>{formatar_porcentagem(percentual_aumento)}</strong> 
         ({formatar_moeda(maior_aumento["Diferença"])}), <strong>nos últimos {diferenca_dias} dias</strong>, 
-        passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para 
-        {formatar_moeda(maior_aumento["Valor Pago_atual"])}.'''
+        passando de {formatar_moeda(maior_aumento["Valor_anterior"])} para 
+        {formatar_moeda(maior_aumento["Valor_atual"])}.'''
         criar_bloco_insight("Receitas",conteudo_html)
 
 def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categoria,data_inicio,data_fim):

@@ -1,14 +1,18 @@
 import pandas as pd
-
+import streamlit as st
 def agrupar_por_categoria(df,coluna_agrupada,coluna_quantidade,coluna_valor,agrupar_outros):
     if coluna_quantidade:
-        agg_dict={"Quantidade":coluna_quantidade,
-                  "Valor":coluna_valor}
+        agg_dict = {
+        coluna_valor: "sum", 
+        coluna_quantidade: "sum" 
+    }
     else:
-        agg_dict={"Valor":coluna_valor}
+        agg_dict = {
+            coluna_valor: "sum"
+        }
 
     df_agrupado = (
-        df.groupby(coluna_agrupada).agg(**agg_dict)
+        df.groupby(coluna_agrupada).agg(agg_dict)
         .reset_index()
         .sort_values(by=coluna_valor, ascending=False) 
     )
@@ -17,7 +21,7 @@ def agrupar_por_categoria(df,coluna_agrupada,coluna_quantidade,coluna_valor,agru
         top7 = df_agrupado.iloc[:7]
         outros_data = {
             coluna_agrupada: "Outros",
-            "Valor": df_agrupado.iloc[7:]["Valor"].sum()
+            coluna_valor: df_agrupado.iloc[7:][coluna_valor].sum()
         }
         if coluna_quantidade:
             outros_data["Quantidade"]=df_agrupado.iloc[7:]["Quantidade"].sum()
@@ -39,13 +43,14 @@ def gerar_dataframe_comparativo(df,df_anterior,coluna_agrupada):
         suffixes=('_atual', '_anterior'),
         how='inner'  # Apenas centros presentes nos dois períodos
     )
+    st.write(df_comparacao)
     if df_comparacao.empty:
         return None,None,df_comparacao
     
-    df_comparacao["Diferença"]=df_comparacao["Valor Pago_atual"] - df_comparacao["Valor Pago_anterior"]
+    df_comparacao["Diferença"]=df_comparacao[f"{coluna_agrupada}_atual"] - df_comparacao[f"{coluna_agrupada}_anterior"]
     df_comparacao=df_comparacao.sort_values(by="Diferença",ascending=False)
     maior_aumento=df_comparacao.iloc[0]
-    percentual_aumento=(maior_aumento["Diferença"] / maior_aumento["Valor Pago_anterior"]) * 100
+    percentual_aumento=(maior_aumento["Diferença"] / maior_aumento[f"{coluna_agrupada}_anterior"]) * 100
     return maior_aumento,percentual_aumento,df_comparacao
      
 

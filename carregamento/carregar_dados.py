@@ -102,5 +102,4 @@ def carregar_e_preparar_dados():
     df_receitas = formatar_quantidade(df_receitas,"Quantidade")
     df_receitas = classificar_produto(df_receitas,"Grupo")
     df_despesas = formatar_dataframe(df_despesas, **config_despesas)
-    
     return df_receitas,df_despesas,df_catalogo

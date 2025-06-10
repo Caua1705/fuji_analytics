@@ -11,14 +11,14 @@ config_receitas = {
 
 config_despesas={
     "substituicoes_colunas": {
-        "Valor_Pago/Recebido": "Valor Pago"
+        "Valor_Pago/Recebido": "Valor_Pago"
     },
     "colunas_nulas": [
         "Filial","Tipo_Lancamento",
         "Sintetica","Analitica",
         "Detalhada","Observacao","Fornecedor/Cliente",
         "Conta","Forma_Pag/Rec","Valor_Original",
-        "Valor Pago","Status"
+        "Valor_Pago","Status"
         ],
     "colunas_data": [
         "Data_Lancamento",
@@ -26,7 +26,7 @@ config_despesas={
         "Data_Vencimento",
         "Data_Pagamento"
         ],
-    "colunas_valores": "Valor Pago",
+    "colunas_valores": "Valor_Pago",
     "coluna_alterada": "Centro_Custo",
     "substituicoes_valores": {
         "DESPESAS FIXAS": "FIXAS",
