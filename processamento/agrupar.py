@@ -18,7 +18,7 @@ def agrupar_por_categoria(df,coluna_agrupada,coluna_valor,agrupar_outros):
         df_com_outros=pd.DataFrame([outros_data])
         df_final=pd.concat([top7, df_com_outros], ignore_index=True)
     else:
-        df_final = df_agrupado
+        df_final = df_agrupado.iloc[:7]
         
     return df_final
 
