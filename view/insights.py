@@ -92,8 +92,11 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
     )
         
         if df_comparacao.empty:
-            criar_bloco_insight("Despesas", "Não foi possível comparar despesas: os centros de custo não coincidem entre os períodos selecionados.")
-            return
+             top_centro_de_custo=df_despesas_por_categoria["Centro_Custo"].head(3).tolist()
+             conteudo_html = f'''<strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+                🥇 <strong>{top_centro_de_custo[0]}</strong>, 🥈 {top_centro_de_custo[1]} e 🥉 {top_centro_de_custo[2]}'''
+             criar_bloco_insight("Despesas",conteudo_html)
+             return 
 
     
         df_comparacao["Diferença"]=df_comparacao["Valor Pago_atual"] - df_comparacao["Valor Pago_anterior"]
