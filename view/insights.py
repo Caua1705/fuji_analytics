@@ -35,7 +35,7 @@ def insight_receitas(df_receitas_por_categoria,df_receitas_anteriores_por_catego
         
         maior_aumento,percentual_aumento,df_comparacao=gerar_dataframe_comparativo(df_receitas_por_categoria,
                                                                                    df_receitas_anteriores_por_categoria,
-                                                                                   "Grupo")
+                                                                                   "Grupo","Valor")
         
         if df_comparacao.empty:
             top_3_categorias=get_top_n_categorias(df_receitas_por_categoria,"Grupo",n=3)
@@ -78,7 +78,7 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
         
         maior_aumento,percentual_aumento,df_comparacao=gerar_dataframe_comparativo(df_despesas_por_categoria,
                                                                                    df_despesas_anterior_por_categoria,
-                                                                                   "Centro_Custo")
+                                                                                   "Centro_Custo","Valor_Pago")
         
         if df_comparacao.empty:
             top_3_categorias=get_top_n_categorias(df_despesas_por_categoria,"Centro_Custo",n=3)
@@ -91,8 +91,8 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
         O centro <strong>{maior_aumento["Centro_Custo"]}</strong> registrou aumento de 
         <strong>{formatar_porcentagem(percentual_aumento)}</strong> 
         ({formatar_moeda(maior_aumento["Diferença"])}), <strong>nos últimos {diferenca_dias} dias</strong>, 
-        passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para 
-        {formatar_moeda(maior_aumento["Valor Pago_atual"])}.'''
+        passando de {formatar_moeda(maior_aumento["Valor_Pago_anterior"])} para 
+        {formatar_moeda(maior_aumento["Valor_Pago_atual"])}.'''
         criar_bloco_insight("Despesas",conteudo_html)
 
 def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_inicio,data_fim):

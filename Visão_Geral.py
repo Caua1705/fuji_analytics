@@ -65,10 +65,10 @@ else:
     agrupar_outros=False
 
 # Agrupar por Categoria
-df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Quantidade","Valor",agrupar_outros)
-df_receitas_anteriores_por_categoria = agrupar_por_categoria(df_receitas_filtrado_anterior, "Grupo","Quantidade","Valor",agrupar_outros)
-df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo",None,"Valor_Pago",agrupar_outros)
-df_despesas_anteriores_por_categoria = agrupar_por_categoria(df_despesas_anterior, "Centro_Custo",None,"Valor_Pago",agrupar_outros)
+df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo","Valor",agrupar_outros)
+df_receitas_anteriores_por_categoria = agrupar_por_categoria(df_receitas_filtrado_anterior, "Grupo","Valor",agrupar_outros)
+df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo","Valor_Pago",agrupar_outros)
+df_despesas_anteriores_por_categoria = agrupar_por_categoria(df_despesas_anterior, "Centro_Custo","Valor_Pago",agrupar_outros)
 
 # Gráficos
 col1, col2 = st.columns(2)
