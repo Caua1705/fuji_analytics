@@ -1,10 +1,11 @@
 import pandas as pd
 from utils.estilo import criar_bloco_insight
 from utils.formatadores import formatar_moeda,formatar_porcentagem,formatar_unidade,formatar_datas_sidebar
-from processamento.agrupar import agrupar_por_produto,produtos_sem_vendas,produto_com_maior_variacao
+from utils.tempo import classificar_periodo
+from processamento.agrupar import get_top_n_categorias,gerar_dataframe_comparativo,agrupar_por_produto,produtos_sem_vendas,produto_com_maior_variacao
 import streamlit as st
 
-def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
+def insight_receitas(df_receitas_por_categoria,df_receitas_anteriores_por_categoria,data_inicio,data_fim):
 
     df_insight_receitas=df_receitas_por_categoria.copy()
     
@@ -12,45 +13,43 @@ def insight_receitas(df_receitas_por_categoria,data_inicio,data_fim):
         criar_bloco_insight("Receitas", "⚠️ Nenhuma receita encontrada no período.")
         return
 
-    data_inicio_formatada = data_inicio.strftime("%d-%m")
-    data_fim_formatada = data_fim.strftime("%d-%m")
-
+    data_inicio_formatada,data_fim_formatada=formatar_datas_sidebar(data_inicio,data_fim)
     diferenca_dias=(data_fim-data_inicio).days+1
+    periodo=classificar_periodo(diferenca_dias)
 
-    top_categorias=df_insight_receitas["Grupo"].head(3).tolist()
-
-    if diferenca_dias==1:
-        categoria_dia = df_insight_receitas["Grupo"].iloc[0]
+    if periodo=="dia":
+        top1_categoria=get_top_n_categorias(df_insight_receitas,"Grupo",n=1)
         conteudo_html = f'''<strong>Receita líder</strong> do dia {data_inicio_formatada}: 
-                🥇 <strong>{categoria_dia}</strong>'''
+                🥇 <strong>{top1_categoria[0]}</strong>'''
         criar_bloco_insight("Receitas",conteudo_html)
         return 
-    elif 1 < diferenca_dias < 28:
-        top_categorias=df_insight_receitas["Grupo"].head(3).tolist()
+    
+    elif periodo=="curto":
+        top_3_categorias=get_top_n_categorias(df_insight_receitas,"Grupo",n=3)
         conteudo_html = f'''<strong>Top 3 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
-                🥇 <strong>{top_categorias[0]}</strong>, 🥈 {top_categorias[1]} e 🥉 {top_categorias[2]}'''
+                🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]} e 🥉 {top_3_categorias[2]}'''
         criar_bloco_insight("Receitas",conteudo_html)
         return
 
-    elif diferenca_dias >=28:
-    
-        df_insight_receitas["Valor por Item"]=df_insight_receitas["Valor"] / df_insight_receitas["Quantidade"]
-        media_valor_por_item=df_insight_receitas["Valor por Item"].mean()
-        media_quantidade=df_insight_receitas["Quantidade"].mean()
-        categoria_selecionada = (
-            df_insight_receitas
-            .loc[
-                (df_insight_receitas["Quantidade"] < media_quantidade) &
-                (df_insight_receitas["Valor por Item"] > media_valor_por_item)
-            ]
-            .sort_values(by="Valor por Item", ascending=False)
-            .iloc[0]
-        )
-
-        conteudo_html = f'''A categoria <strong>{categoria_selecionada["Grupo"]}</strong> vendeu só 
-<strong>{formatar_unidade(categoria_selecionada["Quantidade"])}</strong> unidades, mas teve ticket médio alto de 
-<strong>{formatar_moeda(categoria_selecionada["Valor por Item"])}</strong> — indica boa margem.'''
+    elif periodo=="longo":
         
+        maior_aumento,percentual_aumento,df_comparacao=gerar_dataframe_comparativo(df_receitas_por_categoria,
+                                                                                   df_receitas_anteriores_por_categoria,
+                                                                                   "Grupo")
+        
+        if df_comparacao.empty:
+            top_3_categorias=get_top_n_categorias(df_receitas_por_categoria,"Grupo",n=3)
+            conteudo_html = f'''<strong>Top 3 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+            🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]} e 🥉 {top_3_categorias[2]}'''
+            criar_bloco_insight("Receitas",conteudo_html)
+            return 
+       
+        conteudo_html = f'''
+        O centro <strong>{maior_aumento["Grupo"]}</strong> registrou aumento de 
+        <strong>{formatar_porcentagem(percentual_aumento)}</strong> 
+        ({formatar_moeda(maior_aumento["Diferença"])}), <strong>nos últimos {diferenca_dias} dias</strong>, 
+        passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para 
+        {formatar_moeda(maior_aumento["Valor Pago_atual"])}.'''
         criar_bloco_insight("Receitas",conteudo_html)
 
 def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categoria,data_inicio,data_fim):
@@ -59,59 +58,41 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
         criar_bloco_insight("Despesas", "Nenhuma despesa encontrada no período.")
         return
     
-    data_inicio_formatada = data_inicio.strftime("%d-%m")
-    data_fim_formatada = data_fim.strftime("%d-%m")
-
+    data_inicio_formatada,data_fim_formatada=formatar_datas_sidebar(data_inicio,data_fim)
     diferenca_dias=(data_fim-data_inicio).days+1
+    periodo=classificar_periodo(diferenca_dias)
 
-    if diferenca_dias==1:
-        
-        centro_custo_dia = df_despesas_por_categoria["Centro_Custo"].iloc[0]
-
-        conteudo_html = f'''<strong>Despesa mais alta</strong> do dia {data_inicio_formatada}: 🧾 <strong>{centro_custo_dia}</strong>'''
-
+    if periodo=="dia":
+        top1_categoria=get_top_n_categorias(df_despesas_por_categoria,"Centro_Custo",n=1)
+        conteudo_html = f'''<strong>Despesa mais alta</strong> do dia {data_inicio_formatada}: 🧾 <strong>{top1_categoria[0]}</strong>'''
         criar_bloco_insight("Despesas",conteudo_html)
 
-    elif 1 < diferenca_dias < 28:
-        top_centro_de_custo=df_despesas_por_categoria["Centro_Custo"].head(3).tolist()
-
+    elif periodo=="curto":
+        top_3_categorias=get_top_n_categorias(df_despesas_por_categoria,"Centro_Custo",n=3)
         conteudo_html = f'''<strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
-                🥇 <strong>{top_centro_de_custo[0]}</strong>, 🥈 {top_centro_de_custo[1]} e 🥉 {top_centro_de_custo[2]}'''
-        
+                🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]} e 🥉 {top_3_categorias[2]}'''
         criar_bloco_insight("Despesas",conteudo_html)
 
 
-    elif diferenca_dias >=28:
+    elif periodo=="longo":
         
-        df_comparacao = pd.merge(
-            df_despesas_por_categoria,
-            df_despesas_anterior_por_categoria,
-            on='Centro_Custo',
-            suffixes=('_atual', '_anterior'),
-            how='inner'  # Apenas centros presentes nos dois períodos
-    )
+        maior_aumento,percentual_aumento,df_comparacao=gerar_dataframe_comparativo(df_despesas_por_categoria,
+                                                                                   df_despesas_anterior_por_categoria,
+                                                                                   "Centro_Custo")
         
         if df_comparacao.empty:
-             top_centro_de_custo=df_despesas_por_categoria["Centro_Custo"].head(3).tolist()
-             conteudo_html = f'''<strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
-                🥇 <strong>{top_centro_de_custo[0]}</strong>, 🥈 {top_centro_de_custo[1]} e 🥉 {top_centro_de_custo[2]}'''
-             criar_bloco_insight("Despesas",conteudo_html)
-             return 
-
-    
-        df_comparacao["Diferença"]=df_comparacao["Valor Pago_atual"] - df_comparacao["Valor Pago_anterior"]
-
-        df_comparacao=df_comparacao.sort_values(by="Diferença",ascending=False)
-        maior_aumento=df_comparacao.iloc[0]
-
-        percentual_aumento=(maior_aumento["Diferença"] / maior_aumento["Valor Pago_anterior"]) * 100
-
-        conteudo_html = f'''O centro <strong>{maior_aumento["Centro_Custo"]}</strong> registrou aumento de 
-<strong>{formatar_porcentagem(percentual_aumento)}</strong> 
-({formatar_moeda(maior_aumento["Diferença"])}), <strong>nos últimos {diferenca_dias} dias</strong>, 
-passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para 
-{formatar_moeda(maior_aumento["Valor Pago_atual"])}.'''
-        
+            top_3_categorias=get_top_n_categorias(df_despesas_por_categoria,"Centro_Custo",n=3)
+            conteudo_html = f'''<strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+            🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]} e 🥉 {top_3_categorias[2]}'''
+            criar_bloco_insight("Despesas",conteudo_html)
+            return 
+       
+        conteudo_html = f'''
+        O centro <strong>{maior_aumento["Centro_Custo"]}</strong> registrou aumento de 
+        <strong>{formatar_porcentagem(percentual_aumento)}</strong> 
+        ({formatar_moeda(maior_aumento["Diferença"])}), <strong>nos últimos {diferenca_dias} dias</strong>, 
+        passando de {formatar_moeda(maior_aumento["Valor Pago_anterior"])} para 
+        {formatar_moeda(maior_aumento["Valor Pago_atual"])}.'''
         criar_bloco_insight("Despesas",conteudo_html)
 
 def insight_produtos_sem_vendas(df_receitas_filtrado,df_catalogo_produtos,data_inicio,data_fim):

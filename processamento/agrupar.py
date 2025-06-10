@@ -1,48 +1,53 @@
 import pandas as pd
 
-def agrupar_receitas_por_categoria(df,coluna_agrupada,coluna_valor,coluna_quantidade,agrupar_outros):
-    df_agrupado = (
-        df.groupby(coluna_agrupada).agg(
-        Quantidade=(coluna_quantidade,"sum"),
-        Valor=(coluna_valor,"sum")
-        )
-        .reset_index()
-        .sort_values(by='Valor', ascending=False)
-    )
-    if agrupar_outros and len(df_agrupado) > 7:
-        top7 = df_agrupado.iloc[:7]
-        outros_valor = df_agrupado.iloc[7:]["Valor"].sum()
-        outros_quantidade = df_agrupado.iloc[7:]["Quantidade"].sum()
-        df_com_outros = pd.DataFrame([{coluna_agrupada: "Outros",
-                                        "Valor": outros_valor,
-                                        "Quantidade":outros_quantidade}])
-        df_final= pd.concat([top7, df_com_outros], ignore_index=True)
+def agrupar_por_categoria(df,coluna_agrupada,coluna_quantidade,coluna_valor,agrupar_outros):
+    if coluna_quantidade:
+        agg_dict={"Quantidade":coluna_quantidade,
+                  "Valor":coluna_valor}
     else:
-       df_final=df_agrupado.iloc[:7]
-    return df_final
+        agg_dict={"Valor":coluna_valor}
 
-def agrupar_despesas_por_categoria(df, coluna_agrupada, coluna_valor, agrupar_outros):
     df_agrupado = (
-        df.groupby(coluna_agrupada)[coluna_valor].
-        sum()
+        df.groupby(coluna_agrupada).agg(**agg_dict)
         .reset_index()
         .sort_values(by=coluna_valor, ascending=False) 
     )
 
     if agrupar_outros and len(df_agrupado) > 7:
-        top7_df = df_agrupado.iloc[:7]
-        outros_valor = df_agrupado.iloc[7:][coluna_valor].sum()
-        
-        df_com_outros = pd.DataFrame([{
+        top7 = df_agrupado.iloc[:7]
+        outros_data = {
             coluna_agrupada: "Outros",
-            coluna_valor: outros_valor
-        }])
-        
-        df_final = pd.concat([top7_df, df_com_outros], ignore_index=True)
+            "Valor": df_agrupado.iloc[7:]["Valor"].sum()
+        }
+        if coluna_quantidade:
+            outros_data["Quantidade"]=df_agrupado.iloc[7:]["Quantidade"].sum()
+            df_com_outros=pd.DataFrame([outros_data])
+            df_final=pd.concat([top7, df_com_outros], ignore_index=True)
     else:
         df_final = df_agrupado
         
     return df_final
+
+def get_top_n_categorias(df,coluna_agrupada,n):
+    return df[coluna_agrupada].head(n).tolist()
+
+def gerar_dataframe_comparativo(df,df_anterior,coluna_agrupada):
+    df_comparacao = pd.merge(
+        df,
+        df_anterior,
+        on=coluna_agrupada,
+        suffixes=('_atual', '_anterior'),
+        how='inner'  # Apenas centros presentes nos dois períodos
+    )
+    if df_comparacao.empty:
+        return None,None,df_comparacao
+    
+    df_comparacao["Diferença"]=df_comparacao["Valor Pago_atual"] - df_comparacao["Valor Pago_anterior"]
+    df_comparacao=df_comparacao.sort_values(by="Diferença",ascending=False)
+    maior_aumento=df_comparacao.iloc[0]
+    percentual_aumento=(maior_aumento["Diferença"] / maior_aumento["Valor Pago_anterior"]) * 100
+    return maior_aumento,percentual_aumento,df_comparacao
+     
 
 def agrupar_por_produto(df,coluna_produto,coluna_quantidade,coluna_valor,tipo_df):
     df_agrupado = (

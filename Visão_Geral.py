@@ -10,7 +10,7 @@ from view.sidebar import exibir_sidebar
 # Exibir Métricas
 from view.metricas import exibir_metricas_visao_geral
 # Agrupar Dados
-from processamento.agrupar import agrupar_receitas_por_categoria,agrupar_despesas_por_categoria
+from processamento.agrupar import agrupar_por_categoria
 # Exibir Gráficos
 from view.graficos import criar_graficos_barra,criar_graficos_pizza
 from view.insights import insight_receitas,insight_despesas,criar_bloco_insight
@@ -65,14 +65,15 @@ else:
     agrupar_outros=False
 
 # Agrupar por Categoria
-df_receitas_por_categoria = agrupar_receitas_por_categoria(df_receitas_filtrado, "Grupo", "Valor","Quantidade",agrupar_outros)
-df_despesas_anterior_por_categoria = agrupar_despesas_por_categoria(df_despesas_anterior, "Centro_Custo", "Valor Pago",agrupar_outros)
-df_despesas_por_categoria = agrupar_despesas_por_categoria(df_despesas_filtrado, "Centro_Custo", "Valor Pago",agrupar_outros)
+df_receitas_por_categoria = agrupar_por_categoria(df_receitas_filtrado, "Grupo", "Quantidade","Valor",agrupar_outros)
+df_receitas_anteriores_por_categoria = agrupar_por_categoria(df_receitas_filtrado_anterior, "Grupo","Quantidade","Valor Pago",agrupar_outros)
+df_despesas_por_categoria = agrupar_por_categoria(df_despesas_filtrado, "Centro_Custo",None,"Valor Pago",agrupar_outros)
+df_despesas_anteriores_por_categoria = agrupar_por_categoria(df_despesas_anterior, "Centro_Custo",None,"Valor Pago",agrupar_outros)
 
 # Gráficos
 col1, col2 = st.columns(2)
 if df_despesas_por_categoria.empty:
-    insight_receitas(df_receitas_por_categoria,data_inicio,data_fim)    
+    insight_receitas(df_receitas_por_categoria,df_receitas_anteriores_por_categoria,data_inicio,data_fim)    
     st.subheader(f"Receitas por Categoria - {filial}")
     if agrupar_outros:
         criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
@@ -85,14 +86,14 @@ if df_despesas_por_categoria.empty:
     
 else:
     with col1:
-        insight_receitas(df_receitas_por_categoria,data_inicio,data_fim)    
+        insight_receitas(df_receitas_por_categoria,df_receitas_anteriores_por_categoria,data_inicio,data_fim)    
         st.subheader("Receitas por Categoria")
         if agrupar_outros:
             criar_graficos_pizza(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
         else:
             criar_graficos_barra(df_receitas_por_categoria, "Receitas", "Grupo", "Valor", filial)
     with col2:
-        insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categoria,data_inicio,data_fim)
+        insight_despesas(df_despesas_por_categoria,df_despesas_anteriores_por_categoria,data_inicio,data_fim)
         st.subheader("Despesas por Centro de Custo")
         if agrupar_outros:
             criar_graficos_pizza(df_despesas_por_categoria, "Despesas", "Centro_Custo", "Valor Pago", filial)
