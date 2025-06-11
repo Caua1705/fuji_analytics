@@ -5,7 +5,7 @@ def formatar_data(df,colunas):
     if isinstance(colunas,str):
         colunas=[colunas]
     for coluna in colunas:
-        df[coluna]=pd.to_datetime(df[coluna],dayfirst=True,errors='coerce').dt.date
+        df[coluna]=pd.to_datetime(df[coluna],dayfirst=True,errors='coerce')
     return df
 
 def formatar_valores_nulos(df,colunas):

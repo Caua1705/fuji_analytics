@@ -1,4 +1,5 @@
 from datetime import timedelta
+import pandas as pd
 
 def filtrar_por_filial(df):
     df_aldeota=df.loc[df["Filial"]=="Aldeota"]
@@ -8,6 +9,10 @@ def filtrar_por_filial(df):
             "Todas": df}
 
 def filtrar_por_data(df,coluna_data,data_inicial,data_final):
+    
+    data_inicial = pd.to_datetime(data_inicial)
+    data_final = pd.to_datetime(data_final)
+    
     df_filtrado=df.loc[(df[coluna_data]>=data_inicial) & 
                        (df[coluna_data]<=data_final)]
     
