@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from utils.dados_em_sessao import obter_dados
 from processamento.filtrar import filtrar_por_filial,processar_filial
-from datetime import datetime,timedelta
+from datetime import timedelta
 
 st.markdown("### 📅 Desempenho Diário")
 
