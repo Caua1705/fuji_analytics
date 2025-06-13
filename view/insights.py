@@ -26,8 +26,16 @@ def insight_receitas(df_receitas_por_categoria,df_receitas_anteriores_por_catego
     
     elif periodo=="curto":
         top_3_categorias=get_top_n_categorias(df_insight_receitas,"Grupo",n=3)
-        conteudo_html = f'''<strong>Top 3 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
-                🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]} e 🥉 {top_3_categorias[2]}'''
+        n=len(top_3_categorias)
+        if n==1:
+            conteudo_html = f'''<strong>Receita líder</strong> do dia {data_inicio_formatada}: 
+            🥇 <strong>{top1_categoria[0]}</strong>'''
+        if n==2:
+            conteudo_html = f'''<strong>Top 2 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+            🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]}'''
+        else:
+            conteudo_html = f'''<strong>Top 3 Receitas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+            🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]} e 🥉 {top_3_categorias[2]}'''
         criar_bloco_insight("Receitas",conteudo_html)
         return
 
@@ -69,8 +77,15 @@ def insight_despesas(df_despesas_por_categoria,df_despesas_anterior_por_categori
 
     elif periodo=="curto":
         top_3_categorias=get_top_n_categorias(df_despesas_por_categoria,"Centro_Custo",n=3)
-        conteudo_html = f'''<strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
-                🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]} e 🥉 {top_3_categorias[2]}'''
+        n=len(top_3_categorias)
+        if n==1:
+             conteudo_html = f'''<strong>Despesa mais alta</strong> do dia {data_inicio_formatada}: 🧾 <strong>{top_3_categorias[0]}</strong>'''
+        elif n==2:
+            conteudo_html = f'''<strong>Top 2 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+            🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]}'''
+        else:
+            conteudo_html = f'''<strong>Top 3 Despesas</strong> (de {data_inicio_formatada} a {data_fim_formatada}):  
+            🥇 <strong>{top_3_categorias[0]}</strong>, 🥈 {top_3_categorias[1]} e 🥉 {top_3_categorias[2]}'''
         criar_bloco_insight("Despesas",conteudo_html)
 
 
